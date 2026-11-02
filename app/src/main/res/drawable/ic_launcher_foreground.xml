@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Mầm cây trên đảo cỏ, màu trắng -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <path android:pathData="M54,72 L54,47"
+        android:strokeColor="#FFFFFFFF" android:strokeWidth="4" android:strokeLineCap="round" />
+    <path android:fillColor="#FFFFFFFF"
+        android:pathData="M54,58 C43,58 36,50 36,40 C46,40 54,47 54,58 Z" />
+    <path android:fillColor="#FFFFFFFF"
+        android:pathData="M54,51 C54,40 62,31 74,31 C74,42 66,51 54,51 Z" />
+    <path android:fillColor="#CCFFFFFF"
+        android:pathData="M36,72 C36,68 44,66 54,66 C64,66 72,68 72,72 C72,78 64,80 54,80 C44,80 36,78 36,72 Z" />
+</vector>

@@ -1,0 +1,9 @@
+<resources>
+    <style name="Theme.BJTNiwa" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/paper</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/paper</item>
+        <item name="android:windowBackground">@color/paper</item>
+        <item name="colorPrimary">@color/brand_blue</item>
+    </style>
+</resources>

@@ -1,0 +1,37 @@
+name: Build APK
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Arrange project files
+        run: |
+          set -e
+          if [ -f app.build.gradle.kts ]; then
+            mkdir -p app/src/main/java/com/bjtniwa/app app/src/main/assets app/src/main/res/values app/src/main/res/drawable app/src/main/res/mipmap-anydpi-v26
+            mv app.build.gradle.kts app/build.gradle.kts
+            mv AndroidManifest.xml app/src/main/
+            mv MainActivity.kt TtsBridge.kt app/src/main/java/com/bjtniwa/app/
+            mv index.html xlsx.full.min.js app/src/main/assets/
+            mv strings.xml colors.xml themes.xml app/src/main/res/values/
+            mv ic_launcher_background.xml ic_launcher_foreground.xml app/src/main/res/drawable/
+            mv ic_launcher.xml app/src/main/res/mipmap-anydpi-v26/
+          fi
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.7'
+      - name: Build debug APK
+        run: gradle assembleDebug --no-daemon
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BJT-Niwa-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
