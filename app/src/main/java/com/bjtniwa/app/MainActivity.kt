@@ -47,6 +47,8 @@ class MainActivity : AppCompatActivity() {
             mediaPlaybackRequiresUserGesture = false
             allowFileAccess = false
             allowContentAccess = true
+            /* Cỡ chữ hệ thống quá lớn (một số máy Realme/Oppo) làm vỡ bố cục: giới hạn tối đa 110% */
+            textZoom = textZoom.coerceAtMost(110)
         }
 
         tts = TtsBridge(this, web)

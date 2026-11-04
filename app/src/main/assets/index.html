@@ -750,6 +750,36 @@ h2 .deck-tag{color:#16A34A;margin-right:4px}
 .crow .ex.ex-box{color:var(--indigo)}
 .crow .ex.ex-box .ex-src span{color:var(--ink);font-weight:500}
 .crow .ex.ex-box .ex-tr{color:var(--muted);border-top-color:var(--line)}
+/* Màn hình hẹp hoặc cỡ chữ hệ thống lớn (vd. Realme Q5): không để chữ và nút đè hoặc tràn ra ngoài */
+@media (max-width:900px){.fb-grid{grid-template-columns:minmax(0,1fr)}.fb-stage,.fb-side{min-width:0}}
+@media (max-width:640px){
+  .fb-stat{min-width:0;overflow:hidden}
+  .fb-sv{width:100%}
+  .fb-sv small{font-size:11.5px;line-height:1.3}
+  .fb-sv b{font-size:15px;white-space:normal;line-height:1.25;overflow-wrap:anywhere}
+}
+.top-row .brand{overflow:hidden}
+.fb-idx{right:64px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:360px){.top-row{gap:8px}.logo-text b{display:none}.brand{gap:6px}}
+@media (max-width:300px){.logo-text{display:none}}
+@media (max-width:400px){
+  .fb{padding:14px 8px 20px}
+  .fb-head{gap:8px}
+  .fb-title h2{font-size:22px}
+  .fb-pill{padding:6px 10px;font-size:12px;gap:6px}
+  .fb-av{width:36px;height:36px;font-size:16px}
+  .fb-stat{padding:2px 7px}
+  .fb-wrap{gap:4px}
+  .fb-nav{width:36px;height:36px}
+  .fb-nav svg{width:20px;height:20px}
+  .fb-card{height:300px}
+  .fb-face{padding:34px 14px 18px}
+  .fb-speak{width:42px;height:42px;top:10px;right:10px}
+  .fb-acts{gap:6px}
+  .fb-btn{font-size:12.5px!important;padding:11px 4px;gap:4px;border-width:1.5px}
+  .fb-btn svg{width:14px;height:14px}
+  .fb-ghost{inset:12px 18px 0 -8px}
+}
 .hl{background:var(--matcha-soft);color:inherit;border-radius:3px;padding:0 1px}
 </style>
 </head>
