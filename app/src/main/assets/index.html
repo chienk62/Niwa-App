@@ -724,6 +724,14 @@ h2 .deck-tag{color:#16A34A;margin-right:4px}
 .deck{min-width:0;overflow:hidden}
 .deck b,.deck span{overflow-wrap:anywhere;word-break:break-word}
 .section-head h2{min-width:0;overflow-wrap:anywhere;word-break:break-word}
+/* Hàng chọn tất cả: nằm riêng ngay trên danh sách thẻ, thẳng hàng với ô tích của từng thẻ */
+.fb-selrow{display:flex;align-items:center;gap:8px;min-height:44px;padding:6px 12px 6px 0;border-top:1.5px solid var(--fb-line);border-bottom:1.5px solid var(--fb-line);background:var(--fb-card)}
+.fb-selrow.active{background:var(--fb-soft)}
+.fb-selrow .fb-all{width:auto;height:auto;border:0;border-radius:0;justify-content:flex-start;gap:10px;padding-left:18px;margin-right:auto;font-weight:700;font-size:14px;color:var(--fb-navy)}
+.fb-selrow .fb-all input{margin:0}
+.fb-selrow .btn,.fb-selrow .fb-tool{white-space:nowrap;padding:6px 11px;font-size:13px}
+.fb-selrow .fb-all span{white-space:nowrap}
+.fb-tools{border-bottom:0}
 .hl{background:var(--matcha-soft);color:inherit;border-radius:3px;padding:0 1px}
 </style>
 </head>
@@ -1629,17 +1637,16 @@ function fcList(){
       <select id="fb-topic" aria-label="${t('topic')}"><option value="">${t('allTopic')}</option><option value="@ja" ${S.fdeck==='@ja'?'selected':''}>${t('topicJa')}</option><option value="@en" ${S.fdeck==='@en'?'selected':''}>${t('topicEn')}</option>${ds.map(d=>`<option value="${d.id}" ${S.fdeck===d.id?'selected':''}>${esc(d.name)}</option>`).join('')}</select></span></label>
     <div class="fb-list">
       <div class="fb-lhead"><b>${t('listTitle')}</b><span>${list.length}</span></div>
-      ${(()=>{ const ids = list.map(c=>c.id), n = ids.filter(id=>S.pickSet.has(id)).length;
-        const master = list.length ? `<label class="fb-all" title="${t('selectAll')}"><input type="checkbox" id="sel-all" aria-label="${t('selectAll')}" ${n && n===ids.length ? 'checked' : ''} data-ind="${n && n<ids.length ? 1 : 0}"></label>` : '';
-        if(n) return `<div class="fb-tools fb-selbar">${master}
-          <span class="fb-seln">${t('nSelected', n)}</span>
-          <button class="btn sm danger fb-seldel" data-act="sel-del">${t('delN', n)}</button>
-          <button class="fb-tool" data-act="sel-clear">${t('clearSel')}</button></div>`;
-        return `<div class="fb-tools">${master}
+      <div class="fb-tools">
           <button class="fb-tool main" data-act="new">＋ ${t('addCard')}</button>
           <button class="fb-tool" data-act="xls">${t('xlsImport')}</button>
           ${IMG_LIM?`<button class="fb-tool" data-act="import">${t('importImg')}</button>`:''}
-          ${list.length>=2?`<button class="fb-tool" data-act="test-mine">${t('test')}</button><button class="fb-tool game" data-act="game-mine">🎮 ${t('game')}</button>`:''}${SAMPLE && enMissing().length ? `<button class="fb-tool ai" data-act="en-fill">${t('exFillBtn', enMissing().length)}</button>` : ''}</div>`; })()}
+          ${list.length>=2?`<button class="fb-tool" data-act="test-mine">${t('test')}</button><button class="fb-tool game" data-act="game-mine">🎮 ${t('game')}</button>`:''}${SAMPLE && enMissing().length ? `<button class="fb-tool ai" data-act="en-fill">${t('exFillBtn', enMissing().length)}</button>` : ''}</div>
+      ${list.length ? (()=>{ const ids = list.map(c=>c.id), n = ids.filter(id=>S.pickSet.has(id)).length;
+        return `<div class="fb-selrow${n?' active':''}">
+          <label class="fb-all"><input type="checkbox" id="sel-all" aria-label="${t('selectAll')}" ${n && n===ids.length ? 'checked' : ''} data-ind="${n && n<ids.length ? 1 : 0}"><span>${n ? t('nSelected', n) : t('selectAll')}</span></label>
+          ${n ? `<button class="btn sm danger fb-seldel" data-act="sel-del">${t('delN', n)}</button><button class="fb-tool" data-act="sel-clear">${t('clearSel')}</button>` : ''}
+        </div>`; })() : ''}
       <div class="fb-items" id="fc-items">${list.map((c,k)=>{ const st = c.known===true ? 'ok' : c.known===false ? 'ng' : 'new', on = S.pickSet.has(c.id);
         return `<div class="fb-item${k===i?' on':''}${on?' picked':''}${isEn(c)?' en':''}">
           <input type="checkbox" class="fb-chk" data-sid="${c.id}" ${on?'checked':''} aria-label="${esc(c.front)}">
