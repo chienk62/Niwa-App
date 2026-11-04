@@ -673,6 +673,57 @@ h2 .deck-tag{color:#16A34A;margin-right:4px}
 .sd-speak.speaking .w2,.fb-speak.speaking .w2{animation:spkWave 1s ease-in-out infinite .25s}
 @keyframes spkPulse{0%,100%{box-shadow:0 0 0 0 rgba(56,189,248,.35)}50%{box-shadow:0 0 0 9px rgba(56,189,248,0)}}
 @keyframes spkWave{0%,100%{opacity:.25}50%{opacity:1}}
+/* ---------- Game ghép từ ---------- */
+.gm .qz-panel{gap:12px}
+.gm-demo{display:flex;align-items:center;gap:10px}
+.gm-demo span{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-weight:900;font-size:20px;color:#fff;background:linear-gradient(150deg,var(--sd-sky),var(--sd-blue));box-shadow:0 8px 16px -10px var(--sd-blue)}
+.gm-demo i{width:56px;height:4px;border-radius:4px;background:repeating-linear-gradient(90deg,var(--sd-blue) 0 8px,transparent 8px 14px);animation:gmDash 1s linear infinite}
+@keyframes gmDash{to{background-position:14px 0}}
+.gm-how{margin:0;max-width:440px;color:var(--sd-text);font-size:15px;line-height:1.5}
+.gm-stats{display:flex;gap:10px;flex-wrap:wrap;margin:-4px 0 14px}
+.gm-stats span{background:var(--sd-soft);color:var(--sd-navy);border-radius:999px;padding:6px 14px;font-weight:700;font-size:14px;font-variant-numeric:tabular-nums}
+.gm-stats .gm-mist{color:var(--qz-ng);background:var(--qz-ng-bg)}
+.gm-board{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.gm-board.in-next{animation:sdInR .38s cubic-bezier(.2,.8,.3,1)}
+.gm-col{display:flex;flex-direction:column;gap:8px;min-width:0}
+.gm-h{font-weight:800;font-size:13px;letter-spacing:.04em;color:var(--sd-blue);text-transform:uppercase;padding:0 4px}
+.gm-cell{min-height:58px;border:2px solid var(--sd-line);background:#fff;color:var(--sd-text);border-radius:16px;padding:10px 12px;font-weight:600;font-size:15px;line-height:1.35;text-align:center;display:flex;align-items:center;justify-content:center;word-break:break-word;transition:transform .15s,border-color .2s,background .2s,opacity .3s,box-shadow .2s}
+.gm-cell.a span{font-size:19px;font-weight:700;color:var(--sd-navy)}
+.gm-cell.a span.en-w{font-size:17px}
+:root[data-theme="dark"] .gm-cell{background:#14243F}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .gm-cell{background:#14243F}}
+.gm-cell:not(:disabled):hover{border-color:var(--sd-sky);transform:translateY(-2px);box-shadow:0 10px 18px -14px var(--sd-blue)}
+.gm-cell.sel{border-color:var(--sd-blue);background:var(--sd-soft);box-shadow:0 0 0 4px rgba(56,189,248,.22);transform:translateY(-2px)}
+.gm-cell.ok{border-color:var(--qz-ok);background:var(--qz-ok-bg);color:var(--qz-ok);opacity:.55;cursor:default}
+.gm-cell.ok span{color:var(--qz-ok)!important}
+.gm-cell.ok.just{opacity:1;animation:qzPop .4s ease}
+.gm-cell.bad{border-color:var(--qz-ng);background:var(--qz-ng-bg);color:var(--qz-ng);animation:qzShake .4s ease}
+.gm-cell.bad span{color:var(--qz-ng)!important}
+.gm-stars{display:flex;gap:8px;font-size:46px;line-height:1}
+.gm-stars span{color:#D7E3F4;transform:scale(.6);opacity:.6;animation:gmStar .5s cubic-bezier(.2,.9,.3,1.5) forwards;animation-delay:var(--d)}
+.gm-stars span.on{color:#FFC93C;text-shadow:0 4px 14px rgba(255,190,40,.45)}
+@keyframes gmStar{to{transform:scale(1);opacity:1}}
+.gm-res{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:100%;max-width:420px}
+.gm-res div{background:#fff;border-radius:16px;padding:10px 6px;box-shadow:0 6px 14px -12px var(--sd-blue)}
+:root[data-theme="dark"] .gm-res div{background:#14243F}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .gm-res div{background:#14243F}}
+.gm-res small{display:block;font-size:12.5px;color:var(--sd-muted)}
+.gm-res b{font-size:22px;font-weight:900;color:var(--sd-navy);font-variant-numeric:tabular-nums}
+.gm-res b.ok{color:var(--qz-ok)}.gm-res b.bad{color:var(--qz-ng)}
+.fb-tool.game{border-color:#FFD98A;background:#FFF7E3;color:#B7791F}
+@media (max-width:520px){.gm-board{gap:8px}.gm-cell{min-height:52px;padding:8px;font-size:13.5px;border-radius:14px}.gm-cell.a span{font-size:16px}}
+.rd-status{display:block;min-height:18px;margin-top:5px;font-size:12.5px;color:var(--muted)}
+.rd-status:empty{min-height:0;margin:0}
+.rd-status.ok{color:var(--matcha);font-weight:600}
+.rd-status.busy{color:var(--indigo)}
+.rd-status.busy::before{content:"";display:inline-block;width:10px;height:10px;margin-right:6px;border-radius:50%;border:2px solid var(--indigo-soft);border-top-color:var(--indigo);animation:spin .8s linear infinite;vertical-align:-1px}
+.fb-tool.ai{border-color:#C7B8F5;background:#F3EFFF;color:#6D4BD8}
+/* Từ tiếng Anh không bị cắt giữa từ: chỉ xuống dòng ở khoảng trắng, từ dài thì tự thu nhỏ chữ */
+.fb-word.en-w,.fb-bword.en-w,.sd-word.en-w,.sd-bword.en-w{word-break:normal;overflow-wrap:normal;hyphens:manual}
+/* Tên bộ thẻ dài (không có khoảng trắng, ví dụ Tu_vung_tieng_Anh_C1) tự xuống dòng trong khung */
+.deck{min-width:0;overflow:hidden}
+.deck b,.deck span{overflow-wrap:anywhere;word-break:break-word}
+.section-head h2{min-width:0;overflow-wrap:anywhere;word-break:break-word}
 .hl{background:var(--matcha-soft);color:inherit;border-radius:3px;padding:0 1px}
 </style>
 </head>
@@ -690,6 +741,8 @@ const I18N = {
     password:'Mật khẩu', passwordHint:'Tối thiểu 4 ký tự', processing:'Đang xử lý…',
     errUser:'Tên đăng nhập cần 3–20 ký tự: chữ không dấu, số hoặc dấu gạch dưới.', errPass:'Mật khẩu cần tối thiểu 4 ký tự.',
     errTaken:'Tên đăng nhập này đã có. Hãy chọn tên khác hoặc đăng nhập.', errWrong:'Sai tên đăng nhập hoặc mật khẩu.',
+    errNoUser:'Tài khoản này chưa có trên trình duyệt/thiết bị này. Tài khoản được lưu riêng ở từng nơi: hãy mở đúng trình duyệt đã tạo, hoặc bấm “Tạo tài khoản” để tạo mới tại đây.',
+    errPassWrong:'Mật khẩu chưa đúng. Lưu ý mật khẩu phân biệt chữ hoa và chữ thường.',
     loginNote:'Tài khoản và dữ liệu học được lưu riêng cho bạn trên trang này.',
     tryGuest:'Dùng thử không cần tài khoản', guestName:'Khách', orText:'hoặc',
     guestNote:'Bạn đang dùng thử, chưa có tài khoản. Tạo tài khoản để giữ thẻ và khu vườn lâu dài.',
@@ -749,7 +802,7 @@ const I18N = {
     deckDone:'Đã xem hết thẻ! Bấm Lặp lại để học lại từ đầu.',
     fbTitle:'Flashcards', fbSub:'Học thông minh · Nhớ lâu hơn', streak:n=>'Chuỗi: '+n+' ngày', pts:n=>n+' điểm',
     tip:'Cố gắng học đều mỗi ngày nhé!', topic:'Chủ đề hiện tại', allTopic:'Tất cả thẻ đã tạo', emptyTopic:'Bộ này chưa có thẻ nào.',
-    cardLang:'Ngôn ngữ của thẻ', langJa:'🇯🇵 Tiếng Nhật', langEn:'🇬🇧 Tiếng Anh (IELTS)', fFrontEn:'Từ tiếng Anh', fIpa:'Phiên âm (IPA)',
+    cardLang:'Ngôn ngữ của thẻ', langJa:'🇯🇵 Tiếng Nhật', langEn:'🇬🇧 Tiếng Anh', fFrontEn:'Từ tiếng Anh', fIpa:'Phiên âm (IPA)',
     fEnDef:'Định nghĩa tiếng Anh', topicJa:'Thẻ tiếng Nhật', topicEn:'Thẻ tiếng Anh', groupJa:'🇯🇵 Tiếng Nhật thương mại · BJT', groupEn:'🇬🇧 Tiếng Anh · IELTS',
     quizTip:'Mẹo: đọc kỹ cả cách đọc trước khi chọn nhé!', scoreSoFar:n=>'Đúng: '+n, rightN:n=>n+' câu đúng', wrongN:n=>n+' câu sai',
     resGreat:'Xuất sắc! Bạn nhớ rất tốt.', resGood:'Khá lắm! Ôn thêm vài từ nữa nhé.', resTry:'Cố lên! Ôn lại các từ sai rồi thử lại nhé.',
@@ -764,6 +817,16 @@ const I18N = {
     xlsDone:n=>'Đã thêm '+n+' thẻ từ Excel.', xlsErrRead:'Không đọc được file này. Hãy dùng file .xlsx, .xls hoặc .csv.',
     xlsErrEmpty:'Không tìm thấy từ vựng nào. Kiểm tra lại cột Từ vựng và cột Nghĩa.', xlsErrLib:'Không tải được bộ đọc Excel. Kiểm tra kết nối mạng rồi thử lại.',
     xlsLimit:n=>'Mỗi lần chỉ nhập tối đa '+n+' từ, trang đã lấy '+n+' từ đầu tiên.', xlsFull:'Dung lượng lưu trữ gần đầy, chỉ thêm được một phần.',
+    game:'Game', gmTitle:'Ghép từ', gmHow:'Chạm một từ ở cột A rồi chạm nghĩa đúng ở cột B để ghép thành cặp. Ghép hết các cặp để qua vòng.',
+    gmCount:'Số cặp từ', pairsN:n=>n+' cặp', gmStart:'Bắt đầu chơi', colA:'A · Từ vựng', colB:'B · Nghĩa', round:(i,n)=>'Vòng '+i+'/'+n,
+    mistakes:n=>'Sai: '+n, gmDone:'Hoàn thành!', gmTime:'Thời gian', gmMist:'Lần ghép sai', gmAcc:'Độ chính xác',
+    gmPerfect:'Hoàn hảo! Không ghép sai lần nào.', gmGood:'Giỏi lắm! Chơi lại để nhanh hơn nhé.', gmTry:'Ôn lại một chút rồi chơi tiếp nhé!',
+    playAgain:'Chơi lại', gmTip:'Mẹo: ghép đúng hết, không sai lần nào để đạt 3 sao!',
+    rdLoading:'Đang tự điền cách đọc…', rdAuto:'✓ Đã tự điền cách đọc, bạn có thể sửa lại', rdManual:'Chưa tự điền được, hãy nhập cách đọc',
+    ipaLoading:'Đang tự điền phiên âm…',
+    exLoading:'Đang tạo câu ví dụ…', exAuto:'✓ Ví dụ do AI gợi ý, bạn có thể sửa lại', exFillBtn:n=>'✨ Thêm ví dụ ('+n+')',
+    exFillTitle:'Tự thêm ví dụ cho từ tiếng Anh', exFilling:(a,b)=>'Đang tạo ví dụ và phiên âm… '+a+' / '+b+' từ',
+    exFillDone:n=>'Đã bổ sung ví dụ và phiên âm cho '+n+' từ tiếng Anh.', exFillErr:n=>'Bị gián đoạn giữa chừng. Đã bổ sung được '+n+' từ, bấm lại nút để làm tiếp.', ipaAuto:'✓ Đã tự điền phiên âm, bạn có thể sửa lại', ipaManual:'Chưa tự điền được, hãy nhập phiên âm',
     tapFlip:'Chạm để xem nghĩa', flipLabel:'Lật thẻ', prev:'Trước', next:'Tiếp', restart:'Học lại từ đầu', shuffle:'Trộn thẻ', close:'Đóng'
   },
   ja:{
@@ -773,6 +836,8 @@ const I18N = {
     password:'パスワード', passwordHint:'4文字以上', processing:'処理中…',
     errUser:'ユーザー名は3〜20文字の半角英数字またはアンダースコアで入力してください。', errPass:'パスワードは4文字以上で入力してください。',
     errTaken:'このユーザー名は使われています。別の名前にするか、ログインしてください。', errWrong:'ユーザー名またはパスワードが違います。',
+    errNoUser:'このアカウントはこのブラウザ／端末にはありません。アカウントは場所ごとに保存されます。作成したブラウザで開くか、「新規登録」でここに作成してください。',
+    errPassWrong:'パスワードが違います。大文字と小文字は区別されます。',
     loginNote:'アカウントと学習データは、このページにあなた専用で保存されます。',
     tryGuest:'アカウントなしで試す', guestName:'ゲスト', orText:'または',
     guestNote:'お試し中です。カードと庭を長く残すには、アカウントを作成してください。',
@@ -832,7 +897,7 @@ const I18N = {
     deckDone:'すべてのカードを見ました。「もう一度」で最初から始められます。',
     fbTitle:'フラッシュカード', fbSub:'賢く学んで、長く覚える', streak:n=>'連続 '+n+'日', pts:n=>n+' pt',
     tip:'毎日コツコツ続けましょう!', topic:'現在のテーマ', allTopic:'作ったカードすべて', emptyTopic:'この単語帳にはまだカードがありません。',
-    cardLang:'カードの言語', langJa:'🇯🇵 日本語', langEn:'🇬🇧 英語(IELTS)', fFrontEn:'英単語', fIpa:'発音記号(IPA)',
+    cardLang:'カードの言語', langJa:'🇯🇵 日本語', langEn:'🇬🇧 英語', fFrontEn:'英単語', fIpa:'発音記号(IPA)',
     fEnDef:'英語の定義', topicJa:'日本語のカード', topicEn:'英語のカード', groupJa:'🇯🇵 ビジネス日本語・BJT', groupEn:'🇬🇧 英語・IELTS',
     quizTip:'ヒント:読み方もよく確認してから選びましょう!', scoreSoFar:n=>'正解:'+n, rightN:n=>'正解 '+n+'問', wrongN:n=>'不正解 '+n+'問',
     resGreat:'素晴らしい!よく覚えています。', resGood:'いい調子!あと少し復習しましょう。', resTry:'がんばろう!間違えた単語を復習して、もう一度挑戦!',
@@ -847,6 +912,16 @@ const I18N = {
     xlsDone:n=>'Excelから'+n+'枚追加しました。', xlsErrRead:'このファイルは読み込めません。.xlsx・.xls・.csvを使ってください。',
     xlsErrEmpty:'単語が見つかりませんでした。単語と意味の列を確認してください。', xlsErrLib:'Excel読み込み機能を読み込めませんでした。接続を確認してもう一度お試しください。',
     xlsLimit:n=>'1回に追加できるのは'+n+'語までです。最初の'+n+'語を読み込みました。', xlsFull:'保存容量がいっぱいに近いため、一部だけ追加しました。',
+    game:'ゲーム', gmTitle:'マッチング', gmHow:'A列の単語をタップしてから、B列の正しい意味をタップしてペアにしよう。全部そろえると次のラウンドへ。',
+    gmCount:'ペアの数', pairsN:n=>n+'ペア', gmStart:'スタート', colA:'A・単語', colB:'B・意味', round:(i,n)=>'ラウンド '+i+'/'+n,
+    mistakes:n=>'ミス:'+n, gmDone:'クリア!', gmTime:'タイム', gmMist:'ミス', gmAcc:'正確さ',
+    gmPerfect:'パーフェクト!ミスなし!', gmGood:'よくできました!もっと速くを目指そう。', gmTry:'少し復習して、もう一度挑戦しよう!',
+    playAgain:'もう一度', gmTip:'ヒント:ミスなしでクリアすると★3つ!',
+    rdLoading:'読み方を自動入力中…', rdAuto:'✓ 読み方を自動入力しました(修正できます)', rdManual:'自動入力できませんでした。読み方を入力してください',
+    ipaLoading:'発音記号を自動入力中…',
+    exLoading:'例文を作成中…', exAuto:'✓ AIが例文を提案しました(修正できます)', exFillBtn:n=>'✨ 例文を追加('+n+')',
+    exFillTitle:'英単語の例文を自動追加', exFilling:(a,b)=>'例文と発音記号を作成中… '+a+' / '+b+'語',
+    exFillDone:n=>n+'語に例文と発音記号を追加しました。', exFillErr:n=>'途中で中断しました。'+n+'語まで追加済みです。もう一度ボタンを押すと続きから処理します。', ipaAuto:'✓ 発音記号を自動入力しました(修正できます)', ipaManual:'自動入力できませんでした。発音記号を入力してください',
     tapFlip:'タップして意味を表示', flipLabel:'カードをめくる', prev:'前へ', next:'次へ', restart:'最初から', shuffle:'シャッフル', close:'閉じる'
   }
 };
@@ -1310,7 +1385,8 @@ async function onAuth(e){
     }
   } else {
     const a = acc.users[u];
-    if(!a || a.hash !== await sha(a.salt+':'+p)){ btn.disabled=false; btn.textContent=label; err.textContent = t('errWrong'); return; }
+    if(!a){ btn.disabled=false; btn.textContent=label; err.textContent = t('errNoUser'); return; }
+    if(a.hash !== await sha(a.salt+':'+p)){ btn.disabled=false; btn.textContent=label; err.textContent = t('errPassWrong'); return; }
   }
   await enter(u);
 }
@@ -1563,7 +1639,7 @@ function fcList(){
           <button class="fb-tool main" data-act="new">＋ ${t('addCard')}</button>
           <button class="fb-tool" data-act="xls">${t('xlsImport')}</button>
           ${IMG_LIM?`<button class="fb-tool" data-act="import">${t('importImg')}</button>`:''}
-          ${list.length>=2?`<button class="fb-tool" data-act="test-mine">${t('test')}</button>`:''}</div>`; })()}
+          ${list.length>=2?`<button class="fb-tool" data-act="test-mine">${t('test')}</button><button class="fb-tool game" data-act="game-mine">🎮 ${t('game')}</button>`:''}${SAMPLE && enMissing().length ? `<button class="fb-tool ai" data-act="en-fill">${t('exFillBtn', enMissing().length)}</button>` : ''}</div>`; })()}
       <div class="fb-items" id="fc-items">${list.map((c,k)=>{ const st = c.known===true ? 'ok' : c.known===false ? 'ng' : 'new', on = S.pickSet.has(c.id);
         return `<div class="fb-item${k===i?' on':''}${on?' picked':''}${isEn(c)?' en':''}">
           <input type="checkbox" class="fb-chk" data-sid="${c.id}" ${on?'checked':''} aria-label="${esc(c.front)}">
@@ -1636,6 +1712,7 @@ function viewDeck(){
   <div class="section-head"><h2><span class="${d.lang==='en'?'en-w deck-tag':'jp'}">${esc(d.jp)}</span> ${LANG==='ja' && d.lang!=='en' ? '' : esc(L(d.name))}<span class="count">${t('nCards',d.cards.length)}</span></h2>
     <button class="btn" data-act="add-all" ${left?'':'disabled'}>${left?t('addAll'):t('allAdded')}</button>
     <button class="btn" data-act="test-deck">${t('test')}</button>
+    <button class="btn" data-act="game-deck">🎮 ${t('game')}</button>
     <button class="btn primary" data-act="study-deck">${t('studyDeck')}</button></div>
   <div class="cards">${d.cards.map(c=>cardRow(c)).join('')}</div>`;
 }
@@ -1820,7 +1897,7 @@ function openModal(html, opts={}){
   if(opts.dismiss !== false) m.addEventListener('click', e=>{ if(e.target===m) closeModal(); });
   const f = m.querySelector('input,textarea,button'); f && f.focus();
 }
-function closeModal(){ if(IMP && IMP.ctl) IMP.ctl.abort(); IMP = null; DF = null; XLS = null; S.quiz = null; $('#modal-root').innerHTML = ''; S.study = null; }
+function closeModal(){ if(S.enFill){ S.enFill.ctl.abort(); S.enFill = null; } if(IMP && IMP.ctl) IMP.ctl.abort(); IMP = null; DF = null; XLS = null; S.quiz = null; if(S.game){ S.game.end = true; S.game = null; } clearInterval(gmTick); $('#modal-root').innerHTML = ''; S.study = null; }
 document.addEventListener('keydown', e=>{
   if(!$('#modal-root').innerHTML) return;
   if(e.key==='Escape') closeModal();
@@ -1831,6 +1908,80 @@ document.addEventListener('keydown', e=>{
   }
 });
 
+/* ===================== Cách đọc tiếng Nhật tự động ===================== */
+const KANA_RE = /^[\u3040-\u309F\u30A0-\u30FF\u301C\uFF5E\u30FB\s、。！？!?]+$/;
+const toHira = s => s.replace(/[\u30A1-\u30F6]/g, ch=>String.fromCharCode(ch.charCodeAt(0) - 0x60));
+function knownReading(front, lg='ja'){
+  const key = lg === 'en' ? front.toLowerCase() : front;
+  for(const c of [...S.data.cards, ...PRESETS.flatMap(d=>d.cards)]){
+    if((c.lang || 'ja') !== lg || !c.reading) continue;
+    const f = String(c.front).trim();
+    if((lg === 'en' ? f.toLowerCase() : f) === key) return c.reading;
+  }
+  return '';
+}
+function knownCard(front, lg){
+  const key = front.toLowerCase();
+  return [...S.data.cards, ...PRESETS.flatMap(d=>d.cards)].find(c=>(c.lang || 'ja') === lg && String(c.front).trim().toLowerCase() === key && (c.reading || c.example)) || null;
+}
+const ipaCache = new Map();
+async function aiEn(front, signal){
+  const key = front.toLowerCase();
+  if(ipaCache.has(key)) return ipaCache.get(key);
+  const r = await SAMPLE.json('For this English word or phrase give (1) its standard British English IPA pronunciation as in the Cambridge or Oxford dictionary, with stress marks and without slashes, '
+    + 'and (2) one natural example sentence of 8 to 16 words that uses it, suitable for IELTS. '
+    + 'Reply with only JSON like {"ipa":"ˈvʌlnərəbl","example":"Older people are more vulnerable to infections in winter."}.\n\nWord: ' + front, {modelTier:'quick', signal});
+  let ipa = r && typeof r.ipa === 'string' ? r.ipa.trim().replace(/^[\/\[]+|[\/\]]+$/g,'') : '';
+  if(ipa.length > 80 || /[\u3040-\u30FF\u3400-\u9FFF]/.test(ipa)) ipa = '';
+  const example = r && typeof r.example === 'string' ? r.example.trim().slice(0, 300) : '';
+  const out = {ipa, example};
+  if(ipa || example) ipaCache.set(key, out);
+  return out;
+}
+/* Bổ sung ví dụ và phiên âm cho các thẻ tiếng Anh đã có */
+function enMissing(){ return S.data.cards.filter(c=>isEn(c) && (!c.example || !c.reading)); }
+async function fillEnExamples(){
+  const list = enMissing(); if(!list.length || !SAMPLE) return;
+  openModal(`<div class="sheet" id="enfill"></div>`, {dismiss:false});
+  const ctl = new AbortController(); S.enFill = {ctl};
+  let done = 0;
+  const draw = (txt, fin) => { const el = $('#enfill'); if(!el) return;
+    el.innerHTML = `<h3>${t('exFillTitle')}</h3><div class="imp-scan">${fin ? '' : '<span class="spinner" aria-hidden="true"></span>'}<p role="status">${txt}</p></div>
+      <div class="row"><button class="btn${fin ? ' primary' : ''}" data-act="close-modal">${fin ? t('done') : t('stop')}</button></div>`; };
+  draw(t('exFilling', 0, list.length));
+  for(let i = 0; i < list.length; i += 15){
+    const batch = list.slice(i, i + 15);
+    try{
+      const res = await SAMPLE.json('For each English word or phrase below, give its standard British English IPA (with stress marks, no slashes) and one natural example sentence of 8 to 16 words using it, suitable for IELTS. '
+        + 'Reply with only a JSON array of objects {"front","ipa","example"} in the same order as the list.\n\n' + batch.map(c=>c.front).join('\n'), {modelTier:'quick', signal:ctl.signal});
+      if(!$('#enfill')) return;
+      const arr = Array.isArray(res) ? res : [];
+      batch.forEach((c, k)=>{
+        const r = arr.find(x=>x && String(x.front || '').trim().toLowerCase() === String(c.front).trim().toLowerCase()) || (arr.length === batch.length ? arr[k] : null);
+        if(!r) return;
+        let used = false;
+        if(!c.example && typeof r.example === 'string' && r.example.trim()){ c.example = r.example.trim().slice(0, 300); used = true; }
+        if(!c.reading && typeof r.ipa === 'string' && r.ipa.trim()){ c.reading = r.ipa.trim().replace(/^[\/\[]+|[\/\]]+$/g,'').slice(0, 80); used = true; }
+        if(used) done++;
+      });
+      saveData();
+      draw(t('exFilling', Math.min(i + 15, list.length), list.length));
+    }catch(e){
+      if(!$('#enfill') || (e && e.code === 'cancelled')){ renderContent(); return; }
+      saveData(); renderContent(); draw(t('exFillErr', done), true); return;
+    }
+  }
+  renderContent(); draw(t('exFillDone', done), true);
+}
+const readingCache = new Map();
+async function aiReading(front, signal){
+  if(readingCache.has(front)) return readingCache.get(front);
+  const r = await SAMPLE.json('Give the standard reading of this Japanese word or phrase, written entirely in hiragana (no kanji, no katakana, no romaji). '
+    + 'Keep any part that is already hiragana. Reply with only JSON like {"reading":"しょうち"}.\n\nWord: ' + front, {modelTier:'quick', signal});
+  const rd = r && typeof r.reading === 'string' ? toHira(r.reading.trim()) : '';
+  if(rd && /^[\u3040-\u309F\u30FC\s、。〜！？]+$/.test(rd)){ readingCache.set(front, rd); return rd; }
+  return '';
+}
 function cardForm(card){
   const c = card || {front:'',reading:'',meaning:'',meaningEn:'',meaningJa:'',example:''};
   const isEdit = !!(card && card.id);
@@ -1843,11 +1994,11 @@ function cardForm(card){
       <button type="button" data-flang="en">${t('langEn')}</button>
     </div>
     <label class="field"><span id="lb-front"></span><input class="input" name="front" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="${esc(c.front)}"></label>
-    <label class="field"><span id="lb-reading"></span><input class="input" name="reading" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="${esc(c.reading)}"></label>
+    <label class="field"><span id="lb-reading"></span><input class="input" name="reading" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="${esc(c.reading)}"><small class="rd-status" id="rd-status" aria-live="polite"></small></label>
     <label class="field"><span>${t('fVi')}</span><input class="input" name="meaning" lang="vi" autocomplete="off" value="${esc(c.meaning)}"></label>
     <label class="field" id="fl-ja"><span>${t('fJa')}</span><input class="input jp" name="meaningJa" lang="ja" autocomplete="off" autocorrect="off" spellcheck="false" value="${esc(c.meaningJa)}"></label>
     <label class="field" id="fl-en"><span>${t('fEnDef')}</span><input class="input" name="meaningEn" lang="en" autocomplete="off" value="${esc(c.meaningEn)}"></label>
-    <label class="field"><span>${t('fEx')}</span><textarea class="input" name="example">${esc(c.example)}</textarea></label>
+    <label class="field"><span>${t('fEx')}</span><textarea class="input" name="example">${esc(c.example)}</textarea><small class="rd-status" id="ex-status" aria-live="polite"></small></label>
     <div class="err" id="cerr" role="alert"></div>
     <div class="row"><button type="button" class="btn" data-act="close-modal">${t('cancel')}</button>
       <button type="submit" class="btn primary">${isEdit ? t('saveChanges') : t('addCard')}</button></div>
@@ -1865,8 +2016,61 @@ function cardForm(card){
     $('#fl-ja').classList.toggle('hidden', l==='en');
     $('#fl-en').classList.toggle('hidden', l!=='en');
   };
-  fm.querySelectorAll('[data-flang]').forEach(b=>b.onclick = ()=>applyLang(b.dataset.flang));
+  fm.querySelectorAll('[data-flang]').forEach(b=>b.onclick = ()=>{ applyLang(b.dataset.flang); autoRead(); });
   applyLang(lang);
+  /* Tự điền cách đọc tiếng Nhật khi gõ mặt trước */
+  const rdEl = fm.elements.reading, frEl = fm.elements.front, rdSt = $('#rd-status');
+  let autoVal = '', rdCtl = null, rdTimer = null;
+  const setSt = (txt, cls='') => { rdSt.textContent = txt; rdSt.className = 'rd-status' + (cls ? ' ' + cls : ''); };
+  const canAuto = () => rdEl.value.trim() === '' || rdEl.value === autoVal;
+  const exEl = fm.elements.example, exSt = $('#ex-status');
+  let autoEx = '';
+  const canAutoEx = () => exEl.value.trim() === '' || exEl.value === autoEx;
+  const setEx = v => { exEl.value = autoEx = v; exSt.textContent = t('exAuto'); exSt.className = 'rd-status ok'; };
+  exEl.addEventListener('input', ()=>{ if(exEl.value !== autoEx){ autoEx = ''; exSt.textContent = ''; exSt.className = 'rd-status'; } });
+  const msg = k => t((lang === 'en' ? 'ipa' : 'rd') + k);
+  async function autoRead(){
+    clearTimeout(rdTimer); if(rdCtl) rdCtl.abort(); rdCtl = null;
+    if(!fm.isConnected) return;
+    const f = frEl.value.trim();
+    if(lang === 'en'){
+      /* Tiếng Anh: phiên âm IPA và câu ví dụ */
+      const needR = canAuto(), needE = canAutoEx();
+      if(!f){ if(autoVal && rdEl.value === autoVal) rdEl.value = ''; if(autoEx && exEl.value === autoEx){ exEl.value = ''; exSt.textContent = ''; } autoVal = autoEx = ''; setSt(''); return; }
+      if(!needR && !needE) return;
+      if(!/[A-Za-z]/.test(f) || /[\u3040-\u30FF\u3400-\u9FFF]/.test(f)){ setSt(''); return; }
+      const kc = knownCard(f, 'en');
+      if(kc){ if(needR && kc.reading){ rdEl.value = autoVal = '/' + kc.reading + '/'; setSt(msg('Auto'), 'ok'); } if(needE && kc.example) setEx(kc.example);
+        if((!needR || kc.reading) && (!needE || kc.example)) return; }
+      if(!SAMPLE){ if(needR && !rdEl.value.trim()) setSt(msg('Manual')); return; }
+      const ctl = rdCtl = new AbortController(); if(needR) setSt(msg('Loading'), 'busy');
+      if(needE && !exEl.value.trim()){ exSt.textContent = t('exLoading'); exSt.className = 'rd-status busy'; }
+      try{
+        const r = await aiEn(f, ctl.signal);
+        if(ctl !== rdCtl || !fm.isConnected || lang !== 'en' || frEl.value.trim() !== f) return;
+        if(canAuto()){ if(r.ipa){ rdEl.value = autoVal = '/' + r.ipa + '/'; setSt(msg('Auto'), 'ok'); } else setSt(msg('Manual')); }
+        if(canAutoEx()){ if(r.example) setEx(r.example); else { exSt.textContent = ''; exSt.className = 'rd-status'; } }
+      }catch(e){ if(ctl !== rdCtl || (e && e.code === 'cancelled')) return; setSt(msg('Manual')); exSt.textContent = ''; exSt.className = 'rd-status'; }
+      return;
+    }
+    if(!canAuto()) return;
+    if(!f){ if(autoVal && rdEl.value === autoVal) rdEl.value = ''; autoVal = ''; setSt(''); return; }
+    const r = KANA_RE.test(f) ? toHira(f).replace(/\s+/g,'') : knownReading(f, 'ja');
+    if(r){ rdEl.value = autoVal = r; setSt(msg('Auto'), 'ok'); return; }
+    if(!/[\u3400-\u9FFF\uF900-\uFAFF]/.test(f)){ setSt(''); return; }
+    if(!SAMPLE){ setSt(msg('Manual')); return; }
+    const ctl = rdCtl = new AbortController(); setSt(msg('Loading'), 'busy');
+    try{
+      const rd = await aiReading(f, ctl.signal);
+      if(ctl !== rdCtl || !fm.isConnected || lang !== 'ja') return;
+      if(rd && canAuto() && frEl.value.trim() === f){ rdEl.value = autoVal = rd; setSt(msg('Auto'), 'ok'); }
+      else if(!rd) setSt(msg('Manual'));
+    }catch(e){ if(ctl !== rdCtl || (e && e.code === 'cancelled')) return; setSt(msg('Manual')); }
+  }
+  frEl.addEventListener('input', ()=>{ clearTimeout(rdTimer); rdTimer = setTimeout(autoRead, 700); });
+  frEl.addEventListener('blur', ()=>{ autoRead(); });
+  rdEl.addEventListener('input', ()=>{ if(rdEl.value !== autoVal){ autoVal = ''; if(rdCtl){ rdCtl.abort(); rdCtl = null; } setSt(''); } });
+  if(!isEdit && c.front) autoRead();
   /* Chặn lỗi bàn phím điện thoại đổ chữ đang gõ dở của ô trước sang ô vừa chạm vào */
   let lastVal = '', focusAt = 0, wasEmpty = false;
   fm.addEventListener('focusout', e=>{ if(e.target.matches('input,textarea')) lastVal = e.target.value; });
@@ -1941,13 +2145,13 @@ function sdDots(i, n){
 }
 /* Tự thu nhỏ chữ với từ vựng dài để vừa khung thẻ, không cần cuộn */
 function fitFaces(root){
-  (root || document).querySelectorAll('.fb-face,.sd-face').forEach(face=>{
+  (root || document).querySelectorAll('.fb-face,.sd-face,.qz-prompt').forEach(face=>{
     const els = [...face.querySelectorAll('.fb-word,.fb-bword,.sd-word,.sd-bword,.fb-read,.sd-read,.fb-mean,.sd-mean,.fb-mean2,.sd-mean2,.fb-ex,.sd-ex')];
     const word = face.querySelector('.fb-word,.fb-bword,.sd-word,.sd-bword');
     const art = face.querySelector('.fb-art');
     els.forEach(e=>{ e.style.fontSize = ''; }); if(art){ art.style.width = ''; art.style.display = ''; }
     if(!word || !face.clientHeight) return;
-    const over = () => face.scrollHeight > face.clientHeight + 1;
+    const over = () => face.scrollHeight > face.clientHeight + 1 || face.scrollWidth > face.clientWidth + 1;
     if(!over()) return;
     let size = parseFloat(getComputedStyle(word).fontSize), guard = 0;
     /* Cách đọc thu nhỏ cùng tỉ lệ, luôn nhỏ hơn từ chính */
@@ -2187,7 +2391,7 @@ async function runImport(){
     SAMPLE = await c.use('sample'); if(!SAMPLE) return;
     const lim = await SAMPLE.limits().catch(()=>null);
     IMG_LIM = (lim && lim.images && lim.images.maxCount) ? lim.images : null;
-    if(IMG_LIM && S.user && !S.query.trim() && S.tab==='cards') renderContent();
+    if(S.user && !S.query.trim() && S.tab==='cards') renderContent();
   }catch(e){}
 })();
 
@@ -2219,7 +2423,8 @@ function viewMyDeck(){
     <button class="btn" data-act="deck-edit" data-id="${d.id}">${t('edit')}</button>
     <button class="btn danger" data-act="deck-del" data-id="${d.id}">${t('delDeck')}</button>
     <button class="btn" data-act="deck-study" data-id="${d.id}" ${cs.length?'':'disabled'}>${t('study')}</button>
-    <button class="btn primary" data-act="deck-test" data-id="${d.id}" ${cs.length>=2?'':'disabled'}>${t('test')}</button></div>
+    <button class="btn primary" data-act="deck-test" data-id="${d.id}" ${cs.length>=2?'':'disabled'}>${t('test')}</button>
+    <button class="btn" data-act="deck-game" data-id="${d.id}" ${cs.length>=2?'':'disabled'}>🎮 ${t('game')}</button></div>
   ${d.last ? `<p class="deck-score">${t('lastScore',d.last.c,d.last.n)}</p>` : ''}
   <div class="cards">${cs.map(c=>cardRow(c,{mine:true})).join('')}</div>`;
 }
@@ -2351,6 +2556,7 @@ function renderQ(dir=''){
       ${answered ? `<button class="sd-btn main" data-act="qz-next">${q.i===n-1 ? t('seeResult') : t('nextQ')} <span aria-hidden="true">›</span></button>` : ''}
     </div>` + qzFoot();
   if(answered){ const nb = el.querySelector('[data-act="qz-next"]'); nb && nb.focus({preventScroll:true}); }
+  fitFaces(el);
 }
 function renderResult(){
   const q = S.quiz, el = $('#quiz'); if(!q || !el) return;
@@ -2522,6 +2728,124 @@ document.addEventListener('change', e=>{
   if(el.dataset && el.dataset.sid){ if(el.checked) S.pickSet.add(el.dataset.sid); else S.pickSet.delete(el.dataset.sid); fcRender(); }
   else if(el.id === 'sel-all'){ const ids = fcList_().map(c=>c.id); if(el.checked) ids.forEach(id=>S.pickSet.add(id)); else ids.forEach(id=>S.pickSet.delete(id)); fcRender(); }
 });
+/* ===================== Game ghép từ (cột A: từ vựng, cột B: nghĩa) ===================== */
+const GM_ROUND = 6;
+let gmTick = null;
+function startGame(cards, titleFn, meta={}){
+  const seenF = new Set(), seenM = new Set(), pool = [];
+  for(const c of cards){ const f = String(c.front).trim(), m = qText(c).trim();
+    if(!f || !m || seenF.has(f) || seenM.has(m)) continue; seenF.add(f); seenM.add(m); pool.push(c); }
+  if(pool.length < 2){ toast(t('needTwo')); return; }
+  openModal(`<i class="sd-bub b1" aria-hidden="true"></i><i class="sd-bub b2" aria-hidden="true"></i><i class="sd-bub b3" aria-hidden="true"></i>
+    <div class="sheet sd qz gm" id="game"></div>`, {cls:'sd-modal'});
+  S.game = {pool, titleFn, jp:meta.jp||'', icon:meta.icon||'cards', count:Math.min(12, pool.length)};
+  renderGameSetup();
+}
+function gmHead(countText, pct){
+  const g = S.game;
+  return `<div class="sd-cloud">${SD_CLOUD}</div>
+    <div class="sd-head">
+      <span class="sd-ic">${SD_ICONS[g.icon] || SD_ICONS.cards}</span>
+      <div class="sd-ht"><div class="sd-title">${t('gmTitle')} · ${esc(g.titleFn())}${g.jp && LANG!=='ja' ? `<span class="sd-jp jp"> · ${esc(g.jp)}</span>` : ''}</div>
+        <div class="sd-bar"><i style="width:${pct}%"></i></div></div>
+      <span class="sd-count">${countText}</span>
+    </div>`;
+}
+function gmFoot(){ return `<div class="sd-foot"><span>${t('gmTip')}</span><button class="sd-btn" data-act="close-modal">${t('close')}</button></div>`; }
+function renderGameSetup(){
+  const g = S.game, el = $('#game'); if(!g || !el) return;
+  clearInterval(gmTick); g.end = false;
+  el.classList.toggle('en', g.pool.every(isEn));
+  const n = g.pool.length;
+  const counts = [...new Set([6,12,18,n].filter(x=>x<=n))].sort((a,b)=>a-b);
+  if(!counts.includes(g.count)) g.count = counts[counts.length-1];
+  el.innerHTML = gmHead(t('nCards', n), 0) + `
+    <div class="qz-panel">
+      <i class="sd-spark s1" aria-hidden="true"></i><i class="sd-star" aria-hidden="true">✦</i>
+      <div class="gm-demo" aria-hidden="true"><span>A</span><i></i><span>B</span></div>
+      <p class="gm-how">${t('gmHow')}</p>
+      <span class="sd-chip">${t('gmCount')}</span>
+      <div class="qz-chips">${counts.map(c=>`<button class="qz-chip" data-act="gm-count" data-id="${c}" aria-pressed="${g.count===c}">${t('pairsN',c)}</button>`).join('')}</div>
+    </div>
+    <div class="sd-acts qz-acts"><button class="sd-btn main" data-act="gm-start">${t('gmStart')} <span aria-hidden="true">›</span></button></div>` + gmFoot();
+}
+function beginGame(){
+  const g = S.game; if(!g) return;
+  const list = shuffle([...g.pool]).slice(0, g.count);
+  g.rounds = []; for(let i=0;i<list.length;i+=GM_ROUND) g.rounds.push(list.slice(i, i+GM_ROUND));
+  /* vòng cuối quá ít cặp thì gộp vào vòng trước */
+  if(g.rounds.length > 1 && g.rounds[g.rounds.length-1].length < 3) g.rounds[g.rounds.length-2].push(...g.rounds.pop());
+  g.total = list.length; g.done = 0; g.mist = 0; g.r = 0; g.t0 = Date.now(); g.end = false;
+  clearInterval(gmTick);
+  gmTick = setInterval(()=>{ const el = $('#gm-time'); if(!S.game || S.game.end){ clearInterval(gmTick); return; } if(el) el.textContent = fmt(Date.now()-S.game.t0); }, 500);
+  gmRound();
+}
+function gmRound(){
+  const g = S.game; if(!g) return;
+  const cur = g.rounds[g.r];
+  g.A = shuffle(cur.map(c=>({id:c.id, c})));
+  g.B = shuffle(cur.map(c=>({id:c.id, text:qText(c)})));
+  g.matched = new Set(); g.selA = null; g.selB = null; g.bad = null; g.just = null;
+  renderGame('next');
+}
+function renderGame(dir=''){
+  const g = S.game, el = $('#game'); if(!g || !el) return;
+  const cls = (side, id) => g.matched.has(id) ? ' ok' + (g.just===id ? ' just' : '')
+    : (g.bad && g.bad[side]===id) ? ' bad' : ((side==='a' ? g.selA : g.selB)===id ? ' sel' : '');
+  el.innerHTML = gmHead(`${g.done} / ${g.total}`, g.done/g.total*100) + `
+    <div class="gm-stats">
+      <span>⏱ <b id="gm-time">${fmt(Date.now()-g.t0)}</b></span>
+      <span class="gm-mist">✕ ${t('mistakes', g.mist)}</span>
+      ${g.rounds.length > 1 ? `<span>${t('round', g.r+1, g.rounds.length)}</span>` : ''}
+    </div>
+    <div class="gm-board${dir?' in-'+dir:''}">
+      <div class="gm-col"><div class="gm-h">${t('colA')}</div>
+        ${g.A.map(x=>`<button class="gm-cell a${cls('a',x.id)}" data-act="gm-a" data-id="${x.id}" ${g.matched.has(x.id)?'disabled':''}><span class="${fc(x.c)}">${esc(x.c.front)}</span></button>`).join('')}
+      </div>
+      <div class="gm-col"><div class="gm-h">${t('colB')}</div>
+        ${g.B.map(x=>`<button class="gm-cell b${cls('b',x.id)}" data-act="gm-b" data-id="${x.id}" ${g.matched.has(x.id)?'disabled':''}><span>${esc(x.text)}</span></button>`).join('')}
+      </div>
+    </div>` + gmFoot();
+}
+function gmPick(side, id){
+  const g = S.game; if(!g || g.end || g.matched.has(id) || g.bad) return;
+  if(side==='a') g.selA = g.selA===id ? null : id; else g.selB = g.selB===id ? null : id;
+  g.just = null;
+  if(g.selA && g.selB){
+    if(g.selA === g.selB){
+      g.matched.add(g.selA); g.done++; g.just = g.selA; g.selA = g.selB = null;
+      renderGame();
+      if(g.matched.size === g.rounds[g.r].length){
+        setTimeout(()=>{ if(S.game !== g) return; if(g.r < g.rounds.length-1){ g.r++; gmRound(); } else gmResult(); }, 650);
+      }
+      return;
+    }
+    g.mist++; g.bad = {a:g.selA, b:g.selB}; renderGame();
+    setTimeout(()=>{ if(S.game !== g) return; g.bad = null; g.selA = g.selB = null; renderGame(); }, 550);
+    return;
+  }
+  renderGame();
+}
+function gmResult(){
+  const g = S.game, el = $('#game'); if(!g || !el) return;
+  g.end = true; clearInterval(gmTick);
+  const ms = Date.now()-g.t0, acc = Math.round(g.total/(g.total+g.mist)*100);
+  const stars = g.mist===0 ? 3 : g.mist <= Math.ceil(g.total/4) ? 2 : 1;
+  const msg = stars===3 ? t('gmPerfect') : stars===2 ? t('gmGood') : t('gmTry');
+  el.innerHTML = gmHead(t('gmDone'), 100) + `
+    <div class="qz-panel qz-res">
+      <i class="sd-spark s1" aria-hidden="true"></i><i class="sd-spark s2" aria-hidden="true"></i><i class="sd-star" aria-hidden="true">✦</i>
+      <div class="gm-stars" aria-label="${stars}/3">${[1,2,3].map(i=>`<span class="${i<=stars?'on':''}" style="--d:${i*0.15}s">★</span>`).join('')}</div>
+      <p class="qz-msg">${msg}</p>
+      <div class="gm-res">
+        <div><small>${t('gmTime')}</small><b>${fmt(ms)}</b></div>
+        <div><small>${t('gmMist')}</small><b class="${g.mist?'bad':'ok'}">${g.mist}</b></div>
+        <div><small>${t('gmAcc')}</small><b>${acc}%</b></div>
+      </div>
+    </div>
+    <div class="sd-acts qz-acts"><button class="sd-btn main" data-act="gm-again">${t('playAgain')} <span aria-hidden="true">›</span></button></div>` + gmFoot();
+}
+
 /* ===================== Sự kiện ===================== */
 
 function confirmTap(btn, label, fn){
@@ -2561,6 +2885,7 @@ document.addEventListener('click', e=>{
     case 'start': startTimer(); break;
     case 'giveup': confirmTap(b, t('confirmGiveUp'), giveUp); break;
     case 'import': openImport(); break;
+    case 'en-fill': fillEnExamples(); break;
     case 'xls': openXls(); break;
     case 'sel-clear': S.pickSet = new Set(); fcRender(); break;
     case 'sel-del': { const n = S.pickSet.size; if(!n) break;
@@ -2592,6 +2917,14 @@ document.addEventListener('click', e=>{
     case 'df-all': if(DF){ dfVisible().forEach(c=>DF.sel.add(c.id)); renderDfList(); } break;
     case 'df-none': if(DF){ dfVisible().forEach(c=>DF.sel.delete(c.id)); renderDfList(); } break;
     case 'test-mine': { const l = fcList_(); startQuiz(l.length>=2 ? l : S.data.cards, ()=>t('tabCards'), null, {icon:'cards'}); break; }
+    case 'game-mine': { const l = fcList_(); startGame(l.length>=2 ? l : S.data.cards, ()=>t('tabCards'), {icon:'cards'}); break; }
+    case 'game-deck': { const d = PRESETS.find(x=>x.id===S.deck); if(d) startGame(d.cards, ()=>L(d.name), {jp:d.jp, icon:d.id}); break; }
+    case 'deck-game': { const d = decksOf().find(x=>x.id===id); if(d) startGame(deckCards(d), ()=>d.name, {icon:'layers'}); break; }
+    case 'gm-count': if(S.game){ S.game.count = +id; renderGameSetup(); } break;
+    case 'gm-start': beginGame(); break;
+    case 'gm-again': renderGameSetup(); break;
+    case 'gm-a': gmPick('a', id); break;
+    case 'gm-b': gmPick('b', id); break;
     case 'test-deck': { const d = PRESETS.find(x=>x.id===S.deck); if(d) startQuiz(d.cards, ()=>L(d.name), null, {jp:d.jp, icon:d.id}); break; }
     case 'qz-mode': if(S.quiz){ S.quiz.mode = id; renderQuizSetup(); } break;
     case 'qz-count': if(S.quiz){ S.quiz.count = +id; renderQuizSetup(); } break;
