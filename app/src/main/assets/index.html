@@ -725,13 +725,31 @@ h2 .deck-tag{color:#16A34A;margin-right:4px}
 .deck b,.deck span{overflow-wrap:anywhere;word-break:break-word}
 .section-head h2{min-width:0;overflow-wrap:anywhere;word-break:break-word}
 /* Hàng chọn tất cả: nằm riêng ngay trên danh sách thẻ, thẳng hàng với ô tích của từng thẻ */
-.fb-selrow{display:flex;align-items:center;gap:8px;min-height:44px;padding:6px 12px 6px 0;border-top:1.5px solid var(--fb-line);border-bottom:1.5px solid var(--fb-line);background:var(--fb-card)}
+.fb-selrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;row-gap:8px;min-height:44px;padding:8px 12px 8px 18px;border-top:1.5px solid var(--fb-line);border-bottom:1.5px solid var(--fb-line);background:var(--fb-card)}
 .fb-selrow.active{background:var(--fb-soft)}
-.fb-selrow .fb-all{width:auto;height:auto;border:0;border-radius:0;justify-content:flex-start;gap:10px;padding-left:18px;margin-right:auto;font-weight:700;font-size:14px;color:var(--fb-navy)}
+.fb-selrow .fb-all{width:auto;height:auto;border:0;border-radius:0;justify-content:flex-start;gap:10px;padding-left:0;margin-right:auto;font-weight:700;font-size:14px;color:var(--fb-navy)}
 .fb-selrow .fb-all input{margin:0}
 .fb-selrow .btn,.fb-selrow .fb-tool{white-space:nowrap;padding:6px 11px;font-size:13px}
 .fb-selrow .fb-all span{white-space:nowrap}
 .fb-tools{border-bottom:0}
+/* Câu ví dụ: câu gốc và câu dịch tách riêng, có loa đọc cả câu */
+.ex-box{display:flex;flex-direction:column;gap:6px;text-align:left;width:100%;max-width:560px}
+.ex-src{display:flex;align-items:flex-start;gap:10px}
+.ex-src span{flex:1;min-width:0;font-weight:600;line-height:1.5}
+.ex-tr{padding-top:6px;border-top:1.5px dashed currentColor;opacity:.8;line-height:1.5;font-size:.95em}
+.ex-speak{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;border:1.5px solid currentColor;background:transparent;color:inherit;opacity:.85;margin-top:-2px}
+.ex-speak:hover{opacity:1}
+.ex-speak.speaking{animation:spkPulse 1s ease-in-out infinite;opacity:1}
+.fb-ex.ex-box,.sd-ex.ex-box{display:flex}
+.sd-ex.ex-box .ex-src span{color:var(--sd-navy)}
+.sd-ex.ex-box{color:var(--sd-blue)}
+.sd-ex.ex-box .ex-tr{color:var(--sd-muted);border-top-color:var(--sd-line)}
+.fb-ex.ex-box{color:var(--fb-blue)}
+.fb-ex.ex-box .ex-src span{color:var(--fb-navy)}
+.fb-ex.ex-box .ex-tr{color:var(--fb-muted);border-top-color:var(--fb-line)}
+.crow .ex.ex-box{color:var(--indigo)}
+.crow .ex.ex-box .ex-src span{color:var(--ink);font-weight:500}
+.crow .ex.ex-box .ex-tr{color:var(--muted);border-top-color:var(--line)}
 .hl{background:var(--matcha-soft);color:inherit;border-radius:3px;padding:0 1px}
 </style>
 </head>
@@ -835,6 +853,7 @@ const I18N = {
     exLoading:'Đang tạo câu ví dụ…', exAuto:'✓ Ví dụ do AI gợi ý, bạn có thể sửa lại', exFillBtn:n=>'✨ Thêm ví dụ ('+n+')',
     exFillTitle:'Tự thêm ví dụ cho từ tiếng Anh', exFilling:(a,b)=>'Đang tạo ví dụ và phiên âm… '+a+' / '+b+' từ',
     exFillDone:n=>'Đã bổ sung ví dụ và phiên âm cho '+n+' từ tiếng Anh.', exFillErr:n=>'Bị gián đoạn giữa chừng. Đã bổ sung được '+n+' từ, bấm lại nút để làm tiếp.', ipaAuto:'✓ Đã tự điền phiên âm, bạn có thể sửa lại', ipaManual:'Chưa tự điền được, hãy nhập phiên âm',
+    listenEx:'Nghe cả câu ví dụ',
     tapFlip:'Chạm để xem nghĩa', flipLabel:'Lật thẻ', prev:'Trước', next:'Tiếp', restart:'Học lại từ đầu', shuffle:'Trộn thẻ', close:'Đóng'
   },
   ja:{
@@ -930,6 +949,7 @@ const I18N = {
     exLoading:'例文を作成中…', exAuto:'✓ AIが例文を提案しました(修正できます)', exFillBtn:n=>'✨ 例文を追加('+n+')',
     exFillTitle:'英単語の例文を自動追加', exFilling:(a,b)=>'例文と発音記号を作成中… '+a+' / '+b+'語',
     exFillDone:n=>n+'語に例文と発音記号を追加しました。', exFillErr:n=>'途中で中断しました。'+n+'語まで追加済みです。もう一度ボタンを押すと続きから処理します。', ipaAuto:'✓ 発音記号を自動入力しました(修正できます)', ipaManual:'自動入力できませんでした。発音記号を入力してください',
+    listenEx:'例文を聞く',
     tapFlip:'タップして意味を表示', flipLabel:'カードをめくる', prev:'前へ', next:'次へ', restart:'最初から', shuffle:'シャッフル', close:'閉じる'
   }
 };
@@ -1484,7 +1504,7 @@ function cardRow(card, opts={}){
       ${card.reading?`<div class="reading ${fc(card)}">${hl(card.reading,q)}</div>`:''}
       ${m1?`<div class="meaning">${hl(m1,q)}</div>`:''}
       ${m2?`<div class="meaning-2">${hl(m2,q)}</div>`:''}
-      ${card.example?`<div class="ex ${fc(card)}">${esc(card.example)}</div>`:''}
+      ${card.example ? exHTML(card, 'ex') : ''}
       ${opts.srcLabel?`<div class="src">${esc(opts.srcLabel)}</div>`:''}
     </div><div class="acts">${acts}</div></div>`;
 }
@@ -1613,7 +1633,7 @@ function fcStage(){
               ${c.reading ? `<div class="fb-read ${fc(c)}">/${esc(c.reading)}/</div>` : ''}
               <div class="fb-mean">${esc(m1||'')}</div>
               ${other ? `<div class="fb-mean2">${esc(other)}</div>` : ''}
-              ${c.example ? `<div class="fb-ex ${fc(c)}">${esc(c.example)}</div>` : ''}
+              ${c.example ? exHTML(c, 'fb-ex') : ''}
             </div>
           </div>
         </div>
@@ -1678,13 +1698,43 @@ function fcMark(known){
   if(fcIndex() < list.length-1) S.fi++; else toast(t('deckDone'));
   fcRender();
 }
-function speakCard(c, btn){
-  if(!c || !CAN_SPEAK) return;
-  try{ const en = isEn(c), u = new SpeechSynthesisUtterance(en ? c.front : (c.reading || c.front)); u.lang = en ? 'en-GB' : 'ja-JP'; u.rate = 0.9;
+function speakText(text, en, btn){
+  if(!text || !CAN_SPEAK) return;
+  try{ const u = new SpeechSynthesisUtterance(text); u.lang = en ? 'en-GB' : 'ja-JP'; u.rate = 0.9;
     const vs = speechSynthesis.getVoices();
     const v = vs.find(x=>en ? /^en-GB/i.test(x.lang) : /^ja/i.test(x.lang)) || (en && vs.find(x=>/^en/i.test(x.lang))); if(v) u.voice = v;
-    if(btn){ btn.classList.add('speaking'); const off = ()=>btn.classList.remove('speaking'); u.onend = off; u.onerror = off; setTimeout(off, 6000); }
+    if(btn){ document.querySelectorAll('.speaking').forEach(x=>x.classList.remove('speaking')); btn.classList.add('speaking'); const off = ()=>btn.classList.remove('speaking'); u.onend = off; u.onerror = off; setTimeout(off, Math.max(6000, text.length*150)); }
     speechSynthesis.cancel(); speechSynthesis.speak(u); }catch(e){}
+}
+function speakCard(c, btn){
+  if(!c) return;
+  const en = isEn(c);
+  speakText(en ? c.front : (c.reading || c.front), en, btn);
+}
+/* Tách câu ví dụ thành câu gốc (Anh/Nhật) và câu dịch tiếng Việt */
+const VI_RE = /[àáảãạăằắẳẵặâầấẩẫậđèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵ]/i;
+function splitExample(ex){
+  const s = String(ex || '').trim(); if(!s) return {src:'', tr:''};
+  const m = s.match(/^([\s\S]+?)\s*(?:→|⇒|=>|->|\||\n|\s[–—-]\s|\s=\s)\s*([\s\S]+)$/);
+  if(m && (VI_RE.test(m[2]) || /[\u3040-\u30FF\u3400-\u9FFF]/.test(m[1]))) return {src:m[1].trim(), tr:m[2].trim()};
+  /* Không có dấu phân cách: tách ở cuối câu gốc nếu phần sau là tiếng Việt */
+  const m2 = s.match(/^(.+?[.!?。！？])\s*[(（]?(.+?)[)）]?$/);
+  if(m2 && !VI_RE.test(m2[1]) && VI_RE.test(m2[2])) return {src:m2[1].trim(), tr:m2[2].trim()};
+  const m3 = s.match(/^(.+?)\s*[(（]([^()（）]+)[)）]\s*$/);
+  if(m3 && !VI_RE.test(m3[1]) && VI_RE.test(m3[2])) return {src:m3[1].trim(), tr:m3[2].trim()};
+  return {src:s, tr:''};
+}
+function exHTML(c, cls){
+  const {src, tr} = splitExample(c.example);
+  if(!src) return '';
+  return `<div class="ex-box ${cls}">
+    <div class="ex-src"><span class="${fc(c)}">${esc(src)}</span>${CAN_SPEAK ? `<button class="ex-speak" data-act="speak-ex" data-id="${esc(c.id)}" aria-label="${t('listenEx')}" title="${t('listenEx')}"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>` : ''}</div>
+    ${tr ? `<div class="ex-tr">${esc(tr)}</div>` : ''}
+  </div>`;
+}
+function cardById(id){
+  return S.data.cards.find(c=>c.id===id) || PRESETS.flatMap(d=>d.cards).find(c=>c.id===id)
+    || (S.study && S.study.cards.find(c=>c.id===id)) || null;
 }
 function fcSpeak(btn){ speakCard(fcList_()[fcIndex()], btn); }
 function fcActive(){ return S.user && S.tab==='cards' && S.cv!=='decks' && !S.query.trim() && S.data.cards.length && !$('#modal-root').innerHTML; }
@@ -2205,7 +2255,7 @@ function renderStudy(dir=''){
           ${c.reading ? `<div class="sd-read ${fc(c)}">${esc(c.reading)}</div>` : ''}
           <div class="sd-mean">${esc(m1||'')}</div>
           ${other ? `<div class="sd-mean2">${esc(other)}</div>` : ''}
-          ${c.example ? `<div class="sd-ex ${fc(c)}">${esc(c.example)}</div>` : ''}
+          ${c.example ? exHTML(c, 'sd-ex') : ''}
         </div>
       </div>
       ${CAN_SPEAK ? `<button class="sd-speak" data-act="sd-speak" aria-label="${t('listen')}" title="${t('listen')}">${SD_SPEAK}</button>` : ''}
@@ -2948,6 +2998,7 @@ document.addEventListener('click', e=>{
     case 'fc-unknown': fcMark(false); break;
     case 'fc-again': S.fi = 0; S.fflip = false; fcRender(true); break;
     case 'fc-speak': fcSpeak(b); break;
+    case 'speak-ex': { const c = cardById(id); if(c) speakText(splitExample(c.example).src, isEn(c), b); break; }
     case 'sd-speak': if(S.study) speakCard(S.study.cards[S.study.i], b); break;
     case 'close-modal': closeModal(); break;
     case 'flip': studyFlip(); break;
