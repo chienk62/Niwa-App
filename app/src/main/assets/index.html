@@ -2654,6 +2654,7 @@ function renderQ(dir=''){
     : `<div class="qz-mtext">${esc(qText(Q.card))}</div>`;
   el.innerHTML = qzHead(`${q.i+1} / ${n}`, (q.i+(answered?1:0))/n*100) + `
     <div class="qz-prompt${dir?' in-'+dir:''}">
+      ${answered && CAN_SPEAK ? `<button class="sd-speak qz-speak" data-act="qz-speak" aria-label="${t('listen')}" title="${t('listen')}">${SD_SPEAK}</button>` : ''}
       <i class="sd-spark s1" aria-hidden="true"></i><i class="sd-spark s2" aria-hidden="true"></i><i class="sd-star" aria-hidden="true">✦</i>
       <span class="sd-chip">${Q.type==='fm' ? t('qPickMeaning') : t('qPickWord')}</span>
       ${prompt}
@@ -3197,7 +3198,10 @@ document.addEventListener('click', e=>{
     case 'qz-mode': if(S.quiz){ S.quiz.mode = id; renderQuizSetup(); } break;
     case 'qz-count': if(S.quiz){ S.quiz.count = +id; renderQuizSetup(); } break;
     case 'qz-start': if(S.quiz){ S.quiz.retry = false; beginQuiz(shuffle([...S.quiz.pool]).slice(0, S.quiz.count)); } break;
-    case 'qz-pick': if(S.quiz){ const Q = S.quiz.qs[S.quiz.i]; if(Q.picked===null){ Q.picked = +id; if(Q.opts[Q.picked]===Q.right) S.quiz.correct++; renderQ(); } } break;
+    case 'qz-pick': if(S.quiz){ const Q = S.quiz.qs[S.quiz.i]; if(Q.picked===null){ Q.picked = +id; if(Q.opts[Q.picked]===Q.right) S.quiz.correct++; renderQ();
+      /* Đọc lại từ vựng ngay sau khi chọn đáp án */
+      if(CAN_SPEAK) speakCard(Q.card, document.querySelector('#quiz .qz-speak')); } } break;
+    case 'qz-speak': if(S.quiz){ const Q = S.quiz.qs[S.quiz.i]; speakCard(Q.card, b); } break;
     case 'qz-next': if(S.quiz){ if(S.quiz.i >= S.quiz.qs.length-1) renderResult(); else { S.quiz.i++; renderQ(); } } break;
     case 'qz-wrong': if(S.quiz && S.quiz.wrong.length){ S.quiz.retry = true; beginQuiz(shuffle([...S.quiz.wrong])); } break;
     case 'qz-again': if(S.quiz) renderQuizSetup(); break;
