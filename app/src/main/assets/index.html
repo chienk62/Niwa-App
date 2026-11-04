@@ -594,45 +594,9 @@ nav.tabs button{height:44px;line-height:22px}
 .form-lang button{font-size:14px}
 .deck-group{margin:22px 0 12px;font-size:16px;font-weight:800;color:var(--ink)}
 .deck-group:first-of-type{margin-top:6px}
-.deck .deck-tag{font-size:22px;font-weight:800;color:#16A34A;letter-spacing:.04em}
-h2 .deck-tag{color:#16A34A;margin-right:4px}
-.deck.en{background:linear-gradient(160deg,var(--card) 35%,#ECFDF3);border-color:#BBF7D0}
-.deck.en:hover{border-color:#16A34A}
-.deck.en .n{color:#15803D}
-/* ---------- Thẻ tiếng Anh: xanh lá đậm, xanh lá nhạt và trắng ---------- */
-.fb-stage.en{--fb-navy:#14532D;--fb-blue:#16A34A;--fb-blue2:#22C55E;--fb-soft:#DCFCE7;--fb-muted:#3F7A55}
-.fb-stage.en .fb-face{background:linear-gradient(165deg,#FFFFFF 40%,#ECFDF3);border:2px solid #BBF7D0;box-shadow:0 26px 50px -26px rgba(22,101,52,.45)}
-.fb-stage.en .fb-ghost{background:#F0FDF4;box-shadow:0 14px 30px -22px rgba(22,101,52,.45)}
-.fb-stage.en .fb-word{font-size:clamp(40px,6.4vw,64px);letter-spacing:-.01em}
-.fb-stage.en .fb-read{color:#15803D;font-size:24px}
-.fb-stage.en .fb-mean{color:#15803D}
-.fb-stage.en .fb-ex{background:#DCFCE7;color:#166534}
-.fb-stage.en .fb-btn{border-color:#BBF7D0}
-.fb-stage.en .fb-btn.main{border-color:transparent;box-shadow:0 14px 26px -12px #16A34A}
-.fb-stage.en .fb-nav{box-shadow:0 10px 22px -12px rgba(22,101,52,.55)}
-.fb-enbadge{display:inline-flex;align-items:center;gap:6px;margin-bottom:18px;padding:7px 16px;border-radius:999px;background:#DCFCE7;color:#166534;font-weight:800;font-size:14px;letter-spacing:.02em;border:1.5px solid #BBF7D0}
-.fb-item.en.on{background:#ECFDF3;border-left-color:#16A34A}
-.lang-tag{background:linear-gradient(135deg,#22C55E,#15803D)}
-.sd.en{--sd-navy:#14532D;--sd-blue:#16A34A;--sd-sky:#4ADE80;--sd-soft:#DCFCE7;--sd-line:#BBF7D0;--sd-text:#14532D;--sd-muted:#3F7A55;box-shadow:0 0 0 1px rgba(134,239,172,.6),0 30px 70px -30px rgba(22,101,52,.5)}
-.sd.en .sd-face,.qz.en .qz-panel,.qz.en .qz-prompt{background:linear-gradient(160deg,#F7FEF9,#DCFCE7)}
-.sd.en .sd-back{background:linear-gradient(160deg,#FFFFFF,#ECFDF3)}
-.sd.en .sd-dots i{background:#DCFCE7}.sd.en .sd-dots i.done{background:#86EFAC}.sd.en .sd-dots i.on{background:#16A34A}
-.qz.en .qz-dots i.ok{background:var(--qz-ok)}.qz.en .qz-dots i.ng{background:var(--qz-ng)}
-.sd.en .sd-spark{background:#86EFAC}.sd.en .sd-star{color:#22C55E}
-.sd.en .sd-btn.main{animation-name:sdHaloG}
-@keyframes sdHaloG{0%,100%{box-shadow:0 0 0 6px rgba(74,222,128,.16)}50%{box-shadow:0 0 0 11px rgba(74,222,128,.24)}}
-.sd.en .sd-cloud path{stroke:#86EFAC}
-.qz.en .qz-ring .tr{stroke:#DCFCE7}
-:root[data-theme="dark"] .fb-stage.en .fb-face{background:linear-gradient(165deg,#12301F,#0F2619);border-color:#1F5135}
-:root[data-theme="dark"] .fb-stage.en{--fb-navy:#DCFCE7;--fb-muted:#86C9A0}
-:root[data-theme="dark"] .sd.en{--sd-navy:#DCFCE7;--sd-text:#DCFCE7;--sd-muted:#86C9A0;--sd-soft:#173A26;--sd-line:#1F5135}
-:root[data-theme="dark"] .sd.en .sd-face,:root[data-theme="dark"] .qz.en .qz-panel,:root[data-theme="dark"] .qz.en .qz-prompt{background:linear-gradient(160deg,#12301F,#0F2619)}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]) .fb-stage.en .fb-face{background:linear-gradient(165deg,#12301F,#0F2619);border-color:#1F5135}
-  :root:not([data-theme="light"]) .fb-stage.en{--fb-navy:#DCFCE7;--fb-muted:#86C9A0}
-  :root:not([data-theme="light"]) .sd.en{--sd-navy:#DCFCE7;--sd-text:#DCFCE7;--sd-muted:#86C9A0;--sd-soft:#173A26;--sd-line:#1F5135}
-  :root:not([data-theme="light"]) .sd.en .sd-face,:root:not([data-theme="light"]) .qz.en .qz-panel,:root:not([data-theme="light"]) .qz.en .qz-prompt{background:linear-gradient(160deg,#12301F,#0F2619)}
-}
+.deck .deck-tag{font-size:22px;font-weight:800;color:var(--matcha);letter-spacing:.04em}
+h2 .deck-tag{color:var(--matcha);margin-right:4px}
+.deck.en{background:linear-gradient(160deg,var(--card) 35%,var(--matcha-soft))}
 .fb-face,.sd-face{scrollbar-width:none;-ms-overflow-style:none}
 .fb-face::-webkit-scrollbar,.sd-face::-webkit-scrollbar{display:none}
 .xls-sub{margin:4px 0 8px;font-size:14px;font-weight:600}
@@ -780,6 +744,50 @@ h2 .deck-tag{color:#16A34A;margin-right:4px}
   .fb-btn svg{width:14px;height:14px}
   .fb-ghost{inset:12px 18px 0 -8px}
 }
+/* ---------- Chép chính tả ---------- */
+.dc-demo{display:flex;align-items:center;gap:10px;font-size:34px}
+.dc-demo i{width:56px;height:4px;border-radius:4px;background:repeating-linear-gradient(90deg,var(--sd-blue) 0 8px,transparent 8px 14px);animation:gmDash 1s linear infinite}
+.dc-prompt{gap:10px;min-height:0;padding:22px 18px}
+.dc-play{display:flex;align-items:center;gap:12px}
+.dc-big{width:68px;height:68px;border-radius:50%;border:0;display:grid;place-items:center;color:#fff;background:linear-gradient(150deg,var(--sd-sky),var(--sd-blue));box-shadow:0 12px 24px -12px var(--sd-blue)}
+.dc-big svg{width:30px;height:30px}
+.dc-big.speaking{animation:spkPulse 1s ease-in-out infinite}
+.dc-slow{border:2px solid var(--sd-line);background:#fff;color:var(--sd-navy);border-radius:999px;padding:9px 16px;font-weight:700;font-size:14px}
+.dc-slow.speaking{background:var(--sd-soft)}
+:root[data-theme="dark"] .dc-slow{background:#14243F}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .dc-slow{background:#14243F}}
+.dc-meta{font-size:13px;color:var(--sd-muted);font-weight:600}
+.dc-hint{font-size:17px;letter-spacing:.06em;color:var(--sd-navy);background:rgba(255,255,255,.7);border-radius:12px;padding:6px 12px;word-break:break-word}
+.dc-input{margin-top:14px;font-size:17px;min-height:64px;resize:vertical;border-radius:16px;border:2px solid var(--sd-line)}
+.dc-input:focus{border-color:var(--sd-blue);box-shadow:0 0 0 4px rgba(56,189,248,.18)}
+.dc-input[readonly]{background:var(--sd-soft);color:var(--sd-text)}
+.dc-res{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+.dc-res .qz-feed{margin:0}
+.dc-label{font-size:12.5px;font-weight:800;color:var(--sd-muted);text-transform:uppercase;letter-spacing:.04em}
+.dc-ans{font-size:18px;line-height:1.6;font-weight:600}
+.w-ok{color:var(--qz-ok)}
+.w-ng{color:var(--qz-ng);text-decoration:underline wavy;text-underline-offset:4px;text-decoration-thickness:1.5px}
+.dc-tr{color:var(--sd-muted);font-size:15px;border-top:1.5px dashed var(--sd-line);padding-top:8px}
+.dc-word{font-size:14px;color:var(--sd-text);background:var(--sd-soft);border-radius:12px;padding:8px 12px}
+.dc-witem{display:flex;flex-direction:column;gap:4px}
+.dc-witem .m{font-size:15px;font-weight:600}
+.fb-tool.dict{border-color:#A9D8F5;background:#EAF6FE;color:#0E7FB8}
+/* Thẻ lật vừa màn hình ở mức zoom 100%: luôn thấy được các nút Lặp lại / Đã nhớ / Chưa nhớ */
+@media (min-width:641px){
+  .fb-card{height:clamp(280px,44vh,370px)}
+  .fb-face{padding:34px 22px 20px}
+  .fb-art{width:min(160px,40%);margin-bottom:10px}
+  .fb-art .jp{font-size:clamp(56px,8vw,88px)}
+  .fb-word{font-size:clamp(30px,4.2vw,46px)}
+  .fb-read{font-size:19px}
+  .fb-speak{width:48px;height:48px}
+  .fb-acts{margin-top:18px}
+  .fb-btn{padding:12px 24px;font-size:17px}
+  .fb-nav{width:52px;height:52px}
+  .fb-stage{padding-bottom:112px;min-height:0}
+  .fb-cat{width:104px}
+  .fb-plane{width:96px}
+}
 .hl{background:var(--matcha-soft);color:inherit;border-radius:3px;padding:0 1px}
 </style>
 </head>
@@ -884,6 +892,13 @@ const I18N = {
     exFillTitle:'Tự thêm ví dụ cho từ tiếng Anh', exFilling:(a,b)=>'Đang tạo ví dụ và phiên âm… '+a+' / '+b+' từ',
     exFillDone:n=>'Đã bổ sung ví dụ và phiên âm cho '+n+' từ tiếng Anh.', exFillErr:n=>'Bị gián đoạn giữa chừng. Đã bổ sung được '+n+' từ, bấm lại nút để làm tiếp.', ipaAuto:'✓ Đã tự điền phiên âm, bạn có thể sửa lại', ipaManual:'Chưa tự điền được, hãy nhập phiên âm',
     listenEx:'Nghe cả câu ví dụ',
+    dict:'Chép chính tả', dcHow:'Nghe câu ví dụ rồi gõ lại đúng những gì bạn nghe được. Trang sẽ chấm từng từ và tô màu chỗ đúng, chỗ sai.',
+    dcCount:'Số câu', sentN:n=>n+' câu', dcStart:'Bắt đầu nghe', dcListen:'Nghe và chép lại', dcSlow:'Nghe chậm', dcReplay:'Nghe lại',
+    dcTypePh:'Gõ câu bạn nghe được…', dcWords:n=>'Câu có '+n+' từ', dcChars:n=>'Câu có '+n+' ký tự', dcHint:'Gợi ý', dcCheck:'Kiểm tra',
+    dcPerfect:'Chính xác hoàn toàn! 🎉', dcScore:(a,b)=>'Đúng '+a+' / '+b+' từ', dcScoreC:(a,b)=>'Đúng '+a+' / '+b+' ký tự', dcAnswer:'Đáp án',
+    dcEmpty:'Hãy gõ câu bạn nghe được trước khi kiểm tra.', dcNoEx:'Chưa có thẻ nào có câu ví dụ để chép chính tả.',
+    dcNoVoice:'Thiết bị này chưa có giọng đọc nên chưa chép chính tả được.', dcTip:'Mẹo: bấm Enter để kiểm tra nhanh.',
+    dcPerfN:'Câu đúng hoàn toàn', dcReview:'Các câu cần luyện lại',
     tapFlip:'Chạm để xem nghĩa', flipLabel:'Lật thẻ', prev:'Trước', next:'Tiếp', restart:'Học lại từ đầu', shuffle:'Trộn thẻ', close:'Đóng'
   },
   ja:{
@@ -980,6 +995,13 @@ const I18N = {
     exFillTitle:'英単語の例文を自動追加', exFilling:(a,b)=>'例文と発音記号を作成中… '+a+' / '+b+'語',
     exFillDone:n=>n+'語に例文と発音記号を追加しました。', exFillErr:n=>'途中で中断しました。'+n+'語まで追加済みです。もう一度ボタンを押すと続きから処理します。', ipaAuto:'✓ 発音記号を自動入力しました(修正できます)', ipaManual:'自動入力できませんでした。発音記号を入力してください',
     listenEx:'例文を聞く',
+    dict:'ディクテーション', dcHow:'例文を聞いて、聞こえた通りに入力しましょう。単語ごとに採点して、合っている所と間違えた所を色で表示します。',
+    dcCount:'文の数', sentN:n=>n+'文', dcStart:'スタート', dcListen:'聞いて書き取ろう', dcSlow:'ゆっくり', dcReplay:'もう一度聞く',
+    dcTypePh:'聞こえた文を入力…', dcWords:n=>n+'語の文', dcChars:n=>n+'文字の文', dcHint:'ヒント', dcCheck:'答え合わせ',
+    dcPerfect:'完璧です!🎉', dcScore:(a,b)=>b+'語中'+a+'語正解', dcScoreC:(a,b)=>b+'文字中'+a+'文字正解', dcAnswer:'正解',
+    dcEmpty:'聞こえた文を入力してから答え合わせしてください。', dcNoEx:'例文のあるカードがありません。',
+    dcNoVoice:'この端末には読み上げ音声がないため、ディクテーションができません。', dcTip:'ヒント:Enterですぐ答え合わせ。',
+    dcPerfN:'完璧な文', dcReview:'練習が必要な文',
     tapFlip:'タップして意味を表示', flipLabel:'カードをめくる', prev:'前へ', next:'次へ', restart:'最初から', shuffle:'シャッフル', close:'閉じる'
   }
 };
@@ -1452,7 +1474,7 @@ async function enter(u){
   S.user = u;
   LS.set('session', u);
   const d = await Store.get('u_'+u);
-  S.data = {cards: (d && d.cards) || [], garden: (d && d.garden) || [], decks: (d && d.decks) || [], timer: null, stats: (d && d.stats) || null, pts: (d && d.pts) || 0, days: (d && d.days) || []};
+  S.data = {cards: (d && d.cards) || [], garden: (d && d.garden) || [], decks: (d && d.decks) || [], timer: null, stats: (d && d.stats) || null, audio: (d && d.audio) || [], pts: (d && d.pts) || 0, days: (d && d.days) || []};
   S.fi = 0; S.fflip = false; S.fdeck = ''; S.pickSet = new Set();
   S.cv = 'cards'; S.myDeck = null;
   /* Cây đang trồng được lưu cùng tài khoản, nên tải lại trang hay đổi máy vẫn giữ được */
@@ -1691,7 +1713,7 @@ function fcList(){
           <button class="fb-tool main" data-act="new">＋ ${t('addCard')}</button>
           <button class="fb-tool" data-act="xls">${t('xlsImport')}</button>
           ${IMG_LIM?`<button class="fb-tool" data-act="import">${t('importImg')}</button>`:''}
-          ${list.length>=2?`<button class="fb-tool" data-act="test-mine">${t('test')}</button><button class="fb-tool game" data-act="game-mine">🎮 ${t('game')}</button>`:''}${SAMPLE && enMissing().length ? `<button class="fb-tool ai" data-act="en-fill">${t('exFillBtn', enMissing().length)}</button>` : ''}</div>
+          ${list.length>=2?`<button class="fb-tool" data-act="test-mine">${t('test')}</button><button class="fb-tool game" data-act="game-mine">🎮 ${t('game')}</button>`:''}${list.some(c=>c.example) ? `<button class="fb-tool dict" data-act="dict-mine">✍️ ${t('dict')}</button>` : ''}${SAMPLE && enMissing().length ? `<button class="fb-tool ai" data-act="en-fill">${t('exFillBtn', enMissing().length)}</button>` : ''}</div>
       ${list.length ? (()=>{ const ids = list.map(c=>c.id), n = ids.filter(id=>S.pickSet.has(id)).length;
         return `<div class="fb-selrow${n?' active':''}">
           <label class="fb-all"><input type="checkbox" id="sel-all" aria-label="${t('selectAll')}" ${n && n===ids.length ? 'checked' : ''} data-ind="${n && n<ids.length ? 1 : 0}"><span>${n ? t('nSelected', n) : t('selectAll')}</span></label>
@@ -1728,9 +1750,9 @@ function fcMark(known){
   if(fcIndex() < list.length-1) S.fi++; else toast(t('deckDone'));
   fcRender();
 }
-function speakText(text, en, btn){
+function speakText(text, en, btn, rate=0.9){
   if(!text || !CAN_SPEAK) return;
-  try{ const u = new SpeechSynthesisUtterance(text); u.lang = en ? 'en-GB' : 'ja-JP'; u.rate = 0.9;
+  try{ const u = new SpeechSynthesisUtterance(text); u.lang = en ? 'en-GB' : 'ja-JP'; u.rate = rate;
     const vs = speechSynthesis.getVoices();
     const v = vs.find(x=>en ? /^en-GB/i.test(x.lang) : /^ja/i.test(x.lang)) || (en && vs.find(x=>/^en/i.test(x.lang))); if(v) u.voice = v;
     if(btn){ document.querySelectorAll('.speaking').forEach(x=>x.classList.remove('speaking')); btn.classList.add('speaking'); const off = ()=>btn.classList.remove('speaking'); u.onend = off; u.onerror = off; setTimeout(off, Math.max(6000, text.length*150)); }
@@ -1800,6 +1822,7 @@ function viewDeck(){
     <button class="btn" data-act="add-all" ${left?'':'disabled'}>${left?t('addAll'):t('allAdded')}</button>
     <button class="btn" data-act="test-deck">${t('test')}</button>
     <button class="btn" data-act="game-deck">🎮 ${t('game')}</button>
+    <button class="btn" data-act="dict-deck">✍️ ${t('dict')}</button>
     <button class="btn primary" data-act="study-deck">${t('studyDeck')}</button></div>
   <div class="cards">${d.cards.map(c=>cardRow(c)).join('')}</div>`;
 }
@@ -1984,7 +2007,7 @@ function openModal(html, opts={}){
   if(opts.dismiss !== false) m.addEventListener('click', e=>{ if(e.target===m) closeModal(); });
   const f = m.querySelector('input,textarea,button'); f && f.focus();
 }
-function closeModal(){ if(S.enFill){ S.enFill.ctl.abort(); S.enFill = null; } if(IMP && IMP.ctl) IMP.ctl.abort(); IMP = null; DF = null; XLS = null; S.quiz = null; if(S.game){ S.game.end = true; S.game = null; } clearInterval(gmTick); $('#modal-root').innerHTML = ''; S.study = null; }
+function closeModal(){ if(S.dict){ S.dict = null; try{ speechSynthesis.cancel(); }catch(_){} } if(S.enFill){ S.enFill.ctl.abort(); S.enFill = null; } if(IMP && IMP.ctl) IMP.ctl.abort(); IMP = null; DF = null; XLS = null; S.quiz = null; if(S.game){ S.game.end = true; S.game = null; } clearInterval(gmTick); $('#modal-root').innerHTML = ''; S.study = null; }
 document.addEventListener('keydown', e=>{
   if(!$('#modal-root').innerHTML) return;
   if(e.key==='Escape') closeModal();
@@ -2511,7 +2534,8 @@ function viewMyDeck(){
     <button class="btn danger" data-act="deck-del" data-id="${d.id}">${t('delDeck')}</button>
     <button class="btn" data-act="deck-study" data-id="${d.id}" ${cs.length?'':'disabled'}>${t('study')}</button>
     <button class="btn primary" data-act="deck-test" data-id="${d.id}" ${cs.length>=2?'':'disabled'}>${t('test')}</button>
-    <button class="btn" data-act="deck-game" data-id="${d.id}" ${cs.length>=2?'':'disabled'}>🎮 ${t('game')}</button></div>
+    <button class="btn" data-act="deck-game" data-id="${d.id}" ${cs.length>=2?'':'disabled'}>🎮 ${t('game')}</button>
+    <button class="btn" data-act="deck-dict" data-id="${d.id}" ${cs.some(c=>c.example)?'':'disabled'}>✍️ ${t('dict')}</button></div>
   ${d.last ? `<p class="deck-score">${t('lastScore',d.last.c,d.last.n)}</p>` : ''}
   <div class="cards">${cs.map(c=>cardRow(c,{mine:true})).join('')}</div>`;
 }
@@ -2933,6 +2957,152 @@ function gmResult(){
     <div class="sd-acts qz-acts"><button class="sd-btn main" data-act="gm-again">${t('playAgain')} <span aria-hidden="true">›</span></button></div>` + gmFoot();
 }
 
+/* ===================== Nghe chép chính tả theo câu ví dụ ===================== */
+function dcTokens(s, ja){
+  if(ja) return [...String(s).replace(/[\s、。，．,.！？!?「」『』（）()・…〜~"'“”‘’:;：；\-ー―]/g,'')];
+  return String(s).toLowerCase().replace(/[’‘`]/g,"'").replace(/[^a-z0-9'\u00C0-\u024F\s-]/g,' ').replace(/-/g,' ').split(/\s+/).filter(Boolean);
+}
+function lcsMark(exp, got){
+  const n = exp.length, m = got.length;
+  const dp = Array.from({length:n+1}, ()=>new Uint16Array(m+1));
+  for(let i=n-1;i>=0;i--) for(let j=m-1;j>=0;j--) dp[i][j] = exp[i]===got[j] ? dp[i+1][j+1]+1 : Math.max(dp[i+1][j], dp[i][j+1]);
+  const mark = new Array(n).fill(false); let i = 0, j = 0;
+  while(i<n && j<m){ if(exp[i]===got[j]){ mark[i] = true; i++; j++; } else if(dp[i+1][j] >= dp[i][j+1]) i++; else j++; }
+  return {mark, ok:dp[0][0]};
+}
+/* Tô màu đáp án: từ (hoặc ký tự) nghe đúng màu xanh, nghe sót hoặc sai màu đỏ */
+function dcAnswerHTML(src, ja, mark){
+  let k = 0;
+  if(ja) return [...src].map(ch=>{ if(!dcTokens(ch, true).length) return esc(ch); const ok = mark[k++]; return `<span class="${ok?'w-ok':'w-ng'}">${esc(ch)}</span>`; }).join('');
+  return src.split(/(\s+)/).map(w=>{ if(/^\s+$/.test(w) || !w) return w; const n = dcTokens(w, false).length; if(!n) return esc(w);
+    let ok = true; for(let x=0;x<n;x++){ if(!mark[k++]) ok = false; } return `<span class="${ok?'w-ok':'w-ng'}">${esc(w)}</span>`; }).join('');
+}
+function dcHintText(src, ja){
+  if(ja) return [...src].map(ch=>dcTokens(ch, true).length ? '○' : ch).join('');
+  return src.split(/(\s+)/).map(w=>w.replace(/[A-Za-z\u00C0-\u024F0-9]/g, (ch, i)=>i===w.search(/[A-Za-z\u00C0-\u024F0-9]/) ? ch : '_')).join('');
+}
+function startDict(cards, titleFn, meta={}){
+  if(!CAN_SPEAK){ toast(t('dcNoVoice')); return; }
+  const pool = cards.filter(c=>splitExample(c.example).src);
+  if(!pool.length){ toast(t('dcNoEx')); return; }
+  openModal(`<i class="sd-bub b1" aria-hidden="true"></i><i class="sd-bub b2" aria-hidden="true"></i><i class="sd-bub b3" aria-hidden="true"></i>
+    <div class="sheet sd qz dc" id="dict"></div>`, {cls:'sd-modal'});
+  S.dict = {pool, titleFn, jp:meta.jp||'', icon:meta.icon||'cards', count:Math.min(10, pool.length)};
+  renderDictSetup();
+}
+function dcHead(countText, pct){
+  const q = S.dict;
+  return `<div class="sd-cloud">${SD_CLOUD}</div>
+    <div class="sd-head">
+      <span class="sd-ic">${SD_ICONS[q.icon] || SD_ICONS.cards}</span>
+      <div class="sd-ht"><div class="sd-title">${t('dict')} · ${esc(q.titleFn())}${q.jp && LANG!=='ja' ? `<span class="sd-jp jp"> · ${esc(q.jp)}</span>` : ''}</div>
+        <div class="sd-bar"><i style="width:${pct}%"></i></div></div>
+      <span class="sd-count">${countText}</span>
+    </div>`;
+}
+function dcFoot(){ return `<div class="sd-foot"><span>${t('dcTip')}</span><button class="sd-btn" data-act="close-modal">${t('close')}</button></div>`; }
+function renderDictSetup(){
+  const q = S.dict, el = $('#dict'); if(!q || !el) return;
+  el.classList.toggle('en', q.pool.every(isEn));
+  const n = q.pool.length;
+  const counts = [...new Set([5,10,20,n].filter(x=>x<=n))].sort((a,b)=>a-b);
+  if(!counts.includes(q.count)) q.count = counts[counts.length-1];
+  el.innerHTML = dcHead(t('sentN', n), 0) + `
+    <div class="qz-panel">
+      <i class="sd-spark s1" aria-hidden="true"></i><i class="sd-star" aria-hidden="true">✦</i>
+      <div class="dc-demo" aria-hidden="true">🎧<i></i>✍️</div>
+      <p class="gm-how">${t('dcHow')}</p>
+      <span class="sd-chip">${t('dcCount')}</span>
+      <div class="qz-chips">${counts.map(c=>`<button class="qz-chip" data-act="dc-count" data-id="${c}" aria-pressed="${q.count===c}">${t('sentN',c)}</button>`).join('')}</div>
+    </div>
+    <div class="sd-acts qz-acts"><button class="sd-btn main" data-act="dc-start">${t('dcStart')} <span aria-hidden="true">›</span></button></div>` + dcFoot();
+}
+function beginDict(){
+  const q = S.dict; if(!q) return;
+  q.items = shuffle([...q.pool]).slice(0, q.count).map(c=>{ const {src, tr} = splitExample(c.example); return {c, src, tr, typed:'', res:null, hint:false}; });
+  q.i = 0; renderDictQ('next');
+}
+function dcPlay(btn, slow){
+  const q = S.dict; if(!q || !q.items) return;
+  const it = q.items[q.i]; speakText(it.src, isEn(it.c), btn, slow ? 0.6 : 0.9);
+}
+function renderDictQ(dir=''){
+  const q = S.dict, el = $('#dict'); if(!q || !el) return;
+  const it = q.items[q.i], n = q.items.length, ja = !isEn(it.c), done = !!it.res;
+  el.classList.toggle('en', isEn(it.c));
+  const total = dcTokens(it.src, ja).length;
+  let res = '';
+  if(done){
+    const r = it.res, perfect = r.ok === r.total;
+    res = `<div class="dc-res">
+      <p class="qz-feed ${perfect?'ok':'bad'}" role="status">${perfect ? t('dcPerfect') : (ja ? t('dcScoreC', r.ok, r.total) : t('dcScore', r.ok, r.total))}</p>
+      <div class="dc-label">${t('dcAnswer')}</div>
+      <div class="dc-ans ${fc(it.c)}">${dcAnswerHTML(it.src, ja, r.mark)}</div>
+      ${it.tr ? `<div class="dc-tr">${esc(it.tr)}</div>` : ''}
+      <div class="dc-word"><b class="${fc(it.c)}">${esc(it.c.front)}</b>${it.c.reading ? ` <span class="${fc(it.c)}">${esc(it.c.reading)}</span>` : ''} · ${esc(qText(it.c))}</div>
+    </div>`;
+  }
+  el.innerHTML = dcHead(`${q.i+1} / ${n}`, (q.i + (done?1:0))/n*100) + `
+    <div class="qz-prompt dc-prompt${dir?' in-'+dir:''}">
+      <i class="sd-spark s1" aria-hidden="true"></i><i class="sd-spark s2" aria-hidden="true"></i><i class="sd-star" aria-hidden="true">✦</i>
+      <span class="sd-chip">${t('dcListen')}</span>
+      <div class="dc-play">
+        <button class="dc-big" data-act="dc-play" aria-label="${t('dcReplay')}">${SD_SPEAK}</button>
+        <button class="dc-slow" data-act="dc-slow">🐢 ${t('dcSlow')}</button>
+      </div>
+      <div class="dc-meta">${ja ? t('dcChars', total) : t('dcWords', total)}</div>
+      ${it.hint && !done ? `<div class="dc-hint ${fc(it.c)}">${esc(dcHintText(it.src, ja))}</div>` : ''}
+    </div>
+    <textarea class="input dc-input ${fc(it.c)}" id="dc-in" rows="2" lang="${ja?'ja':'en'}" placeholder="${esc(t('dcTypePh'))}" ${done?'readonly':''} autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">${esc(it.typed)}</textarea>
+    ${res}
+    <div class="sd-acts qz-acts">
+      ${done
+        ? `<button class="sd-btn main" data-act="dc-next">${q.i===n-1 ? t('seeResult') : t('nextQ')} <span aria-hidden="true">›</span></button>`
+        : `${it.hint ? '' : `<button class="sd-btn soft" data-act="dc-hint">💡 ${t('dcHint')}</button>`}<button class="sd-btn main" data-act="dc-check">${t('dcCheck')} <span aria-hidden="true">›</span></button>`}
+    </div>` + dcFoot();
+  const inp = $('#dc-in');
+  if(inp){ inp.oninput = e=>{ it.typed = e.target.value; }; if(!done) inp.focus({preventScroll:true}); else { const nb = el.querySelector('[data-act="dc-next"]'); nb && nb.focus({preventScroll:true}); } }
+  if(dir && !done) setTimeout(()=>{ if(S.dict === q && q.items[q.i] === it && !it.res) dcPlay(el.querySelector('.dc-big')); }, 450);
+}
+function dcCheck(){
+  const q = S.dict; if(!q) return;
+  const it = q.items[q.i]; if(it.res) return;
+  const inp = $('#dc-in'); if(inp) it.typed = inp.value;
+  if(!it.typed.trim()){ toast(t('dcEmpty')); return; }
+  const ja = !isEn(it.c), exp = dcTokens(it.src, ja), got = dcTokens(it.typed, ja);
+  const {mark, ok} = lcsMark(exp, got);
+  it.res = {mark, ok, total:exp.length};
+  renderDictQ();
+}
+function dcNext(){
+  const q = S.dict; if(!q) return;
+  if(q.i < q.items.length-1){ q.i++; renderDictQ('next'); } else dcResult();
+}
+function dcResult(){
+  const q = S.dict, el = $('#dict'); if(!q || !el) return;
+  const pcts = q.items.map(it=>it.res ? it.res.ok/Math.max(1,it.res.total) : 0);
+  const avg = Math.round(pcts.reduce((a,b)=>a+b,0)/pcts.length*100);
+  const perfect = pcts.filter(p=>p===1).length;
+  const C = 2*Math.PI*52;
+  const msg = avg >= 90 ? t('resGreat') : avg >= 60 ? t('resGood') : t('resTry');
+  const weak = q.items.filter(it=>it.res && it.res.ok < it.res.total);
+  el.innerHTML = dcHead(t('result'), 100) + `
+    <div class="qz-panel qz-res">
+      <i class="sd-spark s1" aria-hidden="true"></i><i class="sd-spark s2" aria-hidden="true"></i><i class="sd-star" aria-hidden="true">✦</i>
+      <div class="qz-ring"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" class="tr"/><circle cx="60" cy="60" r="52" class="pr" stroke-dasharray="${C*avg/100} ${C}" transform="rotate(-90 60 60)"/></svg>
+        <div><b>${avg}</b><small>%</small></div></div>
+      <p class="qz-msg">${msg}</p>
+      <div class="qz-tally"><span class="ok">✓ ${t('dcPerfN')}: ${perfect}/${q.items.length}</span></div>
+    </div>
+    ${weak.length ? `<p class="qz-wl">${t('dcReview')}</p><div class="qz-wrong">${weak.map(it=>`<div class="qz-witem dc-witem"><span class="m ${fc(it.c)}">${dcAnswerHTML(it.src, !isEn(it.c), it.res.mark)}</span>${it.tr ? `<small>${esc(it.tr)}</small>` : ''}</div>`).join('')}</div>` : ''}
+    <div class="sd-acts qz-acts"><button class="sd-btn main" data-act="dc-again">${t('playAgain')} <span aria-hidden="true">›</span></button></div>` + dcFoot();
+}
+document.addEventListener('keydown', e=>{
+  if(!S.dict || !S.dict.items || e.key !== 'Enter' || e.shiftKey || e.isComposing) return;
+  const it = S.dict.items[S.dict.i]; if(!it) return;
+  if(e.target.id === 'dc-in' && !it.res){ e.preventDefault(); dcCheck(); }
+});
+
 /* ===================== Sự kiện ===================== */
 
 function confirmTap(btn, label, fn){
@@ -3004,6 +3174,17 @@ document.addEventListener('click', e=>{
     case 'df-all': if(DF){ dfVisible().forEach(c=>DF.sel.add(c.id)); renderDfList(); } break;
     case 'df-none': if(DF){ dfVisible().forEach(c=>DF.sel.delete(c.id)); renderDfList(); } break;
     case 'test-mine': { const l = fcList_(); startQuiz(l.length>=2 ? l : S.data.cards, ()=>t('tabCards'), null, {icon:'cards'}); break; }
+    case 'dict-mine': startDict(fcList_(), ()=>t('tabCards'), {icon:'cards'}); break;
+    case 'dict-deck': { const d = PRESETS.find(x=>x.id===S.deck); if(d) startDict(d.cards, ()=>L(d.name), {jp:d.jp, icon:d.id}); break; }
+    case 'deck-dict': { const d = decksOf().find(x=>x.id===id); if(d) startDict(deckCards(d), ()=>d.name, {icon:'layers'}); break; }
+    case 'dc-count': if(S.dict){ S.dict.count = +id; renderDictSetup(); } break;
+    case 'dc-start': beginDict(); break;
+    case 'dc-play': dcPlay(b, false); break;
+    case 'dc-slow': dcPlay(b, true); break;
+    case 'dc-hint': if(S.dict){ S.dict.items[S.dict.i].hint = true; renderDictQ(); } break;
+    case 'dc-check': dcCheck(); break;
+    case 'dc-next': dcNext(); break;
+    case 'dc-again': renderDictSetup(); break;
     case 'game-mine': { const l = fcList_(); startGame(l.length>=2 ? l : S.data.cards, ()=>t('tabCards'), {icon:'cards'}); break; }
     case 'game-deck': { const d = PRESETS.find(x=>x.id===S.deck); if(d) startGame(d.cards, ()=>L(d.name), {jp:d.jp, icon:d.id}); break; }
     case 'deck-game': { const d = decksOf().find(x=>x.id===id); if(d) startGame(deckCards(d), ()=>d.name, {icon:'layers'}); break; }
