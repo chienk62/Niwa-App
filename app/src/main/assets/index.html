@@ -867,7 +867,7 @@ const I18N = {
     fbTitle:'Flashcards', fbSub:'Học thông minh · Nhớ lâu hơn', streak:n=>'Chuỗi: '+n+' ngày', pts:n=>n+' điểm',
     tip:'Cố gắng học đều mỗi ngày nhé!', topic:'Chủ đề hiện tại', allTopic:'Tất cả thẻ đã tạo', emptyTopic:'Bộ này chưa có thẻ nào.',
     cardLang:'Ngôn ngữ của thẻ', langJa:'🇯🇵 Tiếng Nhật', langEn:'🇬🇧 Tiếng Anh', fFrontEn:'Từ tiếng Anh', fIpa:'Phiên âm (IPA)',
-    fEnDef:'Định nghĩa tiếng Anh', topicJa:'Thẻ tiếng Nhật', topicEn:'Thẻ tiếng Anh', groupJa:'🇯🇵 Tiếng Nhật thương mại · BJT', groupEn:'🇬🇧 Tiếng Anh · IELTS',
+    fEnDef:'Định nghĩa tiếng Anh', topicJa:'Thẻ tiếng Nhật', topicEn:'Thẻ tiếng Anh', groupJa:'🇯🇵 Tiếng Nhật thương mại · BJT', groupShn:'🇯🇵 Shinkansen Goi N1', groupEn:'🇬🇧 Tiếng Anh · IELTS',
     quizTip:'Mẹo: đọc kỹ cả cách đọc trước khi chọn nhé!', scoreSoFar:n=>'Đúng: '+n, rightN:n=>n+' câu đúng', wrongN:n=>n+' câu sai',
     resGreat:'Xuất sắc! Bạn nhớ rất tốt.', resGood:'Khá lắm! Ôn thêm vài từ nữa nhé.', resTry:'Cố lên! Ôn lại các từ sai rồi thử lại nhé.',
     sideFront:'Mặt trước', sideBack:'Mặt sau', studyTip:'Mẹo: chạm vào thẻ để lật nhé!',
@@ -970,7 +970,7 @@ const I18N = {
     fbTitle:'フラッシュカード', fbSub:'賢く学んで、長く覚える', streak:n=>'連続 '+n+'日', pts:n=>n+' pt',
     tip:'毎日コツコツ続けましょう!', topic:'現在のテーマ', allTopic:'作ったカードすべて', emptyTopic:'この単語帳にはまだカードがありません。',
     cardLang:'カードの言語', langJa:'🇯🇵 日本語', langEn:'🇬🇧 英語', fFrontEn:'英単語', fIpa:'発音記号(IPA)',
-    fEnDef:'英語の定義', topicJa:'日本語のカード', topicEn:'英語のカード', groupJa:'🇯🇵 ビジネス日本語・BJT', groupEn:'🇬🇧 英語・IELTS',
+    fEnDef:'英語の定義', topicJa:'日本語のカード', topicEn:'英語のカード', groupJa:'🇯🇵 ビジネス日本語・BJT', groupShn:'🇯🇵 新完全マスター語彙 N1', groupEn:'🇬🇧 英語・IELTS',
     quizTip:'ヒント:読み方もよく確認してから選びましょう!', scoreSoFar:n=>'正解:'+n, rightN:n=>'正解 '+n+'問', wrongN:n=>'不正解 '+n+'問',
     resGreat:'素晴らしい!よく覚えています。', resGood:'いい調子!あと少し復習しましょう。', resTry:'がんばろう!間違えた単語を復習して、もう一度挑戦!',
     sideFront:'表面', sideBack:'裏面', studyTip:'ヒント:カードをタップするとめくれます!',
@@ -2115,9 +2115,11 @@ setInterval(()=>{
 function viewDecks(){
   const tile = d=>`<button class="deck${d.lang==='en'?' en':''}" data-act="open-deck" data-id="${d.id}">
     <span class="${d.lang==='en'?'en-w deck-tag':'jp'}">${d.lang==='en' ? esc(d.jp) : d.jp}</span><b>${esc(L(d.name))}</b><span>${esc(L(d.desc))}</span><span class="n">${t('nCards',d.cards.length)}</span></button>`;
-  const ja = PRESETS.filter(d=>(d.lang||'ja')==='ja'), en = PRESETS.filter(d=>d.lang==='en');
+  const isShn = d => /^shn1-/.test(d.id);
+  const ja = PRESETS.filter(d=>(d.lang||'ja')==='ja' && !isShn(d)), shn = PRESETS.filter(isShn), en = PRESETS.filter(d=>d.lang==='en');
   return `<div class="section-head"><h2>${t('tabDecks')}<span class="count">${t('nDecks',PRESETS.length)}</span></h2></div>
   <h3 class="deck-group">${t('groupJa')}</h3><div class="decks">${ja.map(tile).join('')}</div>
+  ${shn.length ? `<h3 class="deck-group">${t('groupShn')}</h3><div class="decks">${shn.map(tile).join('')}</div>` : ''}
   <h3 class="deck-group">${t('groupEn')}</h3><div class="decks">${en.map(tile).join('')}</div>`;
 }
 function viewDeck(){
