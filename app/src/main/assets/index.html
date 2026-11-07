@@ -8,16 +8,24 @@
 /* Bản app Android: nối nút loa với bộ đọc văn bản (TTS) của Android */
 (function(){
   if(!window.AndroidTTS) return;
-  var waiting = {}, n = 0;
+  var waiting = {}, n = 0, cache = null, cacheAt = 0;
   window.__ttsDone = function(id){ var u = waiting[id]; delete waiting[id]; if(u && u.onend){ try{ u.onend(); }catch(e){} } };
   function Utterance(text){ this.text = text; this.lang = 'ja-JP'; this.rate = 1; this.voice = null; this.onend = null; this.onerror = null; }
+  function listVoices(){
+    if(cache && cache.length && Date.now() - cacheAt < 30000) return cache;
+    var out = [];
+    try{ if(AndroidTTS.voices){ JSON.parse(AndroidTTS.voices()).forEach(function(v){ out.push({name:v.name, lang:v.lang, voiceURI:v.name, localService:!v.network}); }); } }catch(e){}
+    if(!out.length) out = [{lang:'ja-JP', name:'Android 日本語', voiceURI:''}, {lang:'en-GB', name:'Android English', voiceURI:''}];
+    cache = out; cacheAt = Date.now(); return out;
+  }
   var synth = {
-    getVoices: function(){ return [{lang:'ja-JP', name:'Android ja'}, {lang:'en-GB', name:'Android en'}]; },
+    getVoices: listVoices,
     cancel: function(){ try{ AndroidTTS.stop(); }catch(e){} },
     speak: function(u){
       var id = 'u' + (++n); waiting[id] = u;
-      var lang = String(u.lang || (u.voice && u.voice.lang) || 'ja-JP');
-      var ok = false; try{ ok = AndroidTTS.speak(String(u.text), lang, Number(u.rate) || 1, id); }catch(e){}
+      var lang = String(u.lang || (u.voice && u.voice.lang) || 'ja-JP'), vname = u.voice && u.voice.voiceURI ? String(u.voice.voiceURI) : '';
+      var ok = false;
+      try{ ok = (vname && AndroidTTS.speakVoice) ? AndroidTTS.speakVoice(String(u.text), lang, Number(u.rate) || 1, id, vname) : AndroidTTS.speak(String(u.text), lang, Number(u.rate) || 1, id); }catch(e){}
       if(!ok){ delete waiting[id]; if(u.onerror) try{ u.onerror(); }catch(e){}
         if(typeof window.toast === 'function') window.toast(/^en/i.test(lang)
           ? 'Máy chưa có giọng đọc tiếng Anh. Vào Cài đặt > Chuyển văn bản thành giọng nói để tải thêm.'
@@ -788,6 +796,13 @@ h2 .deck-tag{color:var(--matcha);margin-right:4px}
   .fb-cat{width:104px}
   .fb-plane{width:96px}
 }
+.vbtn{font-size:17px;padding:4px 8px;flex-shrink:0}
+.vs-sec{display:flex;align-items:flex-end;gap:8px;margin-bottom:6px}
+.vs-sec .field{flex:1;min-width:0;margin-bottom:8px}
+.vs-sec .btn{margin-bottom:8px;white-space:nowrap}
+.vs-sec select{width:100%}
+.vs-none{margin:0;font-size:13.5px;color:var(--shu);background:var(--shu-soft);border-radius:10px;padding:8px 10px}
+#vs-rate{width:100%;accent-color:var(--indigo)}
 .hl{background:var(--matcha-soft);color:inherit;border-radius:3px;padding:0 1px}
 </style>
 </head>
@@ -899,6 +914,11 @@ const I18N = {
     dcEmpty:'Hãy gõ câu bạn nghe được trước khi kiểm tra.', dcNoEx:'Chưa có thẻ nào có câu ví dụ để chép chính tả.',
     dcNoVoice:'Thiết bị này chưa có giọng đọc nên chưa chép chính tả được.', dcTip:'Mẹo: bấm Enter để kiểm tra nhanh.',
     dcPerfN:'Câu đúng hoàn toàn', dcReview:'Các câu cần luyện lại',
+    voiceTitle:'Giọng đọc', voiceJa:'Giọng tiếng Nhật', voiceEn:'Giọng tiếng Anh', voiceDefault:'Mặc định', voiceTest:'▶ Nghe thử', voiceRate:'Tốc độ đọc',
+    voiceNone:l=>'Thiết bị chưa có '+l.toLowerCase()+'. Hãy cài thêm trong phần Chuyển văn bản thành giọng nói (Text-to-Speech) của máy.',
+    voiceNoTTS:'Thiết bị hoặc trình duyệt này không hỗ trợ đọc văn bản.', voiceOnline:'cần mạng',
+    voiceHint:'Giọng đọc và tốc độ được lưu riêng trên máy này, áp dụng cho mọi nút loa, học thẻ, kiểm tra và chép chính tả.',
+    voiceSampleJa:'こんにちは。これは日本語の読み上げテストです。', voiceSampleEn:'Hello! This is a voice test for your IELTS vocabulary.',
     tapFlip:'Chạm để xem nghĩa', flipLabel:'Lật thẻ', prev:'Trước', next:'Tiếp', restart:'Học lại từ đầu', shuffle:'Trộn thẻ', close:'Đóng'
   },
   ja:{
@@ -1002,6 +1022,11 @@ const I18N = {
     dcEmpty:'聞こえた文を入力してから答え合わせしてください。', dcNoEx:'例文のあるカードがありません。',
     dcNoVoice:'この端末には読み上げ音声がないため、ディクテーションができません。', dcTip:'ヒント:Enterですぐ答え合わせ。',
     dcPerfN:'完璧な文', dcReview:'練習が必要な文',
+    voiceTitle:'読み上げ音声', voiceJa:'日本語の音声', voiceEn:'英語の音声', voiceDefault:'標準', voiceTest:'▶ 試聴', voiceRate:'読み上げ速度',
+    voiceNone:l=>'この端末には'+l+'がありません。端末の「テキスト読み上げ」設定から追加してください。',
+    voiceNoTTS:'この端末またはブラウザは読み上げに対応していません。', voiceOnline:'要ネット',
+    voiceHint:'音声と速度はこの端末に保存され、すべてのスピーカーボタン・学習・テスト・ディクテーションに使われます。',
+    voiceSampleJa:'こんにちは。これは日本語の読み上げテストです。', voiceSampleEn:'Hello! This is a voice test for your IELTS vocabulary.',
     tapFlip:'タップして意味を表示', flipLabel:'カードをめくる', prev:'前へ', next:'次へ', restart:'最初から', shuffle:'シャッフル', close:'閉じる'
   }
 };
@@ -1931,6 +1956,7 @@ function renderShell(){
         <span class="logo-text" aria-hidden="true"><b>BJT</b><span class="logo-niwa">${'Niwa'.split('').map((ch,i)=>`<span style="--i:${i}">${ch}</span>`).join('')}</span></span>
       </div>
       <button class="chip hidden" id="chip" title="${t('chipTitle')}"></button>
+      <button class="icon-btn vbtn" data-act="voice-settings" aria-label="${t('voiceTitle')}" title="${t('voiceTitle')}">🔊</button>
       ${langSwitch()}
       ${S.user===GUEST
         ? `<span class="who">${t('guestName')}</span>
@@ -2193,9 +2219,9 @@ function fcMark(known){
 }
 function speakText(text, en, btn, rate=0.9){
   if(!text || !CAN_SPEAK) return;
-  try{ const u = new SpeechSynthesisUtterance(text); u.lang = en ? 'en-GB' : 'ja-JP'; u.rate = rate;
-    const vs = speechSynthesis.getVoices();
-    const v = vs.find(x=>en ? /^en-GB/i.test(x.lang) : /^ja/i.test(x.lang)) || (en && vs.find(x=>/^en/i.test(x.lang))); if(v) u.voice = v;
+  try{ const u = new SpeechSynthesisUtterance(text); u.lang = en ? 'en-GB' : 'ja-JP';
+    u.rate = Math.max(0.3, Math.min(2, rate * (+voicePref().rate || 1)));
+    const v = pickVoice(en); if(v){ u.voice = v; u.lang = v.lang; }
     if(btn){ document.querySelectorAll('.speaking').forEach(x=>x.classList.remove('speaking')); btn.classList.add('speaking'); const off = ()=>btn.classList.remove('speaking'); u.onend = off; u.onerror = off; setTimeout(off, Math.max(6000, text.length*150)); }
     speechSynthesis.cancel(); speechSynthesis.speak(u); }catch(e){}
 }
@@ -3552,6 +3578,54 @@ document.addEventListener('keydown', e=>{
   if(e.target.id === 'dc-in' && !it.res){ e.preventDefault(); dcCheck(); }
 });
 
+/* ===================== Chọn giọng đọc ===================== */
+function voicePref(){ return Object.assign({ja:'', en:'', rate:1}, LS.get('voice') || {}); }
+function voicesFor(en){
+  if(!CAN_SPEAK) return [];
+  const re = en ? /^en/i : /^ja/i;
+  const seen = new Set();
+  return speechSynthesis.getVoices().filter(v=>re.test(String(v.lang).replace('_','-')) && !seen.has(v.voiceURI || v.name) && seen.add(v.voiceURI || v.name))
+    .sort((a,b)=> String(a.lang).localeCompare(String(b.lang)) || String(a.name).localeCompare(String(b.name)));
+}
+function pickVoice(en){
+  const vs = CAN_SPEAK ? speechSynthesis.getVoices() : [], want = voicePref()[en ? 'en' : 'ja'];
+  let v = want && vs.find(x=>(x.voiceURI || x.name) === want || x.name === want);
+  if(!v) v = vs.find(x=>en ? /^en[-_]GB/i.test(x.lang) : /^ja/i.test(x.lang)) || (en && vs.find(x=>/^en/i.test(x.lang)));
+  return v || null;
+}
+function openVoiceSettings(){
+  openModal(`<div class="sheet vs" id="vs"></div>`);
+  renderVoiceSettings();
+  if(CAN_SPEAK && 'onvoiceschanged' in speechSynthesis) speechSynthesis.onvoiceschanged = ()=>{ if($('#vs')) renderVoiceSettings(); };
+  setTimeout(()=>{ if($('#vs')) renderVoiceSettings(); }, 600);   /* một số máy tải danh sách giọng chậm */
+}
+function renderVoiceSettings(){
+  const el = $('#vs'); if(!el) return;
+  if(!CAN_SPEAK){ el.innerHTML = `<h3>🔊 ${t('voiceTitle')}</h3><p class="imp-desc">${t('voiceNoTTS')}</p><div class="row"><button class="btn" data-act="close-modal">${t('close')}</button></div>`; return; }
+  const pref = voicePref();
+  const sec = en => {
+    const list = voicesFor(en), cur = pickVoice(en), key = en ? 'en' : 'ja';
+    return `<div class="vs-sec">
+      <label class="field"><span>${en ? '🇬🇧 ' + t('voiceEn') : '🇯🇵 ' + t('voiceJa')}</span>
+        ${list.length ? `<select class="input" id="vs-${key}" data-vkey="${key}">
+          <option value="">${t('voiceDefault')}${!pref[key] && cur ? ' – ' + esc(cur.name) : ''}</option>
+          ${list.map(v=>{ const id = v.voiceURI || v.name; return `<option value="${esc(id)}" ${pref[key]===id?'selected':''}>${esc(v.name)} (${esc(v.lang)})${v.localService===false ? ' · ' + t('voiceOnline') : ''}</option>`; }).join('')}
+        </select>` : `<p class="vs-none">${t('voiceNone', en ? t('voiceEn') : t('voiceJa'))}</p>`}
+      </label>
+      <button class="btn sm" data-act="voice-test" data-id="${key}">${t('voiceTest')}</button>
+    </div>`;
+  };
+  el.innerHTML = `<h3>🔊 ${t('voiceTitle')}</h3>
+    ${sec(false)}${sec(true)}
+    <div class="field"><span>${t('voiceRate')}: <b id="vs-rv">${(+pref.rate).toFixed(2).replace(/0$/,'')}×</b></span>
+      <input type="range" id="vs-rate" min="0.5" max="1.5" step="0.05" value="${pref.rate}"></div>
+    <p class="imp-desc">${t('voiceHint')}</p>
+    <div class="row"><button class="btn primary" data-act="close-modal">${t('done')}</button></div>`;
+  el.querySelectorAll('select[data-vkey]').forEach(s=>s.onchange = ()=>{ const p = voicePref(); p[s.dataset.vkey] = s.value; LS.set('voice', p); speakText(s.dataset.vkey==='en' ? t('voiceSampleEn') : t('voiceSampleJa'), s.dataset.vkey==='en'); });
+  const r = $('#vs-rate'); r.oninput = ()=>{ const p = voicePref(); p.rate = +r.value; LS.set('voice', p); $('#vs-rv').textContent = (+r.value).toFixed(2).replace(/0$/,'') + '×'; };
+  r.onchange = ()=>speakText(t('voiceSampleJa'), false);
+}
+
 /* ===================== Sự kiện ===================== */
 
 function confirmTap(btn, label, fn){
@@ -3592,6 +3666,8 @@ document.addEventListener('click', e=>{
     case 'giveup': confirmTap(b, t('confirmGiveUp'), giveUp); break;
     case 'import': openImport(); break;
     case 'en-fill': fillEnExamples(); break;
+    case 'voice-settings': openVoiceSettings(); break;
+    case 'voice-test': speakText(id==='en' ? t('voiceSampleEn') : t('voiceSampleJa'), id==='en', b); break;
     case 'xls': openXls(); break;
     case 'sel-clear': S.pickSet = new Set(); fcRender(); break;
     case 'sel-del': { const n = S.pickSet.size; if(!n) break;
