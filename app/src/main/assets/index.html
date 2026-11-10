@@ -775,7 +775,7 @@ h2 .deck-tag{color:var(--matcha);margin-right:4px}
 .fb-tool.dict{border-color:#A9D8F5;background:#EAF6FE;color:#0E7FB8}
 /* Thẻ lật vừa màn hình ở mức zoom 100%: luôn thấy được các nút Lặp lại / Đã nhớ / Chưa nhớ */
 @media (min-width:641px){
-  .fb-card{height:clamp(280px,44vh,370px)}
+  .fb-card{height:clamp(300px,50vh,430px)}
   .fb-face{padding:34px 22px 20px}
   .fb-art{width:min(160px,40%);margin-bottom:10px}
   .fb-art .jp{font-size:clamp(56px,8vw,88px)}
@@ -791,6 +791,8 @@ h2 .deck-tag{color:var(--matcha);margin-right:4px}
 }
 /* Chừa chỗ cho nút loa ở góc trên: từ vựng không bị loa che */
 .fb-card .fb-face{padding-top:64px}
+.fb-card .fb-back{padding-top:58px}
+@media (max-width:640px){.fb-card{height:min(470px,62vh)!important}}
 @media (max-width:400px){.fb-card .fb-face{padding-top:56px}}
 .hl{background:var(--matcha-soft);color:inherit;border-radius:3px;padding:0 1px}
 </style>
@@ -2793,14 +2795,21 @@ function fitFaces(root){
     /* Cách đọc thu nhỏ cùng tỉ lệ, luôn nhỏ hơn từ chính */
     const rd = face.querySelector('.fb-read,.sd-read');
     const ratio = rd ? Math.min(0.6, parseFloat(getComputedStyle(rd).fontSize) / size) : 0;
-    const setSize = v => { word.style.fontSize = v + 'px'; if(rd) rd.style.fontSize = Math.max(12, v*ratio) + 'px'; };
-    while(over() && size > 30 && guard++ < 40){ size -= 2; setSize(size); }
+    const setSize = v => { word.style.fontSize = v + 'px'; if(rd) rd.style.fontSize = Math.max(13, v*ratio) + 'px'; };
+    /* Phần phụ (định nghĩa tiếng Anh, câu ví dụ) thu nhỏ trước để giữ từ vựng và nghĩa to, dễ học */
+    const minor = els.filter(e=>/(mean2|-ex)/.test(e.className));
+    const base = new Map(minor.map(e=>[e, parseFloat(getComputedStyle(e).fontSize)]));
+    const shrinkMinor = lim => { let k = 1; while(over() && k > lim && guard++ < 200){ k -= 0.05; minor.forEach(e=>{ e.style.fontSize = Math.max(14, base.get(e)*k) + 'px'; }); } };
+    const isBack = face.classList.contains('fb-back') || face.classList.contains('sd-back');
+    if(isBack) shrinkMinor(0.9);
+    const floor1 = isBack ? 34 : 30;
+    while(over() && size > floor1 && guard++ < 260){ size -= 2; setSize(size); }
     if(over() && art) art.style.width = '110px';
-    while(over() && size > 18 && guard++ < 80){ size -= 2; setSize(size); }
+    if(isBack) shrinkMinor(0.8);
+    while(over() && size > 24 && guard++ < 320){ size -= 2; setSize(size); }
     if(over() && art) art.style.display = 'none';
-    let k = 1;
-    while(over() && k > 0.6 && guard++ < 120){ k -= 0.05;
-      els.forEach(e=>{ if(e === word || e === rd) return; e.style.fontSize = ''; const base = parseFloat(getComputedStyle(e).fontSize); e.style.fontSize = Math.max(12, base*k) + 'px'; }); }
+    let k = 1; const mean = face.querySelector('.fb-mean,.sd-mean'); const mb = mean ? parseFloat(getComputedStyle(mean).fontSize) : 0;
+    while(over() && k > 0.7 && guard++ < 400){ k -= 0.05; if(mean) mean.style.fontSize = Math.max(14, mb*k) + 'px'; minor.forEach(e=>{ e.style.fontSize = Math.max(12, base.get(e)*0.66*k) + 'px'; }); }
   });
 }
 window.addEventListener('resize', ()=>{ clearTimeout(fitFaces._t); fitFaces._t = setTimeout(()=>fitFaces(), 150); });
