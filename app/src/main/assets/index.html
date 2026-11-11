@@ -794,6 +794,12 @@ h2 .deck-tag{color:var(--matcha);margin-right:4px}
 .fb-card .fb-back{padding-top:58px}
 @media (max-width:640px){.fb-card{height:min(470px,62vh)!important}}
 @media (max-width:400px){.fb-card .fb-face{padding-top:56px}}
+.vbtn{font-size:17px;padding:4px 8px;flex-shrink:0}
+.vs-sec{display:flex;align-items:flex-end;gap:8px;margin-bottom:6px}
+.vs-sec .field{flex:1;min-width:0;margin-bottom:8px}
+.vs-sec .btn{margin-bottom:8px;white-space:nowrap}
+.vs-sec select{width:100%}
+.vs-none{margin:0;font-size:13.5px;color:var(--shu);background:var(--shu-soft);border-radius:10px;padding:8px 10px}
 .hl{background:var(--matcha-soft);color:inherit;border-radius:3px;padding:0 1px}
 </style>
 </head>
@@ -822,7 +828,7 @@ const I18N = {
     nCards:n=>n+' thẻ', nDecks:n=>n+' bộ', study:'Học thẻ', addCard:'Thêm thẻ',
     emptyCards:'Bạn chưa có thẻ nào. Tự tạo thẻ mới, hoặc lấy thẻ từ bộ có sẵn.', addFirst:'Thêm thẻ đầu tiên', seeDecks:'Xem bộ thẻ có sẵn',
     edit:'Sửa', del:'Xóa', confirmDel:'Bấm lần nữa để xóa', added:'Đã thêm', addToMine:'Thêm vào Đã tạo',
-    allDecks:'‹ Tất cả bộ thẻ', addAll:'Thêm cả bộ', allAdded:'Đã thêm cả bộ', studyDeck:'Học bộ này',
+    allDecks:'‹ Tất cả bộ thẻ', addAll:'Thêm cả bộ', allAdded:'Đã có trong Bộ thẻ của tôi', groupAdded:n=>'Đã thêm bộ “'+n+'” vào Bộ thẻ của tôi.', studyDeck:'Học bộ này',
     resultsFor:q=>'Kết quả cho “'+q+'”', clearSearch:'Xóa tìm kiếm',
     noResults:'Không có thẻ nào khớp. Thử tìm bằng cách đọc hiragana hoặc nghĩa, hoặc tạo thẻ mới cho từ này.',
     createFor:q=>'Tạo thẻ “'+q+'”', srcDeck:n=>'Bộ '+n,
@@ -856,7 +862,7 @@ const I18N = {
     viewAll:'Tất cả thẻ', viewMyDecks:'Bộ thẻ của tôi', newDeck:'Tạo bộ thẻ', editDeck:'Sửa bộ thẻ',
     deckNameLbl:'Tên bộ thẻ', deckNamePh:'Ví dụ: Từ vựng tuần 1', pickCards:'Chọn thẻ cho bộ', selectAll:'Chọn tất cả', clearSel:'Bỏ chọn',
     filterPh:'Lọc thẻ…', nSelected:n=>'Đã chọn '+n+' thẻ', saveDeck:'Lưu bộ thẻ', errDeckName:'Hãy đặt tên cho bộ thẻ.',
-    errDeckCards:'Hãy chọn ít nhất 1 thẻ.', deckSaved:'Đã lưu bộ thẻ.', deckDeleted:'Đã xóa bộ thẻ. Các thẻ vẫn còn trong mục Đã tạo.',
+    errDeckCards:'Hãy chọn ít nhất 1 thẻ.', deckSaved:'Đã lưu bộ thẻ.', deckDeleted:'Đã xóa bộ thẻ.',
     delDeck:'Xóa bộ', confirmDelDeck:'Bấm lần nữa để xóa bộ',
     emptyMyDecks:'Chưa có bộ thẻ nào. Gom các thẻ đã tạo thành từng bộ để học và kiểm tra theo chủ đề.',
     needCardsFirst:'Hãy tạo vài thẻ trước, rồi gom chúng thành bộ.', backMyDecks:'‹ Bộ thẻ của tôi',
@@ -905,6 +911,9 @@ const I18N = {
     dcEmpty:'Hãy gõ câu bạn nghe được trước khi kiểm tra.', dcNoEx:'Chưa có thẻ nào có câu ví dụ để chép chính tả.',
     dcNoVoice:'Thiết bị này chưa có giọng đọc nên chưa chép chính tả được.', dcTip:'Mẹo: bấm Enter để kiểm tra nhanh.',
     dcPerfN:'Câu đúng hoàn toàn', dcReview:'Các câu cần luyện lại',
+    voiceTitle:'Giọng đọc tiếng Nhật', voiceJa:'Chọn giọng', voiceDefault:'Mặc định', voiceTest:'▶ Nghe thử', voiceOnline:'cần mạng',
+    voiceNone:'Trình duyệt này chưa có giọng tiếng Nhật. Hãy cài thêm giọng tiếng Nhật trong cài đặt ngôn ngữ của máy, hoặc dùng Chrome / Edge.',
+    voiceHint:'Giọng được lưu riêng trên trình duyệt này và dùng cho mọi chỗ đọc tiếng Nhật.', voiceSampleJa:'こんにちは。これは日本語の読み上げテストです。',
     tapFlip:'Chạm để xem nghĩa', flipLabel:'Lật thẻ', prev:'Trước', next:'Tiếp', restart:'Học lại từ đầu', shuffle:'Trộn thẻ', close:'Đóng'
   },
   ja:{
@@ -925,7 +934,7 @@ const I18N = {
     nCards:n=>n+'枚', nDecks:n=>n+'セット', study:'学習する', addCard:'カードを追加',
     emptyCards:'まだカードがありません。自分で作るか、単語帳セットから追加しましょう。', addFirst:'最初のカードを追加', seeDecks:'単語帳セットを見る',
     edit:'編集', del:'削除', confirmDel:'もう一度押すと削除', added:'追加済み', addToMine:'マイカードに追加',
-    allDecks:'‹ すべての単語帳', addAll:'すべて追加', allAdded:'すべて追加済み', studyDeck:'この単語帳で学習',
+    allDecks:'‹ すべての単語帳', addAll:'すべて追加', allAdded:'マイ単語帳に追加済み', groupAdded:n=>'「'+n+'」をマイ単語帳に追加しました。', studyDeck:'この単語帳で学習',
     resultsFor:q=>'「'+q+'」の検索結果', clearSearch:'検索をクリア',
     noResults:'該当するカードがありません。ひらがなや意味で検索するか、この単語のカードを作りましょう。',
     createFor:q=>'「'+q+'」のカードを作成', srcDeck:n=>'単語帳:'+n,
@@ -959,7 +968,7 @@ const I18N = {
     viewAll:'すべてのカード', viewMyDecks:'マイ単語帳', newDeck:'単語帳を作る', editDeck:'単語帳を編集',
     deckNameLbl:'単語帳の名前', deckNamePh:'例:第1週の単語', pickCards:'入れるカードを選ぶ', selectAll:'すべて選択', clearSel:'選択を解除',
     filterPh:'カードを絞り込む…', nSelected:n=>n+'枚選択中', saveDeck:'単語帳を保存', errDeckName:'単語帳の名前を入力してください。',
-    errDeckCards:'カードを1枚以上選んでください。', deckSaved:'単語帳を保存しました。', deckDeleted:'単語帳を削除しました。カードはマイカードに残っています。',
+    errDeckCards:'カードを1枚以上選んでください。', deckSaved:'単語帳を保存しました。', deckDeleted:'単語帳を削除しました。',
     delDeck:'削除', confirmDelDeck:'もう一度押すと削除',
     emptyMyDecks:'まだ単語帳がありません。作ったカードをテーマごとにまとめて、学習やテストに使いましょう。',
     needCardsFirst:'まずカードを作ってから、単語帳にまとめましょう。', backMyDecks:'‹ マイ単語帳',
@@ -1008,6 +1017,9 @@ const I18N = {
     dcEmpty:'聞こえた文を入力してから答え合わせしてください。', dcNoEx:'例文のあるカードがありません。',
     dcNoVoice:'この端末には読み上げ音声がないため、ディクテーションができません。', dcTip:'ヒント:Enterですぐ答え合わせ。',
     dcPerfN:'完璧な文', dcReview:'練習が必要な文',
+    voiceTitle:'日本語の読み上げ音声', voiceJa:'音声を選ぶ', voiceDefault:'標準', voiceTest:'▶ 試聴', voiceOnline:'要ネット',
+    voiceNone:'このブラウザには日本語の音声がありません。端末の言語設定で日本語の音声を追加するか、Chrome / Edge をお使いください。',
+    voiceHint:'音声はこのブラウザに保存され、日本語の読み上げすべてに使われます。', voiceSampleJa:'こんにちは。これは日本語の読み上げテストです。',
     tapFlip:'タップして意味を表示', flipLabel:'カードをめくる', prev:'前へ', next:'次へ', restart:'最初から', shuffle:'シャッフル', close:'閉じる'
   }
 };
@@ -2107,6 +2119,7 @@ function renderShell(){
         <span class="logo-text" aria-hidden="true"><b>BJT</b><span class="logo-niwa">${'Niwa'.split('').map((ch,i)=>`<span style="--i:${i}">${ch}</span>`).join('')}</span></span>
       </div>
       <button class="chip hidden" id="chip" title="${t('chipTitle')}"></button>
+      ${JA_VOICE_OK ? `<button class="icon-btn vbtn" data-act="voice-settings" aria-label="${t('voiceTitle')}" title="${t('voiceTitle')}">🔊</button>` : ''}
       ${langSwitch()}
       ${S.user===GUEST
         ? `<span class="who">${t('guestName')}</span>
@@ -2248,6 +2261,8 @@ function streakDays(){
 }
 function fcList_(){
   let cs = S.data.cards;
+  /* Thẻ được thêm theo cả bộ chỉ nằm trong bộ đó, không hiện lẻ trong “Tất cả thẻ” */
+  if(!S.fdeck || S.fdeck[0] === '@') cs = cs.filter(c=>!c.grp || !decksOf().some(d=>d.id===c.grp));
   if(S.fdeck==='@ja' || S.fdeck==='@en'){ const l = S.fdeck.slice(1); cs = cs.filter(c=>(c.lang||'ja')===l); }
   else if(S.fdeck){ const d = decksOf().find(x=>x.id===S.fdeck); if(d) cs = deckCards(d); else S.fdeck = ''; }
   return [...cs].reverse();
@@ -2371,7 +2386,7 @@ function speakText(text, en, btn, rate=0.9){
   if(!text || !CAN_SPEAK) return;
   try{ const u = new SpeechSynthesisUtterance(text); u.lang = en ? 'en-GB' : 'ja-JP'; u.rate = rate;
     const vs = speechSynthesis.getVoices();
-    const v = vs.find(x=>en ? /^en-GB/i.test(x.lang) : /^ja/i.test(x.lang)) || (en && vs.find(x=>/^en/i.test(x.lang))); if(v) u.voice = v;
+    const v = (!en && JA_VOICE_OK && pickJaVoice()) || vs.find(x=>en ? /^en-GB/i.test(x.lang) : /^ja/i.test(x.lang)) || (en && vs.find(x=>/^en/i.test(x.lang))); if(v){ u.voice = v; if(!en) u.lang = v.lang; }
     if(btn){ document.querySelectorAll('.speaking').forEach(x=>x.classList.remove('speaking')); btn.classList.add('speaking'); const off = ()=>btn.classList.remove('speaking'); u.onend = off; u.onerror = off; setTimeout(off, Math.max(6000, text.length*150)); }
     speechSynthesis.cancel(); speechSynthesis.speak(u); }catch(e){}
 }
@@ -2435,7 +2450,8 @@ function viewDecks(){
 }
 function viewDeck(){
   const d = PRESETS.find(x=>x.id===S.deck);
-  const left = d.cards.filter(c=>!S.data.cards.some(m=>m.src===c.id)).length;
+  const added = decksOf().some(x=>x.preset===d.id);
+  const left = added ? 0 : 1;
   return `<button class="back" data-act="close-deck">${t('allDecks')}</button>
   <div class="section-head"><h2><span class="${d.lang==='en'?'en-w deck-tag':'jp'}">${esc(d.jp)}</span> ${LANG==='ja' && d.lang!=='en' ? '' : esc(L(d.name))}<span class="count">${t('nCards',d.cards.length)}</span></h2>
     <button class="btn" data-act="add-all" ${left?'':'disabled'}>${left?t('addAll'):t('allAdded')}</button>
@@ -3555,6 +3571,8 @@ function gmPick(side, id){
   g.just = null;
   if(g.selA && g.selB){
     if(g.selA === g.selB){
+      /* Ghép đúng: tự động phát âm từ vựng (tiếng Anh hoặc tiếng Nhật) */
+      const mc = g.A.find(x=>x.id===g.selA); if(mc && CAN_SPEAK) speakCard(mc.c);
       g.matched.add(g.selA); g.done++; g.just = g.selA; g.selA = g.selB = null;
       renderGame();
       if(g.matched.size === g.rounds[g.r].length){
@@ -3735,6 +3753,41 @@ document.addEventListener('keydown', e=>{
   if(e.target.id === 'dc-in' && !it.res){ e.preventDefault(); dcCheck(); }
 });
 
+/* ===================== Chọn giọng đọc tiếng Nhật (bản web) ===================== */
+const JA_VOICE_OK = CAN_SPEAK && !window.AndroidTTS;   /* app Android dùng giọng mặc định của máy */
+function jaVoices(){
+  if(!JA_VOICE_OK) return [];
+  const seen = new Set();
+  return speechSynthesis.getVoices().filter(v=>/^ja/i.test(String(v.lang).replace('_','-')) && !seen.has(v.voiceURI || v.name) && seen.add(v.voiceURI || v.name));
+}
+function pickJaVoice(){
+  const vs = jaVoices(), want = LS.get('jaVoice');
+  return (want && vs.find(v=>(v.voiceURI || v.name) === want || v.name === want)) || vs[0] || null;
+}
+function openVoiceSettings(){
+  openModal(`<div class="sheet vs" id="vs"></div>`);
+  renderVoiceSettings();
+  if('onvoiceschanged' in speechSynthesis) speechSynthesis.onvoiceschanged = ()=>{ if($('#vs')) renderVoiceSettings(); };
+  setTimeout(()=>{ if($('#vs')) renderVoiceSettings(); }, 600);
+}
+function renderVoiceSettings(){
+  const el = $('#vs'); if(!el) return;
+  const list = jaVoices(), cur = pickJaVoice(), saved = LS.get('jaVoice') || '';
+  el.innerHTML = `<h3>🔊 ${t('voiceTitle')}</h3>
+    <div class="vs-sec">
+      <label class="field"><span>🇯🇵 ${t('voiceJa')}</span>
+        ${list.length ? `<select class="input" id="vs-ja">
+          <option value="">${t('voiceDefault')}${!saved && cur ? ' – ' + esc(cur.name) : ''}</option>
+          ${list.map(v=>{ const id = v.voiceURI || v.name; return `<option value="${esc(id)}" ${saved===id?'selected':''}>${esc(v.name)}${v.localService===false ? ' · ' + t('voiceOnline') : ''}</option>`; }).join('')}
+        </select>` : `<p class="vs-none">${t('voiceNone')}</p>`}
+      </label>
+      ${list.length ? `<button class="btn sm" data-act="voice-test">${t('voiceTest')}</button>` : ''}
+    </div>
+    <p class="imp-desc">${t('voiceHint')}</p>
+    <div class="row"><button class="btn primary" data-act="close-modal">${t('done')}</button></div>`;
+  const s = $('#vs-ja'); if(s) s.onchange = ()=>{ LS.set('jaVoice', s.value || null); speakText(t('voiceSampleJa'), false); };
+}
+
 /* ===================== Sự kiện ===================== */
 
 function confirmTap(btn, label, fn){
@@ -3763,7 +3816,12 @@ document.addEventListener('click', e=>{
     case 'open-deck': S.deck = id; renderContent(); window.scrollTo({top:0}); break;
     case 'close-deck': S.deck = null; renderContent(); break;
     case 'add-preset': if(addPreset(id)){ saveData(); renderContent(); toast(t('toastAdded')); } break;
-    case 'add-all': { const d = PRESETS.find(x=>x.id===S.deck); let n=0; d.cards.forEach(c=>{ if(addPreset(c.id)) n++; }); saveData(); renderContent(); toast(t('toastAddedN',n)); break; }
+    case 'add-all': { const d = PRESETS.find(x=>x.id===S.deck); if(!d || decksOf().some(x=>x.preset===d.id)) break;
+      /* Thêm thành một bộ thẻ trong “Bộ thẻ của tôi”, không tách thành thẻ lẻ */
+      const gid = uid(), ids = [];
+      d.cards.forEach(c=>{ let m = S.data.cards.find(x=>x.src===c.id); if(!m){ addPreset(c.id); m = S.data.cards[S.data.cards.length-1]; } if(!m.grp) m.grp = gid; ids.push(m.id); });
+      decksOf().push({id:gid, name:L(d.name), cardIds:ids, at:Date.now(), preset:d.id});
+      saveData(); renderContent(); toast(t('groupAdded', L(d.name))); break; }
     case 'study-mine': startStudy(S.data.cards, ()=>t('tabCards'), {icon:'cards'}); break;
     case 'study-deck': { const d = PRESETS.find(x=>x.id===S.deck); startStudy(d.cards, ()=>L(d.name), {jp:d.jp, icon:d.id}); break; }
     case 'study-any': S.data.cards.length ? startStudy(S.data.cards, ()=>t('tabCards'), {icon:'cards'}) : startStudy(PRESETS[0].cards, ()=>L(PRESETS[0].name), {jp:PRESETS[0].jp, icon:PRESETS[0].id}); break;
@@ -3775,6 +3833,8 @@ document.addEventListener('click', e=>{
     case 'giveup': confirmTap(b, t('confirmGiveUp'), giveUp); break;
     case 'import': openImport(); break;
     case 'en-fill': fillEnExamples(); break;
+    case 'voice-settings': openVoiceSettings(); break;
+    case 'voice-test': speakText(t('voiceSampleJa'), false, b); break;
     case 'xls': openXls(); break;
     case 'sel-clear': S.pickSet = new Set(); fcRender(); break;
     case 'sel-del': { const n = S.pickSet.size; if(!n) break;
@@ -3800,7 +3860,9 @@ document.addEventListener('click', e=>{
     case 'close-mydeck': S.myDeck = null; renderContent(); break;
     case 'deck-new': if(S.data.cards.length) deckForm(); else toast(t('needCardsFirst')); break;
     case 'deck-edit': deckForm(decksOf().find(x=>x.id===id)); break;
-    case 'deck-del': confirmTap(b, t('confirmDelDeck'), ()=>{ S.data.decks = decksOf().filter(x=>x.id!==id); S.myDeck = null; saveData(); renderContent(); toast(t('deckDeleted')); }); break;
+    case 'deck-del': confirmTap(b, t('confirmDelDeck'), ()=>{ const gone = new Set(S.data.cards.filter(c=>c.grp===id).map(c=>c.id));
+      S.data.cards = S.data.cards.filter(c=>!gone.has(c.id)); S.data.decks = decksOf().filter(x=>x.id!==id); decksOf().forEach(x=>{ x.cardIds = x.cardIds.filter(c=>!gone.has(c)); });
+      S.myDeck = null; saveData(); renderContent(); toast(t('deckDeleted')); }); break;
     case 'deck-study': { const d = decksOf().find(x=>x.id===id); if(d) startStudy(deckCards(d), ()=>d.name, {icon:'layers'}); break; }
     case 'deck-test': { const d = decksOf().find(x=>x.id===id); if(d) startQuiz(deckCards(d), ()=>d.name, (c,n)=>{ d.last = {c, n, at:Date.now()}; saveData(); renderContent(); }, {icon:'layers'}); break; }
     case 'df-all': if(DF){ dfVisible().forEach(c=>DF.sel.add(c.id)); renderDfList(); } break;
