@@ -933,6 +933,9 @@ h2 .deck-tag{color:var(--matcha);margin-right:4px}
 .tabs button{flex:none;white-space:nowrap}
 @media (max-width:480px){.tabs{gap:0}.tabs button{padding-left:7px;padding-right:7px;font-size:14px}}
 @media (max-width:400px){.tabs button{padding-left:4px;padding-right:4px;font-size:13px}}
+.nt-switch{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--ink);background:var(--indigo-soft);border-radius:12px;padding:12px 14px;margin:6px 0 14px}
+.nt-switch input{width:20px;height:20px;accent-color:var(--indigo)}
+.nt-note{font-size:12.5px}
 .hl{background:var(--matcha-soft);color:inherit;border-radius:3px;padding:0 1px}
 </style>
 </head>
@@ -1066,6 +1069,10 @@ const I18N = {
     folderSaved:'Đã lưu nhóm.', folderEmpty:'Nhóm này chưa có bộ thẻ nào. Bấm “Sửa” để thêm bộ.', folderNeedDecks:'Hãy tạo ít nhất một bộ thẻ trước khi tạo nhóm.',
     inFolder:n=>'đang ở nhóm “'+n+'”', errFolderName:'Hãy đặt tên cho nhóm.', errFolderDecks:'Hãy chọn ít nhất một bộ thẻ.',
     inboxAdded:n=>'Đã thêm '+n+' từ mới từ tiện ích Niwa.',
+    ntTitle:'Thông báo từ vựng', ntDesc:'Hiện một từ vựng (kèm cách đọc, nghĩa và ví dụ) trên thanh thông báo của điện thoại, tự đổi từ theo chu kỳ. Bấm “Từ khác” trên thông báo để xem từ tiếp theo.',
+    ntOn:'Bật thông báo từ vựng', ntEvery:'Đổi từ mỗi', ntMin:m=>m+' phút', ntHour:h=>h+' giờ', ntFrom:'Lấy từ trong', ntNow:'Hiện thử một từ',
+    ntNote:'Android có thể đổi từ chậm hơn vài phút để tiết kiệm pin. Thông báo im lặng, không rung, không chuông.',
+    ntDenied:'App chưa được phép hiện thông báo. Hãy mở Cài đặt điện thoại → Ứng dụng → BJT Niwa → Thông báo và bật lên.', ntEmpty:'Chưa có từ nào để hiện. Hãy thêm thẻ hoặc chọn bộ thẻ khác.',
     tapFlip:'Chạm để xem nghĩa', flipLabel:'Lật thẻ', prev:'Trước', next:'Tiếp', restart:'Học lại từ đầu', shuffle:'Trộn thẻ', close:'Đóng'
   },
   ja:{
@@ -1191,6 +1198,10 @@ const I18N = {
     folderSaved:'グループを保存しました。', folderEmpty:'このグループには単語帳がありません。「編集」から追加してください。', folderNeedDecks:'先に単語帳を1つ以上作ってください。',
     inFolder:n=>'「'+n+'」グループ内', errFolderName:'グループ名を入力してください。', errFolderDecks:'単語帳を1つ以上選んでください。',
     inboxAdded:n=>'拡張機能から新しい単語を'+n+'個追加しました。',
+    ntTitle:'単語の通知', ntDesc:'通知バーに単語(読み方・意味・例文つき)を表示し、一定時間ごとに入れ替えます。通知の「次の単語」で次の単語を表示できます。',
+    ntOn:'単語の通知をオンにする', ntEvery:'入れ替え間隔', ntMin:m=>m+'分', ntHour:h=>h+'時間', ntFrom:'表示する単語', ntNow:'今すぐ1つ表示',
+    ntNote:'電池節約のため、Androidが数分遅れて入れ替えることがあります。通知は無音・バイブなしです。',
+    ntDenied:'通知が許可されていません。端末の設定 → アプリ → BJT Niwa → 通知 からオンにしてください。', ntEmpty:'表示できる単語がありません。カードを追加するか、別の単語帳を選んでください。',
     tapFlip:'タップして意味を表示', flipLabel:'カードをめくる', prev:'前へ', next:'次へ', restart:'最初から', shuffle:'シャッフル', close:'閉じる'
   }
 };
@@ -2349,7 +2360,7 @@ function plantSVG(type, g, opts={}){
 
 /* ===================== Trạng thái ===================== */
 const S = { user:null, data:{cards:[], garden:[]}, tab:'cards', query:'', deck:null, sel:'sakura', timer:null, study:null, quiz:null, cv:'cards', myDeck:null, mins: snapMins(LS.get('mins') || 20) };
-function saveData(){ Store.set('u_'+S.user, S.data); if(Cloud.on && Cloud.sess && S.user && S.user !== GUEST) Cloud.queue(S.data); }
+function saveData(){ if(typeof pushNotifWords === 'function') pushNotifWords(); Store.set('u_'+S.user, S.data); if(Cloud.on && Cloud.sess && S.user && S.user !== GUEST) Cloud.queue(S.data); }
 
 /* ===================== Đăng nhập ===================== */
 const GUEST = 'guest~';   /* dấu ~ không dùng được trong tên đăng nhập nên không trùng ai */
@@ -2458,6 +2469,7 @@ function renderShell(){
         <span class="logo-text" aria-hidden="true"><span class="logo-niwa">${'Niwa'.split('').map((ch,i)=>`<span style="--i:${i}">${ch}</span>`).join('')}</span></span>
       </div>
       <button class="chip hidden" id="chip" title="${t('chipTitle')}"></button>
+      ${HAS_NOTIF ? `<button class="icon-btn vbtn" data-act="notif-settings" aria-label="${t('ntTitle')}" title="${t('ntTitle')}">🔔</button>` : ''}
       ${JA_VOICE_OK ? `<button class="icon-btn vbtn" data-act="voice-settings" aria-label="${t('voiceTitle')}" title="${t('voiceTitle')}">🔊</button>` : ''}
       ${langSwitch()}
       ${S.user===GUEST
@@ -4609,7 +4621,56 @@ function spNext(){
     <div class="sd-acts qz-acts"><button class="sd-btn main" data-act="sp-again">${t('playAgain')} <span aria-hidden="true">›</span></button></div>` + spFoot();
 }
 
-{ const enterBase = enter; enter = async function(u){ await enterBase(u); inboxAt = 0; checkInbox(); }; }
+{ const enterBase = enter; enter = async function(u){ await enterBase(u); inboxAt = 0; checkInbox(); pushNotifWords(); }; }
+/* ===================== App Android: hiện từ vựng trên thanh thông báo ===================== */
+const HAS_NOTIF = !!window.AndroidNotify;
+function notifPref(){ return Object.assign({on:false, min:60, src:''}, LS.get('notif') || {}); }
+function notifWords(){
+  const pr = notifPref(); let cs = (S.data && S.data.cards) || [];
+  if(pr.src && pr.src.startsWith('f:')){ const f = foldersOf().find(x=>'f:'+x.id === pr.src); if(f) cs = folderCards(f); }
+  else if(pr.src){ const d = decksOf().find(x=>x.id === pr.src); if(d) cs = deckCards(d); }
+  return cs.slice(0, 1000).map(c=>{ const ex = splitExample(c.example);
+    return {f:String(c.front || ''), r: c.reading ? (isEn(c) ? '/' + c.reading + '/' : c.reading) : '', m: qText(c) || c.meaning || '', e: ex.src ? ex.src + (ex.tr ? '\n→ ' + ex.tr : '') : ''}; });
+}
+let notifT = null;
+function pushNotifWords(now){
+  if(!HAS_NOTIF || !S.user || !S.data) return;
+  clearTimeout(notifT);
+  const go = ()=>{ try{ AndroidNotify.setWords(JSON.stringify(notifWords())); }catch(e){} };
+  if(now) go(); else notifT = setTimeout(go, 1500);
+}
+function applyNotif(){
+  const pr = notifPref(), err = $('#nt-err'); if(err) err.textContent = '';
+  try{
+    if(!pr.on){ AndroidNotify.disable(); return; }
+    pushNotifWords(true);
+    if(!AndroidNotify.hasPermission()){
+      window.__notifPerm = ok=>{ window.__notifPerm = null; if(ok) applyNotif(); else { const p = notifPref(); p.on = false; LS.set('notif', p); const cb = $('#nt-on'); if(cb) cb.checked = false; const e = $('#nt-err'); if(e) e.textContent = t('ntDenied'); } };
+      AndroidNotify.requestPermission(); return;
+    }
+    if(!AndroidNotify.enable(pr.min) && err) err.textContent = t('ntDenied');
+  }catch(e){}
+}
+function openNotif(){
+  const pr = notifPref(), ds = decksOf(), fs = foldersOf();
+  openModal(`<div class="sheet" id="ntform">
+    <h3>🔔 ${t('ntTitle')}</h3>
+    <p class="imp-desc">${t('ntDesc')}</p>
+    <label class="nt-switch"><input type="checkbox" id="nt-on" ${pr.on?'checked':''}><span>${t('ntOn')}</span></label>
+    <label class="field"><span>${t('ntEvery')}</span><select class="input" id="nt-min">
+      ${[15,30,60,120,240,480].map(m=>`<option value="${m}" ${pr.min===m?'selected':''}>${m < 60 ? t('ntMin', m) : t('ntHour', m/60)}</option>`).join('')}</select></label>
+    <label class="field"><span>${t('ntFrom')}</span><select class="input" id="nt-src">
+      <option value="">${t('allTopic')}</option>
+      ${fs.map(f=>`<option value="f:${f.id}" ${pr.src==='f:'+f.id?'selected':''}>📁 ${esc(f.name)}</option>`).join('')}
+      ${ds.map(d=>`<option value="${d.id}" ${pr.src===d.id?'selected':''}>${esc(d.name)}</option>`).join('')}</select></label>
+    <p class="imp-desc nt-note">${t('ntNote')}</p>
+    <div class="err" id="nt-err" role="alert"></div>
+    <div class="row"><button class="btn" data-act="nt-now">${t('ntNow')}</button><button class="btn primary" data-act="close-modal">${t('done')}</button></div>
+  </div>`);
+  const save = ()=>{ const p = notifPref(); p.on = $('#nt-on').checked; p.min = +$('#nt-min').value; p.src = $('#nt-src').value; LS.set('notif', p); applyNotif(); };
+  $('#nt-on').onchange = save; $('#nt-min').onchange = save; $('#nt-src').onchange = save;
+}
+
 /* ===================== Sự kiện ===================== */
 
 function confirmTap(btn, label, fn){
@@ -4671,6 +4732,9 @@ document.addEventListener('click', e=>{
     case 'plan-edit': S.planEdit = id; renderContent(); break;
     case 'plan-del': S.data.tasks = tasksOf().filter(t=>t.id!==id); saveData(); renderContent(); break;
     case 'plan-cancel': S.planEdit = null; renderContent(); break;
+    case 'notif-settings': openNotif(); break;
+    case 'nt-now': { pushNotifWords(true); try{ if(!AndroidNotify.hasPermission()){ window.__notifPerm = ok=>{ window.__notifPerm = null; if(ok) AndroidNotify.showNow(); else { const e = $('#nt-err'); if(e) e.textContent = t('ntDenied'); } }; AndroidNotify.requestPermission(); }
+      else if(!AndroidNotify.showNow()){ const e = $('#nt-err'); if(e) e.textContent = t('ntEmpty'); } }catch(err){} break; }
     case 'xls': openXls(); break;
     case 'sel-clear': S.pickSet = new Set(); fcRender(); break;
     case 'sel-del': { const n = S.pickSet.size; if(!n) break;

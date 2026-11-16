@@ -3,6 +3,8 @@
 
     <!-- Tải phông chữ Google Fonts khi có mạng (không có mạng vẫn chạy với phông của máy) -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Hiện từ vựng trên thanh thông báo (Android 13+ cần người dùng cho phép) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <!-- Cho phép tìm dịch vụ đọc văn bản (TTS) trên Android 11+ -->
     <queries>
@@ -28,5 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name=".NextWordReceiver" android:exported="false" />
     </application>
 </manifest>

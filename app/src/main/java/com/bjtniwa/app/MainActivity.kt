@@ -1,8 +1,10 @@
 package com.bjtniwa.app
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
@@ -26,6 +28,16 @@ class MainActivity : AppCompatActivity() {
         val cb = fileCallback
         fileCallback = null
         cb?.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(res.resultCode, res.data))
+    }
+
+    /* Xin quyền hiện thông báo (Android 13+), báo kết quả lại cho trang */
+    private val askNotif = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        web.evaluateJavascript("window.__notifPerm&&window.__notifPerm(" + (granted && WordNotifier.canNotify(this)) + ")", null)
+    }
+
+    fun askNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= 33 && !WordNotifier.canNotify(this)) askNotif.launch(Manifest.permission.POST_NOTIFICATIONS)
+        else web.evaluateJavascript("window.__notifPerm&&window.__notifPerm(" + WordNotifier.canNotify(this) + ")", null)
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -53,6 +65,7 @@ class MainActivity : AppCompatActivity() {
 
         tts = TtsBridge(this, web)
         web.addJavascriptInterface(tts, "AndroidTTS")
+        web.addJavascriptInterface(NotifyBridge(this), "AndroidNotify")
 
         web.webViewClient = object : WebViewClient() {
             override fun shouldInterceptRequest(view: WebView, request: WebResourceRequest): WebResourceResponse? =
