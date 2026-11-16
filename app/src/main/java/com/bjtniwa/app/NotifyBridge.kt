@@ -1,5 +1,9 @@
 package com.bjtniwa.app
 
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
+import android.provider.Settings
 import android.webkit.JavascriptInterface
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
@@ -39,4 +43,36 @@ class NotifyBridge(private val activity: MainActivity) {
 
     @JavascriptInterface
     fun showNow(): Boolean = WordNotifier.show(ctx)
+
+    /* ----- Ô từ vựng nổi trên các app khác ----- */
+    @JavascriptInterface
+    fun canOverlay(): Boolean = Build.VERSION.SDK_INT < 23 || Settings.canDrawOverlays(ctx)
+
+    @JavascriptInterface
+    fun requestOverlay() {
+        activity.runOnUiThread {
+            try {
+                activity.startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + ctx.packageName)))
+            } catch (e: Exception) {
+                try { activity.startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)) } catch (_: Exception) {}
+            }
+        }
+    }
+
+    @JavascriptInterface
+    fun startFloat(minutes: Int): Boolean {
+        if (!canOverlay()) return false
+        WordNotifier.prefs(ctx).edit().putBoolean("floatOn", true).putInt("floatMin", minutes.coerceIn(1, 120)).apply()
+        activity.runOnUiThread { FloatService.start(ctx) }
+        return true
+    }
+
+    @JavascriptInterface
+    fun stopFloat() {
+        WordNotifier.prefs(ctx).edit().putBoolean("floatOn", false).apply()
+        activity.runOnUiThread { FloatService.stop(ctx) }
+    }
+
+    @JavascriptInterface
+    fun floatRunning(): Boolean = WordNotifier.prefs(ctx).getBoolean("floatOn", false)
 }

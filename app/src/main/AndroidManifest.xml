@@ -5,6 +5,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- Hiện từ vựng trên thanh thông báo (Android 13+ cần người dùng cho phép) -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Ô từ vựng nổi trên các app khác -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
 
     <!-- Cho phép tìm dịch vụ đọc văn bản (TTS) trên Android 11+ -->
     <queries>
@@ -31,5 +35,13 @@
             </intent-filter>
         </activity>
         <receiver android:name=".NextWordReceiver" android:exported="false" />
+        <service
+            android:name=".FloatService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Floating vocabulary flashcard shown over other apps" />
+        </service>
     </application>
 </manifest>

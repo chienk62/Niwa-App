@@ -1,6 +1,7 @@
 package com.bjtniwa.app
 
 import android.Manifest
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -16,7 +17,7 @@ import org.json.JSONArray
 
 /** Hiện một từ vựng trên thanh thông báo. Danh sách từ do trang web trong app gửi sang (AndroidNotify.setWords). */
 object WordNotifier {
-    const val CHANNEL = "niwa_words"
+    const val CHANNEL = "niwa_words_v2"
     const val NOTIF_ID = 2101
 
     fun prefs(c: Context): SharedPreferences = c.getSharedPreferences("niwa_notify", Context.MODE_PRIVATE)
@@ -30,9 +31,14 @@ object WordNotifier {
 
     private fun ensureChannel(c: Context) {
         val nm = c.getSystemService(NotificationManager::class.java) ?: return
+        nm.deleteNotificationChannel("niwa_words")   /* kênh cũ (mức thấp, bị ẩn ở màn hình khóa) */
         if (nm.getNotificationChannel(CHANNEL) == null) {
-            val ch = NotificationChannel(CHANNEL, "Từ vựng Niwa", NotificationManager.IMPORTANCE_LOW)
-            ch.description = "Hiện từ vựng định kỳ trên thanh thông báo"
+            /* Mức mặc định nhưng không chuông, không rung: hiện cả trên màn hình khóa */
+            val ch = NotificationChannel(CHANNEL, "Từ vựng Niwa", NotificationManager.IMPORTANCE_DEFAULT)
+            ch.description = "Hiện từ vựng định kỳ trên thanh thông báo và màn hình khóa"
+            ch.setSound(null, null)
+            ch.enableVibration(false)
+            ch.lockscreenVisibility = Notification.VISIBILITY_PUBLIC
             ch.setShowBadge(false)
             nm.createNotificationChannel(ch)
         }
@@ -74,9 +80,9 @@ object WordNotifier {
             .setContentIntent(open)
             .addAction(0, "Từ khác", next)
             .setOnlyAlertOnce(true)
-            .setSilent(true)
+            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setShowWhen(false)
-            .setPriority(NotificationCompat.PRIORITY_LOW)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setCategory(NotificationCompat.CATEGORY_RECOMMENDATION)
             .build()
         return try { NotificationManagerCompat.from(c).notify(NOTIF_ID, n); true } catch (e: SecurityException) { false }

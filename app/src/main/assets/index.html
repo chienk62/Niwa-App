@@ -936,6 +936,7 @@ h2 .deck-tag{color:var(--matcha);margin-right:4px}
 .nt-switch{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--ink);background:var(--indigo-soft);border-radius:12px;padding:12px 14px;margin:6px 0 14px}
 .nt-switch input{width:20px;height:20px;accent-color:var(--indigo)}
 .nt-note{font-size:12.5px}
+.nt-h{margin:18px 0 4px;font-size:16px;color:var(--ink)}
 .hl{background:var(--matcha-soft);color:inherit;border-radius:3px;padding:0 1px}
 </style>
 </head>
@@ -1069,10 +1070,12 @@ const I18N = {
     folderSaved:'Đã lưu nhóm.', folderEmpty:'Nhóm này chưa có bộ thẻ nào. Bấm “Sửa” để thêm bộ.', folderNeedDecks:'Hãy tạo ít nhất một bộ thẻ trước khi tạo nhóm.',
     inFolder:n=>'đang ở nhóm “'+n+'”', errFolderName:'Hãy đặt tên cho nhóm.', errFolderDecks:'Hãy chọn ít nhất một bộ thẻ.',
     inboxAdded:n=>'Đã thêm '+n+' từ mới từ tiện ích Niwa.',
-    ntTitle:'Thông báo từ vựng', ntDesc:'Hiện một từ vựng (kèm cách đọc, nghĩa và ví dụ) trên thanh thông báo của điện thoại, tự đổi từ theo chu kỳ. Bấm “Từ khác” trên thông báo để xem từ tiếp theo.',
+    ntTitle:'Thông báo từ vựng', ntDesc:'Hiện một từ vựng (kèm cách đọc, nghĩa và ví dụ) trên thanh thông báo và màn hình khóa, tự đổi từ theo chu kỳ. Bấm “Từ khác” trên thông báo để xem từ tiếp theo.',
     ntOn:'Bật thông báo từ vựng', ntEvery:'Đổi từ mỗi', ntMin:m=>m+' phút', ntHour:h=>h+' giờ', ntFrom:'Lấy từ trong', ntNow:'Hiện thử một từ',
-    ntNote:'Android có thể đổi từ chậm hơn vài phút để tiết kiệm pin. Thông báo im lặng, không rung, không chuông.',
+    ntNote:'Android có thể đổi từ chậm hơn vài phút để tiết kiệm pin. Thông báo không rung, không chuông.',
     ntDenied:'App chưa được phép hiện thông báo. Hãy mở Cài đặt điện thoại → Ứng dụng → BJT Niwa → Thông báo và bật lên.', ntEmpty:'Chưa có từ nào để hiện. Hãy thêm thẻ hoặc chọn bộ thẻ khác.',
+    flTitle:'Ô từ vựng nổi trên màn hình', flDesc:'Hiện một ô từ vựng nhỏ nổi trên mọi app (YouTube, Facebook…). Kéo để di chuyển, chạm để xem nghĩa, bấm › để đổi từ, ✕ để tắt.',
+    flOn:'Bật ô từ vựng nổi', flEvery:'Ô nổi đổi từ mỗi', flAsk:'Cần cho phép “Hiển thị trên ứng dụng khác”. Ở màn hình vừa mở, hãy bật quyền cho BJT Niwa rồi quay lại app.',
     tapFlip:'Chạm để xem nghĩa', flipLabel:'Lật thẻ', prev:'Trước', next:'Tiếp', restart:'Học lại từ đầu', shuffle:'Trộn thẻ', close:'Đóng'
   },
   ja:{
@@ -1202,6 +1205,8 @@ const I18N = {
     ntOn:'単語の通知をオンにする', ntEvery:'入れ替え間隔', ntMin:m=>m+'分', ntHour:h=>h+'時間', ntFrom:'表示する単語', ntNow:'今すぐ1つ表示',
     ntNote:'電池節約のため、Androidが数分遅れて入れ替えることがあります。通知は無音・バイブなしです。',
     ntDenied:'通知が許可されていません。端末の設定 → アプリ → BJT Niwa → 通知 からオンにしてください。', ntEmpty:'表示できる単語がありません。カードを追加するか、別の単語帳を選んでください。',
+    flTitle:'画面に浮かぶ単語カード', flDesc:'他のアプリ(YouTubeなど)の上に小さな単語カードを表示します。ドラッグで移動、タップで意味、›で次の単語、✕で閉じます。',
+    flOn:'浮かぶ単語カードをオン', flEvery:'カードの入れ替え間隔', flAsk:'「他のアプリの上に重ねて表示」の許可が必要です。開いた画面で BJT Niwa を許可してからアプリに戻ってください。',
     tapFlip:'タップして意味を表示', flipLabel:'カードをめくる', prev:'前へ', next:'次へ', restart:'最初から', shuffle:'シャッフル', close:'閉じる'
   }
 };
@@ -4624,7 +4629,7 @@ function spNext(){
 { const enterBase = enter; enter = async function(u){ await enterBase(u); inboxAt = 0; checkInbox(); pushNotifWords(); }; }
 /* ===================== App Android: hiện từ vựng trên thanh thông báo ===================== */
 const HAS_NOTIF = !!window.AndroidNotify;
-function notifPref(){ return Object.assign({on:false, min:60, src:''}, LS.get('notif') || {}); }
+function notifPref(){ return Object.assign({on:false, min:60, src:'', fl:false, flMin:5}, LS.get('notif') || {}); }
 function notifWords(){
   const pr = notifPref(); let cs = (S.data && S.data.cards) || [];
   if(pr.src && pr.src.startsWith('f:')){ const f = foldersOf().find(x=>'f:'+x.id === pr.src); if(f) cs = folderCards(f); }
@@ -4651,6 +4656,20 @@ function applyNotif(){
     if(!AndroidNotify.enable(pr.min) && err) err.textContent = t('ntDenied');
   }catch(e){}
 }
+function applyFloat(){
+  const pr = notifPref(), err = $('#nt-err'); if(err) err.textContent = '';
+  try{
+    if(!AndroidNotify.canOverlay) return;
+    if(!pr.fl){ AndroidNotify.stopFloat(); return; }
+    pushNotifWords(true);
+    if(!AndroidNotify.canOverlay()){
+      if(err) err.textContent = t('flAsk');
+      window.__overlayPerm = ok=>{ if(!ok) return; window.__overlayPerm = null; AndroidNotify.startFloat(notifPref().flMin); const e = $('#nt-err'); if(e) e.textContent = ''; };
+      setTimeout(()=>AndroidNotify.requestOverlay(), 600); return;
+    }
+    AndroidNotify.startFloat(pr.flMin);
+  }catch(e){}
+}
 function openNotif(){
   const pr = notifPref(), ds = decksOf(), fs = foldersOf();
   openModal(`<div class="sheet" id="ntform">
@@ -4664,11 +4683,21 @@ function openNotif(){
       ${fs.map(f=>`<option value="f:${f.id}" ${pr.src==='f:'+f.id?'selected':''}>📁 ${esc(f.name)}</option>`).join('')}
       ${ds.map(d=>`<option value="${d.id}" ${pr.src===d.id?'selected':''}>${esc(d.name)}</option>`).join('')}</select></label>
     <p class="imp-desc nt-note">${t('ntNote')}</p>
+    ${AndroidNotify.canOverlay ? `<h4 class="nt-h">🫧 ${t('flTitle')}</h4>
+    <p class="imp-desc">${t('flDesc')}</p>
+    <label class="nt-switch"><input type="checkbox" id="fl-on" ${pr.fl?'checked':''}><span>${t('flOn')}</span></label>
+    <label class="field"><span>${t('flEvery')}</span><select class="input" id="fl-min">
+      ${[1,3,5,10,30,60].map(m=>`<option value="${m}" ${pr.flMin===m?'selected':''}>${m < 60 ? t('ntMin', m) : t('ntHour', 1)}</option>`).join('')}</select></label>` : ''}
     <div class="err" id="nt-err" role="alert"></div>
     <div class="row"><button class="btn" data-act="nt-now">${t('ntNow')}</button><button class="btn primary" data-act="close-modal">${t('done')}</button></div>
   </div>`);
   const save = ()=>{ const p = notifPref(); p.on = $('#nt-on').checked; p.min = +$('#nt-min').value; p.src = $('#nt-src').value; LS.set('notif', p); applyNotif(); };
-  $('#nt-on').onchange = save; $('#nt-min').onchange = save; $('#nt-src').onchange = save;
+  $('#nt-on').onchange = save; $('#nt-min').onchange = save; $('#nt-src').onchange = ()=>{ save(); applyFloat(); };
+  const fo = $('#fl-on');
+  if(fo){
+    const saveF = ()=>{ const p = notifPref(); p.fl = fo.checked; p.flMin = +$('#fl-min').value; LS.set('notif', p); applyFloat(); };
+    fo.onchange = saveF; $('#fl-min').onchange = saveF;
+  }
 }
 
 /* ===================== Sự kiện ===================== */

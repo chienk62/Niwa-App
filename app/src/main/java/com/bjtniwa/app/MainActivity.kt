@@ -127,6 +127,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        /* Quay lại từ màn hình cấp quyền “Hiển thị trên ứng dụng khác” */
+        if (::web.isInitialized) {
+            val ok = Build.VERSION.SDK_INT < 23 || android.provider.Settings.canDrawOverlays(this)
+            web.evaluateJavascript("window.__overlayPerm&&window.__overlayPerm(" + ok + ")", null)
+        }
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         web.saveState(outState)
