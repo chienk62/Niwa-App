@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>BJT Niwa</title>
+<title>Niwa</title>
 <script>
 /* Bản app Android: nối nút loa với bộ đọc văn bản (TTS) của Android */
 (function(){
@@ -800,6 +800,139 @@ h2 .deck-tag{color:var(--matcha);margin-right:4px}
 .vs-sec .btn{margin-bottom:8px;white-space:nowrap}
 .vs-sec select{width:100%}
 .vs-none{margin:0;font-size:13.5px;color:var(--shu);background:var(--shu-soft);border-radius:10px;padding:8px 10px}
+.np-msg{font-size:14px;line-height:1.55;color:var(--ink);background:var(--indigo-soft);border-radius:12px;padding:10px 12px;margin:0 0 12px}
+/* ---------- Ô đất khu vườn ---------- */
+.garden-bottom{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:24px;align-items:start;margin-top:4px}
+.garden-left{min-width:0}
+.garden-left .forest{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+@media (max-width:900px){.garden-bottom{grid-template-columns:minmax(0,1fr)}.land-card{order:-1;position:static}}
+.land-card{position:sticky;top:76px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:16px 16px 12px;box-shadow:0 14px 30px -26px rgba(30,70,140,.5)}
+.land-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.land-seg{margin:0}
+.land-seg button{padding:7px 16px;font-size:14px}
+.land-nav{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;color:var(--ink)}
+.land-arrow{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--line);background:var(--card);color:var(--indigo);font-size:18px;font-weight:800;line-height:1}
+.land-arrow:disabled{opacity:.35;cursor:default}
+.land-wrap{margin:8px 0 2px}
+.land-svg{display:block;width:100%;height:auto}
+.land-count{margin:0;text-align:center;font-weight:700;color:var(--ink);font-size:15px}
+/* ---------- Luyện nói ---------- */
+.sp-prompt{gap:12px}
+.sp-sent{font-size:22px;font-weight:700;line-height:1.5;color:var(--sd-navy);text-align:center;max-width:620px}
+.sp-tr{font-size:14.5px;color:var(--sd-muted);text-align:center;max-width:620px}
+.sp-mic{width:76px;height:76px;border-radius:50%;border:0;font-size:32px;display:grid;place-items:center;background:linear-gradient(150deg,var(--sd-sky),var(--sd-blue));box-shadow:0 14px 26px -12px var(--sd-blue);color:#fff}
+.sp-mic.rec{background:linear-gradient(150deg,#FF8A80,#E53935);animation:spRec 1.1s ease-in-out infinite}
+@keyframes spRec{0%,100%{box-shadow:0 0 0 0 rgba(229,57,53,.45)}50%{box-shadow:0 0 0 14px rgba(229,57,53,0)}}
+.sp-status{min-height:20px;font-size:14px;color:var(--sd-muted);text-align:center;max-width:620px;overflow-wrap:anywhere}
+.sp-heard{font-size:16px;color:var(--sd-navy);font-style:italic}
+.deck.folder{background:linear-gradient(160deg,var(--card) 40%,var(--indigo-soft));border-color:#BFD7F6}
+.deck.folder .fd-ic{font-size:24px;line-height:1;margin-bottom:2px}
+.fd-list .df-item .tx b{display:block}
+/* ---------- Kế hoạch ---------- */
+.plan{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;align-items:start}
+.pl-cal{background:linear-gradient(180deg,#EEF5FF,#E6F0FD);border:1px solid #D6E4F7;border-radius:26px;padding:22px 20px;box-shadow:0 18px 40px -30px rgba(30,70,140,.55)}
+:root[data-theme="dark"] .pl-cal{background:#13233D;border-color:#22385C}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pl-cal{background:#13233D;border-color:#22385C}}
+.pl-side{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:0 14px 30px -26px rgba(30,70,140,.5)}
+@media (min-width:900px){.pl-side{max-width:720px;width:100%;justify-self:center}}
+.pl-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.pl-title{margin:0;font-size:24px;font-weight:700;color:var(--ink);letter-spacing:-.01em;min-width:0}
+.pl-nav{display:flex;align-items:center;gap:6px}
+.pl-seg{margin-left:auto;display:flex;gap:2px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px;box-shadow:0 4px 10px -8px rgba(30,70,140,.4)}
+.pl-seg button{border:0;background:none;padding:6px 14px;border-radius:10px;font-size:13.5px;font-weight:600;color:var(--muted)}
+.pl-seg button[aria-pressed="true"]{background:#E3ECF8;color:var(--ink)}
+.pl-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px}
+.pl-wd{font-size:12.5px;color:var(--muted);padding:0 4px 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pl-day{position:relative;min-height:104px;display:flex;flex-direction:column;align-items:stretch;gap:5px;text-align:left;padding:10px 8px 8px;border:1.5px solid #DCE6F3;border-radius:16px;background:#fff;color:var(--ink);overflow:visible;transition:border-color .15s,box-shadow .15s}
+:root[data-theme="dark"] .pl-day{background:#18294A;border-color:#26406A}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pl-day{background:#18294A;border-color:#26406A}}
+.pl-day.we{background:#F2F7FE}
+:root[data-theme="dark"] .pl-day.we{background:#152542}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pl-day.we{background:#152542}}
+.pl-day:hover{border-color:#9DBCE8}
+.pl-day.out{background:transparent;opacity:.5}
+.pl-day.sel{border-color:var(--indigo);box-shadow:0 0 0 3px rgba(47,111,219,.15)}
+.pl-num{font-size:14px;font-weight:500;color:var(--ink);padding:0 4px;align-self:flex-start;border-radius:7px;line-height:22px}
+.pl-day.today .pl-num{background:#CFE3FB;color:#1D4FB8;font-weight:700;padding:0 7px}
+.pl-chip{display:flex;align-items:center;gap:6px;min-width:0;font-size:12px;line-height:1.3;padding:5px 8px;border-radius:9px;background:#fff;border:1px solid #E1E9F4;box-shadow:0 3px 8px -6px rgba(30,60,120,.35);color:var(--ink)}
+:root[data-theme="dark"] .pl-chip{background:#1F3358;border-color:#2B4675}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pl-chip{background:#1F3358;border-color:#2B4675}}
+.pl-chip i{flex:none;width:7px;height:7px;border-radius:50%}
+.pl-chip em{font-style:normal;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pl-chip.full{flex-wrap:wrap;align-items:flex-start}
+.pl-chip.full i{margin-top:5px}
+.pl-chip.full em{flex:1;white-space:normal;overflow-wrap:break-word;word-break:normal}
+.pl-chip.full small{flex-basis:100%;margin:0 0 0 13px}
+.pl-chip.done{background:#DCFCE7;border-color:#86EFAC;color:#15803D;font-weight:600}
+.pl-more{align-self:flex-start;font-size:11.5px;color:var(--muted);background:#fff;border:1px solid #E1E9F4;border-radius:8px;padding:2px 8px}
+.pl-week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px}
+.pl-wcol{min-height:320px}
+.pl-wh{font-size:12px;color:var(--muted);padding:0 4px}
+.pl-none{color:var(--muted);padding:0 4px}
+.pl-dayview{display:flex;flex-direction:column;gap:10px;background:#fff;border:1.5px solid #DCE6F3;border-radius:18px;padding:16px;min-height:200px}
+:root[data-theme="dark"] .pl-dayview{background:#18294A;border-color:#26406A}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pl-dayview{background:#18294A;border-color:#26406A}}
+.pl-dayitem{display:flex;align-items:center;gap:10px;text-align:left;padding:12px 14px;border-radius:12px;border:1px solid #E1E9F4;background:var(--card);color:var(--ink);font-size:15px}
+.pl-dayitem i{flex:none;width:9px;height:9px;border-radius:50%}
+.pl-dayitem span{flex:1;min-width:0;overflow-wrap:anywhere}
+.pl-dayitem b{color:#16A34A}
+.pl-dayitem.done{background:#DCFCE7;border-color:#86EFAC;color:#15803D;font-weight:600}
+@media (max-width:760px){
+  .pl-cal{padding:14px 10px;border-radius:20px}
+  .pl-title{font-size:19px}
+  .pl-grid,.pl-week{gap:4px}
+  .pl-wd{font-size:10.5px;text-align:center}
+  .pl-day{min-height:60px;padding:5px 3px;border-radius:10px;gap:3px}
+  .pl-num{font-size:12px;padding:0 3px}
+  .pl-grid .pl-chip{font-size:0;padding:0;height:6px;border:0;box-shadow:none;background:#C7D7EE}
+  .pl-grid .pl-chip i,.pl-grid .pl-chip em{display:none}
+  .pl-grid .pl-chip.done{background:#86EFAC}
+  .pl-more{font-size:10px;padding:0 4px}
+  .pl-week{grid-template-columns:minmax(0,1fr)}
+  .pl-wcol{min-height:0;flex-direction:row;flex-wrap:wrap;align-items:center}
+}
+.pl-dtitle{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:8px}
+.pl-dtitle b{font-size:17px;color:var(--ink)}
+.pl-dtitle span{font-size:13px;color:var(--muted);font-weight:600}
+.pl-bar{height:6px;border-radius:6px;background:#E8EEF6;overflow:hidden;margin-bottom:12px}
+.pl-bar i{display:block;height:100%;background:#22C55E;border-radius:6px;transition:width .3s}
+.pl-add{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.pl-range{display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap}
+.pl-range label{display:flex;flex-direction:column;gap:3px;font-size:12px;font-weight:600;color:var(--muted);flex:1;min-width:130px}
+.pl-range .input{padding:8px 10px}
+.pl-date{position:relative;display:flex}
+.pl-date .input{width:100%;padding-right:38px;font-variant-numeric:tabular-nums}
+.pl-date .input.bad{border-color:var(--shu);box-shadow:0 0 0 3px var(--shu-soft)}
+.pl-pick{position:absolute;right:4px;top:50%;transform:translateY(-50%);border:0;background:none;font-size:16px;padding:4px 6px;border-radius:8px;cursor:pointer}
+.pl-pick:hover{background:var(--indigo-soft)}
+.pl-native{position:absolute;right:0;bottom:0;width:1px;height:1px;opacity:0;pointer-events:none;border:0;padding:0}
+.pl-tilde{padding-bottom:10px;color:var(--muted);font-weight:700}
+.pl-add .err{margin:0;min-height:0}
+.pl-tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;cursor:text}
+.pl-rng{font-size:12px;color:var(--muted)}
+.pl-task.done .pl-rng{color:#15803D;opacity:.8}
+.pl-editf{flex:1;min-width:0;display:flex;flex-direction:column;gap:8px}
+.pl-chip small{flex:none;margin-left:auto;font-size:10.5px;color:var(--muted)}
+
+.pl-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.pl-task{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--card);transition:background .2s,border-color .2s}
+.pl-task.done{background:#DCFCE7;border-color:#86EFAC}
+.pl-check{flex:none;width:26px;height:26px;border-radius:50%;border:2px solid #9DB4D3;background:#fff;color:#fff;font-weight:900;font-size:14px;display:grid;place-items:center}
+.pl-task.done .pl-check{background:#16A34A;border-color:#16A34A;animation:qzPop .3s ease}
+.pl-text{flex:1;min-width:0;overflow-wrap:anywhere;color:var(--ink)}
+.pl-task.done .pl-text{color:#15803D;font-weight:600}
+.pl-text{cursor:text}
+.pl-ed{flex:none;border:0;background:none;color:var(--muted);font-size:15px;padding:4px 6px;border-radius:6px}
+.pl-ed:hover{color:var(--indigo);background:var(--indigo-soft)}
+.pl-edit{flex:1;min-width:0;padding:6px 10px}
+.pl-del{flex:none;border:0;background:none;color:var(--muted);font-size:14px;padding:4px 6px;border-radius:6px}
+.pl-del:hover{color:var(--shu);background:var(--shu-soft)}
+.pl-empty{color:var(--muted);text-align:center;margin:12px 0}
+.tabs{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;white-space:nowrap}
+@media (max-width:480px){.tabs{gap:0}.tabs button{padding-left:7px;padding-right:7px;font-size:14px}}
+@media (max-width:400px){.tabs button{padding-left:4px;padding-right:4px;font-size:13px}}
 .hl{background:var(--matcha-soft);color:inherit;border-radius:3px;padding:0 1px}
 </style>
 </head>
@@ -811,7 +944,7 @@ h2 .deck-tag{color:var(--matcha);margin-right:4px}
 /* ===================== Ngôn ngữ / 言語 / Language ===================== */
 const I18N = {
   vi:{
-    title:'BJT Niwa – Học tiếng Nhật thương mại & IELTS', tagline:'Học tiếng Nhật thương mại & IELTS, học càng lâu vườn càng xanh',
+    title:'Niwa – Học tiếng Nhật thương mại & IELTS', tagline:'Học tiếng Nhật thương mại & IELTS, học càng lâu vườn càng xanh',
     loading:'Đang mở…', login:'Đăng nhập', register:'Tạo tài khoản', modeLabel:'Chế độ', langLabel:'Ngôn ngữ',
     username:'Tên đăng nhập', usernameHint:'3–20 ký tự: chữ không dấu, số hoặc dấu gạch dưới',
     password:'Mật khẩu', passwordHint:'Tối thiểu 4 ký tự', processing:'Đang xử lý…',
@@ -824,7 +957,8 @@ const I18N = {
     guestNote:'Bạn đang dùng thử, chưa có tài khoản. Tạo tài khoản để giữ thẻ và khu vườn lâu dài.',
     guestMoved:'Đã chuyển dữ liệu dùng thử vào tài khoản mới.',
     logout:'Đăng xuất', searchPh:'Tìm từ tiếng Nhật, tiếng Anh, cách đọc hoặc nghĩa', searchLabel:'Tìm kiếm thẻ', navLabel:'Mục chính', chipTitle:'Xem cây đang trồng',
-    tabCards:'Đã tạo', tabDecks:'Bộ thẻ có sẵn', tabGarden:'Khu vườn',
+    tabCards:'Đã tạo', tabDecks:'Bộ thẻ có sẵn', tabGarden:'Khu vườn', tabPlan:'Kế hoạch',
+    planToday:'Hôm nay', planSave:'Lưu', planFrom:'Từ ngày', planTo:'Đến ngày', planErrText:'Hãy nhập nội dung việc cần làm.', planErrDate:'Ngày chưa đúng, hãy nhập theo dạng dd/mm/yyyy (ví dụ 18/11/2026).', planV_month:'Tháng', planV_week:'Tuần', planV_day:'Ngày', planPh:'Nhập việc cần làm…', planAdd:'Thêm', planCount:(a,b)=>a+'/'+b+' việc xong', planEmpty:'Chưa có việc nào cho ngày này. Nhập việc cần làm ở ô trên rồi nhấn Enter.', planDone:'Đánh dấu đã xong', planEditLbl:'Sửa việc (Enter để lưu, Esc để hủy)', planUndo:'Bỏ đánh dấu đã xong',
     nCards:n=>n+' thẻ', nDecks:n=>n+' bộ', study:'Học thẻ', addCard:'Thêm thẻ',
     emptyCards:'Bạn chưa có thẻ nào. Tự tạo thẻ mới, hoặc lấy thẻ từ bộ có sẵn.', addFirst:'Thêm thẻ đầu tiên', seeDecks:'Xem bộ thẻ có sẵn',
     edit:'Sửa', del:'Xóa', confirmDel:'Bấm lần nữa để xóa', added:'Đã thêm', addToMine:'Thêm vào Đã tạo',
@@ -914,10 +1048,28 @@ const I18N = {
     voiceTitle:'Giọng đọc tiếng Nhật', voiceJa:'Chọn giọng', voiceDefault:'Mặc định', voiceTest:'▶ Nghe thử', voiceOnline:'cần mạng',
     voiceNone:'Trình duyệt này chưa có giọng tiếng Nhật. Hãy cài thêm giọng tiếng Nhật trong cài đặt ngôn ngữ của máy, hoặc dùng Chrome / Edge.',
     voiceHint:'Giọng được lưu riêng trên trình duyệt này và dùng cho mọi chỗ đọc tiếng Nhật.', voiceSampleJa:'こんにちは。これは日本語の読み上げテストです。',
+    errPass6:'Mật khẩu cần tối thiểu 6 ký tự.', passwordHint6:'Tối thiểu 6 ký tự.', errCloud:'Không kết nối được máy chủ. Hãy kiểm tra mạng rồi thử lại.',
+    errConfirm:'Máy chủ đang bật xác nhận email. Hãy tắt “Confirm email” trong Supabase rồi thử lại.', newPassMsg:'Tài khoản của bạn sẽ được chuyển lên máy chủ để dùng được trên mọi máy. Máy chủ yêu cầu mật khẩu từ 6 ký tự, hãy đặt mật khẩu mới. Thẻ và khu vườn vẫn giữ nguyên.',
+    newPass:'Mật khẩu mới', newPassBtn:'Lưu mật khẩu và vào học', loginNoteCloud:'Dữ liệu được lưu trên máy chủ: đăng nhập ở máy nào cũng thấy thẻ và khu vườn của bạn.',
+    cloudMigrated:'Đã chuyển dữ liệu trong trình duyệt này lên máy chủ.', cloudOffline:'Không tải được dữ liệu từ máy chủ, đang dùng bản lưu trên máy này.', cloudExpired:'Phiên đăng nhập đã hết hạn, hãy đăng nhập lại.',
+    land_day:'Ngày', landToday:'Hôm nay', landDayW:'ngày', landTodayW:'hôm nay', landThatDay:'trong ngày đó', land_week:'Tuần', land_month:'Tháng', land_year:'Năm', landPeriod:'Xem theo', landThisWeek:'Tuần này', landMonth:(m,y)=>'Tháng '+m+'/'+y, landYear:y=>'Năm '+y,
+    landWeekW:'tuần', landMonthW:'tháng', landYearW:'năm', landCount:(n,p)=>n+' cây '+p, landEmpty:p=>'Chưa có cây nào '+p+'. Trồng một cây để ô đất xanh hơn nhé!',
+    landAria:n=>'Ô đất có '+n+' cây',
+    spSkip:'Bỏ qua', speak:'Luyện nói', spHow:'Đọc to câu ví dụ, trang sẽ nghe và chấm điểm độ khớp từng từ. Đạt từ 80% được cộng điểm ⭐.', spStart:'Bắt đầu luyện nói',
+    spRead:'Đọc to câu này', spModel:'Nghe mẫu', spRecord:'Ghi âm', spPress:'Bấm 🎤 rồi đọc câu', spListening:'Đang nghe… đọc xong sẽ tự dừng',
+    spHeard:'Trang nghe được', spScore:p=>'Khớp '+p+'%', spBest:p=>'Tốt nhất: '+p+'%', spRetry:'Thử lại', spPassed:(a,b)=>'Đạt '+a+'/'+b+' câu',
+    spNoSpeech:'Chưa nghe thấy giọng bạn. Bấm 🎤 và đọc to hơn nhé.', spNoMic:'Trang chưa được dùng micro. Hãy cho phép quyền micro trong trình duyệt rồi thử lại.',
+    spError:'Không nhận diện được giọng nói lúc này. Hãy kiểm tra mạng rồi thử lại.', spNoSupport:'Trình duyệt này chưa hỗ trợ nhận diện giọng nói. Hãy dùng Chrome, Edge hoặc Safari.',
+    spTip:p=>'Mẹo: nói rõ, tốc độ vừa phải. Từ '+p+'% là đạt.',
+    newFolder:'Tạo nhóm', editFolder:'Sửa nhóm', folderName:'Tên nhóm', folderNamePh:'Ví dụ: IELTS', folderPick:'Chọn các bộ thẻ cho nhóm', saveFolder:'Lưu nhóm',
+    folderDecks:n=>n+' bộ', delFolder:'Xóa nhóm', confirmDelFolder:'Bấm lần nữa để xóa nhóm', folderDeleted:'Đã xóa nhóm. Các bộ thẻ trong nhóm vẫn được giữ lại.',
+    folderSaved:'Đã lưu nhóm.', folderEmpty:'Nhóm này chưa có bộ thẻ nào. Bấm “Sửa” để thêm bộ.', folderNeedDecks:'Hãy tạo ít nhất một bộ thẻ trước khi tạo nhóm.',
+    inFolder:n=>'đang ở nhóm “'+n+'”', errFolderName:'Hãy đặt tên cho nhóm.', errFolderDecks:'Hãy chọn ít nhất một bộ thẻ.',
+    inboxAdded:n=>'Đã thêm '+n+' từ mới từ tiện ích Niwa.',
     tapFlip:'Chạm để xem nghĩa', flipLabel:'Lật thẻ', prev:'Trước', next:'Tiếp', restart:'Học lại từ đầu', shuffle:'Trộn thẻ', close:'Đóng'
   },
   ja:{
-    title:'BJT Niwa – ビジネス日本語学習', tagline:'ビジネス日本語とIELTSを学んで、自分の庭を育てよう',
+    title:'Niwa – ビジネス日本語学習', tagline:'ビジネス日本語とIELTSを学んで、自分の庭を育てよう',
     loading:'読み込み中…', login:'ログイン', register:'新規登録', modeLabel:'モード', langLabel:'言語',
     username:'ユーザー名', usernameHint:'3〜20文字の半角英数字またはアンダースコア',
     password:'パスワード', passwordHint:'4文字以上', processing:'処理中…',
@@ -930,7 +1082,8 @@ const I18N = {
     guestNote:'お試し中です。カードと庭を長く残すには、アカウントを作成してください。',
     guestMoved:'お試しのデータを新しいアカウントに移しました。',
     logout:'ログアウト', searchPh:'日本語・英語・読み方・意味で検索', searchLabel:'カードを検索', navLabel:'メインメニュー', chipTitle:'育てている木を見る',
-    tabCards:'マイカード', tabDecks:'単語帳セット', tabGarden:'庭',
+    tabCards:'マイカード', tabDecks:'単語帳セット', tabGarden:'庭', tabPlan:'計画',
+    planToday:'今日', planSave:'保存', planFrom:'開始日', planTo:'終了日', planErrText:'タスクの内容を入力してください。', planErrDate:'日付が正しくありません。dd/mm/yyyy の形式で入力してください(例:18/11/2026)。', planV_month:'月', planV_week:'週', planV_day:'日', planPh:'今日やることを追加…', planAdd:'追加', planCount:(a,b)=>b+'件中'+a+'件完了', planEmpty:'この日のタスクはまだありません。上の欄に入力してEnterを押してください。', planDone:'完了にする', planEditLbl:'タスクを編集(Enterで保存、Escで取消)', planUndo:'未完了に戻す',
     nCards:n=>n+'枚', nDecks:n=>n+'セット', study:'学習する', addCard:'カードを追加',
     emptyCards:'まだカードがありません。自分で作るか、単語帳セットから追加しましょう。', addFirst:'最初のカードを追加', seeDecks:'単語帳セットを見る',
     edit:'編集', del:'削除', confirmDel:'もう一度押すと削除', added:'追加済み', addToMine:'マイカードに追加',
@@ -1020,6 +1173,24 @@ const I18N = {
     voiceTitle:'日本語の読み上げ音声', voiceJa:'音声を選ぶ', voiceDefault:'標準', voiceTest:'▶ 試聴', voiceOnline:'要ネット',
     voiceNone:'このブラウザには日本語の音声がありません。端末の言語設定で日本語の音声を追加するか、Chrome / Edge をお使いください。',
     voiceHint:'音声はこのブラウザに保存され、日本語の読み上げすべてに使われます。', voiceSampleJa:'こんにちは。これは日本語の読み上げテストです。',
+    errPass6:'パスワードは6文字以上で入力してください。', passwordHint6:'6文字以上', errCloud:'サーバーに接続できません。ネットワークを確認してもう一度お試しください。',
+    errConfirm:'サーバーでメール確認が有効になっています。Supabase の「Confirm email」をオフにしてからお試しください。', newPassMsg:'アカウントをサーバーに移して、どの端末でも使えるようにします。サーバーでは6文字以上のパスワードが必要なので、新しいパスワードを設定してください。カードと庭はそのまま残ります。',
+    newPass:'新しいパスワード', newPassBtn:'保存して学習を始める', loginNoteCloud:'データはサーバーに保存され、どの端末でログインしてもカードと庭が見られます。',
+    cloudMigrated:'このブラウザのデータをサーバーに移しました。', cloudOffline:'サーバーからデータを読み込めないため、この端末の保存データを使っています。', cloudExpired:'ログインの有効期限が切れました。もう一度ログインしてください。',
+    land_day:'日', landToday:'今日', landDayW:'日', landTodayW:'今日', landThatDay:'その日', land_week:'週', land_month:'月', land_year:'年', landPeriod:'表示', landThisWeek:'今週', landMonth:(m,y)=>y+'年'+m+'月', landYear:y=>y+'年',
+    landWeekW:'週', landMonthW:'月', landYearW:'年', landCount:(n,p)=>p+'に'+n+'本', landEmpty:p=>p+'はまだ木がありません。木を植えて庭を育てましょう!',
+    landAria:n=>'庭に木が'+n+'本',
+    spSkip:'スキップ', speak:'スピーキング', spHow:'例文を声に出して読みましょう。音声を聞き取って、単語ごとの一致度を採点します。80%以上でポイント⭐獲得。', spStart:'スピーキング開始',
+    spRead:'この文を声に出して読もう', spModel:'お手本', spRecord:'録音', spPress:'🎤を押して読んでください', spListening:'聞き取り中… 読み終わると自動で止まります',
+    spHeard:'聞き取った内容', spScore:p=>'一致度 '+p+'%', spBest:p=>'ベスト '+p+'%', spRetry:'もう一度', spPassed:(a,b)=>b+'文中'+a+'文合格',
+    spNoSpeech:'声が聞き取れませんでした。🎤を押して、もう少し大きな声で読んでください。', spNoMic:'マイクが使えません。ブラウザでマイクの使用を許可してからお試しください。',
+    spError:'今は音声認識ができません。ネットワークを確認してもう一度お試しください。', spNoSupport:'このブラウザは音声認識に対応していません。Chrome・Edge・Safariをお使いください。',
+    spTip:p=>'ヒント:はっきり、ふつうの速さで。'+p+'%以上で合格。',
+    newFolder:'グループ作成', editFolder:'グループを編集', folderName:'グループ名', folderNamePh:'例:IELTS', folderPick:'グループに入れる単語帳', saveFolder:'保存',
+    folderDecks:n=>n+'冊', delFolder:'グループ削除', confirmDelFolder:'もう一度押すと削除', folderDeleted:'グループを削除しました。中の単語帳は残っています。',
+    folderSaved:'グループを保存しました。', folderEmpty:'このグループには単語帳がありません。「編集」から追加してください。', folderNeedDecks:'先に単語帳を1つ以上作ってください。',
+    inFolder:n=>'「'+n+'」グループ内', errFolderName:'グループ名を入力してください。', errFolderDecks:'単語帳を1つ以上選んでください。',
+    inboxAdded:n=>'拡張機能から新しい単語を'+n+'個追加しました。',
     tapFlip:'タップして意味を表示', flipLabel:'カードをめくる', prev:'前へ', next:'次へ', restart:'最初から', shuffle:'シャッフル', close:'閉じる'
   }
 };
@@ -1841,6 +2012,160 @@ const LS = {
   set(k,v){ try{ if(v===null) localStorage.removeItem('bjtniwa_'+k); else localStorage.setItem('bjtniwa_'+k, JSON.stringify(v)); }catch(e){} }
 };
 
+/* ===================== Đồng bộ đám mây (Supabase) – dùng cho bản web ngoài claude.ai ===================== */
+const SB_URL = 'https://mdhmcafkqdpixrtfgaud.supabase.co';
+const SB_KEY = 'sb_publishable_IpseI-ZEdFnw8btAcHjurw_gL3ZXvPN';   /* khóa công khai, an toàn nhờ chính sách RLS của bảng */
+const Cloud = {
+  on: !(window.claude && typeof window.claude.use === 'function'),   /* bản web (Vercel) và app Android đều dùng chung database */
+  sess:null, pending:null, timer:null, saving:false,
+  email(u){ return u + '@bjtniwa.app'; },
+  async call(path, opts={}, auth=true){
+    const headers = {'apikey':SB_KEY, 'Content-Type':'application/json', ...(opts.headers || {})};
+    if(auth && this.sess) headers.Authorization = 'Bearer ' + this.sess.access_token;
+    const r = await fetch(SB_URL + path, {...opts, headers});
+    let body = null; try{ body = await r.json(); }catch(_){}
+    return {ok:r.ok, status:r.status, body};
+  },
+  code(r){ const b = r.body || {}; return String(b.error_code || b.code || b.error || r.status); },
+  keep(s, user){
+    const prev = this.sess || {};
+    this.sess = {access_token:s.access_token, refresh_token:s.refresh_token, expires_at:Date.now() + (s.expires_in || 3600)*1000,
+      uid:(s.user && s.user.id) || prev.uid, user:user || prev.user};
+    LS.set('cloud', this.sess);
+  },
+  async login(u, p){
+    const r = await this.call('/auth/v1/token?grant_type=password', {method:'POST', body:JSON.stringify({email:this.email(u), password:p})}, false);
+    if(r.ok && r.body && r.body.access_token){ this.keep(r.body, u); return {ok:true}; }
+    return {ok:false, code:this.code(r), status:r.status};
+  },
+  async signup(u, p){
+    const r = await this.call('/auth/v1/signup', {method:'POST', body:JSON.stringify({email:this.email(u), password:p, data:{username:u}})}, false);
+    if(r.ok && r.body && r.body.access_token){ this.keep(r.body, u); return {ok:true}; }
+    if(r.ok){ const l = await this.login(u, p); return l.ok ? l : {ok:false, code:'email_not_confirmed'}; }
+    return {ok:false, code:this.code(r), status:r.status};
+  },
+  async refresh(){
+    if(!this.sess || !this.sess.refresh_token) return false;
+    try{ const r = await this.call('/auth/v1/token?grant_type=refresh_token', {method:'POST', body:JSON.stringify({refresh_token:this.sess.refresh_token})}, false);
+      if(r.ok && r.body && r.body.access_token){ this.keep(r.body); return true; } }catch(_){}
+    return false;
+  },
+  async ensure(){ if(this.sess && Date.now() > this.sess.expires_at - 60000) await this.refresh(); },
+  async load(){
+    await this.ensure();
+    const path = '/rest/v1/user_data?select=data&user_id=eq.' + this.sess.uid;
+    let r = await this.call(path, {method:'GET'});
+    if(r.status === 401 && await this.refresh()) r = await this.call(path, {method:'GET'});
+    if(r.status === 401) throw new Error('auth');
+    if(!r.ok) throw new Error('net');
+    return (Array.isArray(r.body) && r.body[0]) ? r.body[0].data : null;
+  },
+  async save(data){
+    await this.ensure();
+    const opts = {method:'POST', headers:{Prefer:'resolution=merge-duplicates,return=minimal'},
+      body:JSON.stringify({user_id:this.sess.uid, data, updated_at:new Date().toISOString()})};
+    let r = await this.call('/rest/v1/user_data?on_conflict=user_id', opts);
+    if(r.status === 401 && await this.refresh()) r = await this.call('/rest/v1/user_data?on_conflict=user_id', opts);
+    return r.ok;
+  },
+  queue(data){ this.pending = data; clearTimeout(this.timer); this.timer = setTimeout(()=>this.flush(), 1200); },
+  async flush(){
+    if(this.saving || !this.pending || !this.sess) return;
+    const d = this.pending; this.pending = null; this.saving = true;
+    let ok = false; try{ ok = await this.save(d); }catch(_){}
+    this.saving = false;
+    if(!ok){ if(!this.pending) this.pending = d; toast(t('toastSaveFail')); clearTimeout(this.timer); this.timer = setTimeout(()=>this.flush(), 15000); }
+    else if(this.pending) this.flush();
+  },
+  logout(){ clearTimeout(this.timer); this.sess = null; this.pending = null; LS.set('cloud', null); },
+  /* Lấy các từ mới do tiện ích trình duyệt gửi vào hộp thư "inbox" */
+  async pullInbox(){
+    if(!this.sess || !S.data || S.user === GUEST) return 0;
+    await this.ensure();
+    const r = await this.call('/rest/v1/inbox?select=id,card,deck_id&order=created_at.asc&limit=200', {method:'GET'});
+    if(!r.ok || !Array.isArray(r.body) || !r.body.length) return 0;
+    let n = 0;
+    /* Mọi từ thêm qua tiện ích đều vào bộ riêng “Extension cards” */
+    let ext = decksOf().find(x=>x.ext) || decksOf().find(x=>x.name === 'Extension cards');
+    if(!ext){ ext = {id:uid(), name:'Extension cards', cardIds:[], at:Date.now(), ext:true}; decksOf().push(ext); }
+    ext.ext = true;
+    for(const row of r.body){
+      const c = row.card || {}; if(!c.front) continue;
+      const lg = c.lang === 'en' ? 'en' : 'ja', front = String(c.front).trim().slice(0, 200);
+      let card = S.data.cards.find(x=>(x.lang||'ja') === lg && String(x.front).trim() === front);
+      if(!card){
+        card = {id:uid(), front, reading:String(c.reading||'').slice(0, 200), meaning:String(c.meaning||c.meaningEn||'').slice(0, 500),
+          meaningEn:String(c.meaningEn||'').slice(0, 500), example:String(c.example||'').slice(0, 600), at:Date.now()};
+        if(lg === 'en') card.lang = 'en';
+        S.data.cards.push(card); n++;
+      }
+      if(!ext.cardIds.includes(card.id)) ext.cardIds.push(card.id);
+      if(row.deck_id){ const d = decksOf().find(x=>x.id === row.deck_id); if(d && !d.cardIds.includes(card.id)) d.cardIds.push(card.id); }
+    }
+    Store.set('u_'+S.user, S.data);
+    if(await this.save(S.data)) await this.call('/rest/v1/inbox?id=in.(' + r.body.map(x=>x.id).join(',') + ')', {method:'DELETE'});
+    return n;
+  }
+};
+let inboxAt = 0;
+async function checkInbox(){
+  if(!Cloud.on || !Cloud.sess || !S.user || S.user === GUEST || Date.now() - inboxAt < 15000) return;
+  inboxAt = Date.now();
+  try{ const n = await Cloud.pullInbox(); if(n){ renderContent(); toast(t('inboxAdded', n)); } }catch(_){}
+}
+document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState === 'visible') checkInbox(); });
+window.addEventListener('focus', ()=>checkInbox());
+document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState === 'hidden') Cloud.flush(); });
+window.addEventListener('pagehide', ()=>Cloud.flush());
+const hasData = d => !!(d && ((d.cards||[]).length || (d.garden||[]).length || (d.decks||[]).length || d.timer || (d.days||[]).length));
+
+/* Đăng nhập / đăng ký qua Supabase */
+async function onAuthCloud(u, p, f, err, btn, label){
+  const fail = m => { btn.disabled = false; btn.textContent = label; err.textContent = m; };
+  const cloudErr = r => r.code === 'email_not_confirmed' ? t('errConfirm') : /weak|password/i.test(r.code) ? t('errPass6') : t('errCloud');
+  try{
+    if(authMode === 'register'){
+      if(p.length < 6) return fail(t('errPass6'));
+      const r = await Cloud.signup(u, p);
+      if(!r.ok) return fail(/exists|already|422/.test(r.code) ? t('errTaken') : cloudErr(r));
+      if(S.fromGuest){
+        S.fromGuest = false;
+        const g = Store.local('u_'+GUEST);
+        if(hasData(g)){ await Store.set('u_'+u, g); await Store.set('u_'+GUEST, {cards:[], garden:[], decks:[], timer:null}); setTimeout(()=>toast(t('guestMoved')), 300); }
+      }
+      return enter(u);
+    }
+    const r = await Cloud.login(u, p);
+    if(r.ok) return enter(u);
+    if(r.code === 'email_not_confirmed') return fail(t('errConfirm'));
+    if(!/invalid|400/.test(r.code)) return fail(t('errCloud'));
+    /* Tài khoản cũ chỉ có trong trình duyệt này: chuyển lên máy chủ */
+    const acc = Store.local('accounts'), a = acc && acc.users && acc.users[u];
+    if(!a || a.hash !== await sha(a.salt+':'+p)) return fail(t('errWrong'));
+    if(p.length < 6){ btn.disabled = false; btn.textContent = label; return renderNewPass(u); }
+    const s = await Cloud.signup(u, p);
+    if(!s.ok) return fail(/exists|already|422/.test(s.code) ? t('errWrong') : cloudErr(s));
+    return enter(u);
+  }catch(e){ fail(t('errCloud')); }
+}
+function renderNewPass(u){
+  const f = $('#auth'); if(!f) return;
+  f.innerHTML = `<p class="np-msg">${t('newPassMsg')}</p>
+    <label class="field"><span>${t('newPass')}</span><input class="input" name="np" type="password" autocomplete="new-password" required><small>${t('passwordHint6')}</small></label>
+    <div class="err" id="auth-err" role="alert"></div>
+    <button class="btn primary block" type="submit" id="auth-btn">${t('newPassBtn')}</button>`;
+  f.onsubmit = async e=>{
+    e.preventDefault();
+    const np = f.elements.np.value, err = $('#auth-err'), btn = $('#auth-btn');
+    if(np.length < 6){ err.textContent = t('errPass6'); return; }
+    btn.disabled = true; btn.textContent = t('processing');
+    try{ const s = await Cloud.signup(u, np);
+      if(!s.ok){ btn.disabled = false; btn.textContent = t('newPassBtn'); err.textContent = s.code === 'email_not_confirmed' ? t('errConfirm') : t('errCloud'); return; }
+      enter(u); }catch(_){ btn.disabled = false; btn.textContent = t('newPassBtn'); err.textContent = t('errCloud'); }
+  };
+  f.elements.np.focus();
+}
+
 /* ===================== Tiện ích ===================== */
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -2024,7 +2349,7 @@ function plantSVG(type, g, opts={}){
 
 /* ===================== Trạng thái ===================== */
 const S = { user:null, data:{cards:[], garden:[]}, tab:'cards', query:'', deck:null, sel:'sakura', timer:null, study:null, quiz:null, cv:'cards', myDeck:null, mins: snapMins(LS.get('mins') || 20) };
-function saveData(){ Store.set('u_'+S.user, S.data); }
+function saveData(){ Store.set('u_'+S.user, S.data); if(Cloud.on && Cloud.sess && S.user && S.user !== GUEST) Cloud.queue(S.data); }
 
 /* ===================== Đăng nhập ===================== */
 const GUEST = 'guest~';   /* dấu ~ không dùng được trong tên đăng nhập nên không trùng ai */
@@ -2034,7 +2359,7 @@ function renderLogin(msg=''){
   <div class="login"><div class="login-box">
     <div class="login-lang">${langSwitch()}</div>
     <div class="login-mark"><span class="big jp" aria-hidden="true">庭</span>
-      <div><h1 class="logo-text" aria-label="BJT Niwa"><b>BJT</b><span class="logo-niwa" aria-hidden="true">${'Niwa'.split('').map((ch,i)=>`<span style="--i:${i}">${ch}</span>`).join('')}</span></h1><p>${t('tagline')}</p></div></div>
+      <div><h1 class="logo-text" aria-label="Niwa"><span class="logo-niwa" aria-hidden="true">${'Niwa'.split('').map((ch,i)=>`<span style="--i:${i}">${ch}</span>`).join('')}</span></h1><p>${t('tagline')}</p></div></div>
     <div class="seg" role="group" aria-label="${t('modeLabel')}">
       <button data-mode="login" aria-pressed="${authMode==='login'}">${t('login')}</button>
       <button data-mode="register" aria-pressed="${authMode==='register'}">${t('register')}</button>
@@ -2045,13 +2370,13 @@ function renderLogin(msg=''){
         ${authMode==='register'?`<small>${t('usernameHint')}</small>`:''}</label>
       <label class="field"><span>${t('password')}</span>
         <input class="input" name="p" type="password" autocomplete="${authMode==='login'?'current-password':'new-password'}" required>
-        ${authMode==='register'?`<small>${t('passwordHint')}</small>`:''}</label>
+        ${authMode==='register'?`<small>${Cloud.on ? t('passwordHint6') : t('passwordHint')}</small>`:''}</label>
       <div class="err" id="auth-err" role="alert">${esc(msg)}</div>
       <button class="btn primary block" type="submit" id="auth-btn">${authMode==='login'?t('login'):t('register')}</button>
     </form>
     <div class="or"><span>${t('orText')}</span></div>
     <button type="button" class="btn block guest-btn" id="guest-btn">${t('tryGuest')}</button>
-    <p class="note">${t('loginNote')}</p>
+    <p class="note">${Cloud.on ? t('loginNoteCloud') : t('loginNote')}</p>
   </div></div>`;
   document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{ authMode=b.dataset.mode; renderLogin(); });
   $('#auth').onsubmit = onAuth;
@@ -2063,8 +2388,9 @@ async function onAuth(e){
   const label = authMode==='login' ? t('login') : t('register');
   const u = f.elements.u.value.trim().toLowerCase(), p = f.elements.p.value;
   if(!/^[a-z0-9_]{3,20}$/.test(u)){ err.textContent = t('errUser'); return; }
-  if(p.length < 4){ err.textContent = t('errPass'); return; }
+  if(!Cloud.on && p.length < 4){ err.textContent = t('errPass'); return; }
   btn.disabled = true; btn.textContent = t('processing'); err.textContent = '';
+  if(Cloud.on) return onAuthCloud(u, p, f, err, btn, label);
   const acc = (await Store.get('accounts')) || {users:{}};
   acc.users = acc.users || {};
   if(authMode === 'register'){
@@ -2093,8 +2419,20 @@ async function onAuth(e){
 async function enter(u){
   S.user = u;
   LS.set('session', u);
-  const d = await Store.get('u_'+u);
-  S.data = {cards: (d && d.cards) || [], garden: (d && d.garden) || [], decks: (d && d.decks) || [], timer: null, stats: (d && d.stats) || null, audio: (d && d.audio) || [], pts: (d && d.pts) || 0, days: (d && d.days) || []};
+  let d;
+  if(Cloud.on && u !== GUEST && Cloud.sess){
+    $('#app').innerHTML = `<div class="splash">${t('loading')}</div>`;
+    try{
+      d = await Cloud.load();
+      const local = Store.local('u_'+u);
+      if(!hasData(d) && hasData(local)){ d = local; Cloud.queue(local); setTimeout(()=>toast(t('cloudMigrated')), 400); }   /* lần đầu: đưa dữ liệu trong trình duyệt lên máy chủ */
+      if(d) Store.set('u_'+u, d);
+    }catch(e){
+      if(e.message === 'auth'){ Cloud.logout(); LS.set('session', null); S.user = null; authMode = 'login'; renderLogin(t('cloudExpired')); return; }
+      d = Store.local('u_'+u); setTimeout(()=>toast(t('cloudOffline')), 400);
+    }
+  } else d = await Store.get('u_'+u);
+  S.data = {cards: (d && d.cards) || [], garden: (d && d.garden) || [], decks: (d && d.decks) || [], folders: (d && d.folders) || [], plan: (d && d.plan) || {}, tasks: (d && d.tasks) || [], timer: null, stats: (d && d.stats) || null, audio: (d && d.audio) || [], pts: (d && d.pts) || 0, days: (d && d.days) || []};
   S.fi = 0; S.fflip = false; S.fdeck = ''; S.pickSet = new Set();
   S.cv = 'cards'; S.myDeck = null;
   /* Cây đang trồng được lưu cùng tài khoản, nên tải lại trang hay đổi máy vẫn giữ được */
@@ -2104,6 +2442,7 @@ async function enter(u){
   renderShell();
 }
 function logout(){
+  if(Cloud.on){ Cloud.flush(); Cloud.logout(); }
   LS.set('session', null); S.user = null; S.timer = null; S.query = ''; S.tab='cards'; S.deck=null;
   document.title = t('title');
   authMode = 'login'; renderLogin();
@@ -2114,9 +2453,9 @@ function renderShell(){
   $('#app').innerHTML = `
   <header class="top"><div class="wrap">
     <div class="top-row">
-      <div class="brand" role="img" aria-label="BJT Niwa">
+      <div class="brand" role="img" aria-label="Niwa">
         <span class="logo-mark" aria-hidden="true"><span class="jp">庭</span><i class="logo-shine"></i><i class="logo-spark">✦</i></span>
-        <span class="logo-text" aria-hidden="true"><b>BJT</b><span class="logo-niwa">${'Niwa'.split('').map((ch,i)=>`<span style="--i:${i}">${ch}</span>`).join('')}</span></span>
+        <span class="logo-text" aria-hidden="true"><span class="logo-niwa">${'Niwa'.split('').map((ch,i)=>`<span style="--i:${i}">${ch}</span>`).join('')}</span></span>
       </div>
       <button class="chip hidden" id="chip" title="${t('chipTitle')}"></button>
       ${JA_VOICE_OK ? `<button class="icon-btn vbtn" data-act="voice-settings" aria-label="${t('voiceTitle')}" title="${t('voiceTitle')}">🔊</button>` : ''}
@@ -2135,6 +2474,7 @@ function renderShell(){
       <button data-tab="cards">${t('tabCards')}</button>
       <button data-tab="decks">${t('tabDecks')}</button>
       <button data-tab="garden">${t('tabGarden')}</button>
+      <button data-tab="plan">${t('tabPlan')}</button>
     </nav>
   </div></header>
   <main><div class="wrap">${S.user===GUEST ? `<div class="guest-bar"><span>${t('guestNote')}</span><button class="btn sm primary" data-act="guest-signup">${t('register')}</button></div>` : ''}<div id="content"></div></div></main>`;
@@ -2154,6 +2494,7 @@ function renderContent(){
   if(S.query.trim()) c.innerHTML = viewSearch();
   else if(S.tab==='cards') c.innerHTML = viewCards();
   else if(S.tab==='decks') c.innerHTML = S.deck ? viewDeck() : viewDecks();
+  else if(S.tab==='plan'){ c.innerHTML = viewPlan(); bindPlan(); }
   else c.innerHTML = viewGarden();
   if(S.tab==='garden' && !S.query.trim()) updateTimerUI(true);
   requestAnimationFrame(()=>fitFaces(c));
@@ -2183,7 +2524,7 @@ function cardRow(card, opts={}){
 }
 
 function viewCards(){
-  if(S.cv==='decks') return cardsSeg() + (S.myDeck ? viewMyDeck() : viewMyDecks());
+  if(S.cv==='decks') return cardsSeg() + (S.myDeck ? viewMyDeck() : S.myFolder ? viewFolder() : viewMyDecks());
   return cardsSeg() + viewAllCards();
 }
 function viewAllCards(){
@@ -2244,6 +2585,19 @@ function dayStats(){
   if(!s || s.d !== todayKey()) s = S.data.stats = {d:todayKey(), ids:[], ok:0, ng:0, ms:0};
   return s;
 }
+/* Kiểm tra: câu trả lời đúng được tính vào “Tiến độ hôm nay” (thẻ đã thuộc) và độ chính xác */
+function quizCredit(card, ok){
+  if(!S.user || !S.data || !card) return;
+  const s = dayStats();
+  if(ok) s.ok++; else s.ng++;
+  if(ok){
+    const lg = card.lang || 'ja';
+    const mine = S.data.cards.find(c=>c.id === card.id) || S.data.cards.find(c=>c.src && c.src === card.id)
+      || S.data.cards.find(c=>(c.lang||'ja') === lg && String(c.front).trim() === String(card.front).trim());
+    if(mine && !s.ids.includes(mine.id)) s.ids.push(mine.id);
+  }
+  S.statsDirty = true; saveData();
+}
 /* Ghi nhận hôm nay là ngày có học: gọi khi lật thẻ, học thẻ, kiểm tra, chơi game, chép chính tả hoặc trồng xong cây */
 function markStudyDay(){
   if(!S.user || !S.data) return;
@@ -2261,9 +2615,9 @@ function streakDays(){
 }
 function fcList_(){
   let cs = S.data.cards;
-  /* Thẻ được thêm theo cả bộ chỉ nằm trong bộ đó, không hiện lẻ trong “Tất cả thẻ” */
-  if(!S.fdeck || S.fdeck[0] === '@') cs = cs.filter(c=>!c.grp || !decksOf().some(d=>d.id===c.grp));
+  /* “Tất cả thẻ”, “Thẻ tiếng Nhật”, “Thẻ tiếng Anh” gồm cả thẻ nằm trong các bộ đã thêm */
   if(S.fdeck==='@ja' || S.fdeck==='@en'){ const l = S.fdeck.slice(1); cs = cs.filter(c=>(c.lang||'ja')===l); }
+  else if(S.fdeck && S.fdeck.startsWith('f:')){ const f = foldersOf().find(x=>'f:'+x.id===S.fdeck); if(f) cs = folderCards(f); else S.fdeck = ''; }
   else if(S.fdeck){ const d = decksOf().find(x=>x.id===S.fdeck); if(d) cs = deckCards(d); else S.fdeck = ''; }
   return [...cs].reverse();
 }
@@ -2338,14 +2692,14 @@ function fcList(){
   return `<aside class="fb-side">
     <div class="fb-tip">${ICON.bulb}<span>${t('tip')} 💙</span></div>
     <label class="fb-topic">${ICON.topic}<span class="fb-tl"><small>${t('topic')}</small>
-      <select id="fb-topic" aria-label="${t('topic')}"><option value="">${t('allTopic')}</option><option value="@ja" ${S.fdeck==='@ja'?'selected':''}>${t('topicJa')}</option><option value="@en" ${S.fdeck==='@en'?'selected':''}>${t('topicEn')}</option>${ds.map(d=>`<option value="${d.id}" ${S.fdeck===d.id?'selected':''}>${esc(d.name)}</option>`).join('')}</select></span></label>
+      <select id="fb-topic" aria-label="${t('topic')}"><option value="">${t('allTopic')}</option><option value="@ja" ${S.fdeck==='@ja'?'selected':''}>${t('topicJa')}</option><option value="@en" ${S.fdeck==='@en'?'selected':''}>${t('topicEn')}</option>${foldersOf().map(f=>`<option value="f:${f.id}" ${S.fdeck==='f:'+f.id?'selected':''}>📁 ${esc(f.name)}</option>`).join('')}${ds.map(d=>`<option value="${d.id}" ${S.fdeck===d.id?'selected':''}>${esc(d.name)}</option>`).join('')}</select></span></label>
     <div class="fb-list">
       <div class="fb-lhead"><b>${t('listTitle')}</b><span>${list.length}</span></div>
       <div class="fb-tools">
           <button class="fb-tool main" data-act="new">＋ ${t('addCard')}</button>
           <button class="fb-tool" data-act="xls">${t('xlsImport')}</button>
           ${IMG_LIM?`<button class="fb-tool" data-act="import">${t('importImg')}</button>`:''}
-          ${list.length>=2?`<button class="fb-tool" data-act="test-mine">${t('test')}</button><button class="fb-tool game" data-act="game-mine">🎮 ${t('game')}</button>`:''}${list.some(c=>c.example) ? `<button class="fb-tool dict" data-act="dict-mine">✍️ ${t('dict')}</button>` : ''}${SAMPLE && enMissing().length ? `<button class="fb-tool ai" data-act="en-fill">${t('exFillBtn', enMissing().length)}</button>` : ''}</div>
+          ${list.length>=2?`<button class="fb-tool" data-act="test-mine">${t('test')}</button><button class="fb-tool game" data-act="game-mine">🎮 ${t('game')}</button>`:''}${list.some(c=>c.example) ? `<button class="fb-tool dict" data-act="dict-mine">✍️ ${t('dict')}</button>` : ''}${CAN_REC && list.some(c=>c.example) ? `<button class="fb-tool dict" data-act="spk-mine">🎤 ${t('speak')}</button>` : ''}${SAMPLE && enMissing().length ? `<button class="fb-tool ai" data-act="en-fill">${t('exFillBtn', enMissing().length)}</button>` : ''}</div>
       ${list.length ? (()=>{ const ids = list.map(c=>c.id), n = ids.filter(id=>S.pickSet.has(id)).length;
         return `<div class="fb-selrow${n?' active':''}">
           <label class="fb-all"><input type="checkbox" id="sel-all" aria-label="${t('selectAll')}" ${n && n===ids.length ? 'checked' : ''} data-ind="${n && n<ids.length ? 1 : 0}"><span>${n ? t('nSelected', n) : t('selectAll')}</span></label>
@@ -2458,6 +2812,7 @@ function viewDeck(){
     <button class="btn" data-act="test-deck">${t('test')}</button>
     <button class="btn" data-act="game-deck">🎮 ${t('game')}</button>
     <button class="btn" data-act="dict-deck">✍️ ${t('dict')}</button>
+    ${CAN_REC ? `<button class="btn" data-act="spk-deck">🎤 ${t('speak')}</button>` : ''}
     <button class="btn primary" data-act="study-deck">${t('studyDeck')}</button></div>
   <div class="cards">${d.cards.map(c=>cardRow(c)).join('')}</div>`;
 }
@@ -2480,6 +2835,293 @@ function viewSearch(){
 }
 
 /* ===================== Cây trồng ===================== */
+/* ===================== Ô đất khu vườn (theo tuần / tháng / năm) ===================== */
+function landRange(){
+  const per = S.landPer || 'week', off = S.landOff || 0, now = new Date();
+  let a, b;
+  if(per === 'day'){ a = new Date(now.getFullYear(), now.getMonth(), now.getDate() + off); b = new Date(a); b.setDate(b.getDate()+1); }
+  else if(per === 'week'){ a = new Date(now.getFullYear(), now.getMonth(), now.getDate()); a.setDate(a.getDate() - ((a.getDay()+6)%7) + off*7); b = new Date(a); b.setDate(b.getDate()+7); }
+  else if(per === 'month'){ a = new Date(now.getFullYear(), now.getMonth()+off, 1); b = new Date(a.getFullYear(), a.getMonth()+1, 1); }
+  else { a = new Date(now.getFullYear()+off, 0, 1); b = new Date(a.getFullYear()+1, 0, 1); }
+  return {per, off, a, b};
+}
+function landLabel(r){
+  const d = x => x.getDate() + '/' + (x.getMonth()+1);
+  if(r.per === 'day') return r.off === 0 ? t('landToday') + ' · ' + d(r.a) : (LANG === 'ja' ? r.a.getFullYear() + '年' + (r.a.getMonth()+1) + '月' + r.a.getDate() + '日' : d(r.a) + '/' + r.a.getFullYear());
+  if(r.per === 'week'){ const e = new Date(r.b); e.setDate(e.getDate()-1); return r.off === 0 ? t('landThisWeek') + ' · ' + d(r.a) + '–' + d(e) : d(r.a) + ' – ' + d(e) + '/' + e.getFullYear(); }
+  if(r.per === 'month') return LANG === 'ja' ? r.a.getFullYear() + '年' + (r.a.getMonth()+1) + '月' : t('landMonth', r.a.getMonth()+1, r.a.getFullYear());
+  return LANG === 'ja' ? r.a.getFullYear() + '年' : t('landYear', r.a.getFullYear());
+}
+/* Một cây nhỏ đặt trên ô đất (không có chậu) */
+function landTree(type, x, y, s, dead){
+  const tr = `<ellipse cx="${x}" cy="${y}" rx="${9*s}" ry="${3.6*s}" fill="rgba(30,80,30,.22)"/>`;
+  const trunk = (h, w=3) => `<rect x="${x - w*s/2}" y="${y - h*s}" width="${w*s}" height="${h*s}" rx="${1.2*s}" fill="${dead ? '#8B7B6B' : '#8A5A35'}"/>`;
+  const c = (dx, dy, r, f) => `<circle cx="${x+dx*s}" cy="${y+dy*s}" r="${r*s}" fill="${f}"/>`;
+  if(dead) return tr + trunk(12) + c(0,-15,6,'#B9A99A') + c(-5,-12,4,'#A99786') + c(5,-12,4,'#A99786');
+  switch(type){
+    case 'take': return tr + [-4,0,4].map((dx,k)=>`<rect x="${x+(dx-1.2)*s}" y="${y-(22-k*3)*s}" width="${2.4*s}" height="${(22-k*3)*s}" rx="${1.2*s}" fill="${['#4CAF50','#43A047','#66BB6A'][k]}"/>`).join('')
+      + c(-7,-18,3.5,'#7CCB5E') + c(7,-15,3.5,'#7CCB5E') + c(2,-23,3.5,'#8BD46B');
+    case 'matsu': return tr + trunk(10) + `<ellipse cx="${x}" cy="${y-12*s}" rx="${10*s}" ry="${4.5*s}" fill="#2E7D4F"/><ellipse cx="${x}" cy="${y-17*s}" rx="${7.5*s}" ry="${4*s}" fill="#36925C"/><ellipse cx="${x}" cy="${y-21.5*s}" rx="${4.8*s}" ry="${3.4*s}" fill="#43A86A"/>`;
+    case 'momiji': /* hoa bỉ ngạn: thân xanh, cánh đỏ cong và nhụy dài tỏa ra */
+      return tr + `<path d="M${x},${y} C${x-1*s},${y-8*s} ${x+1*s},${y-14*s} ${x},${y-19*s}" stroke="#4E9A3A" stroke-width="${1.8*s}" fill="none"/>`
+        + `<path d="M${x},${y-1*s} q${-6*s},${-4*s} ${-9*s},${-2*s} M${x},${y-1*s} q${6*s},${-4*s} ${9*s},${-2*s}" stroke="#5FAE45" stroke-width="${1.6*s}" fill="none" stroke-linecap="round"/>`
+        + Array.from({length:9},(_,k)=>{ const a = -Math.PI*(0.05 + k*0.9/8); const ex = x+Math.cos(a)*10*s, ey = y-19*s+Math.sin(a)*9*s;
+            return `<path d="M${x},${y-19*s} Q${x+Math.cos(a)*5*s},${y-19*s+Math.sin(a)*6*s-2*s} ${ex},${ey}" stroke="#E53935" stroke-width="${0.8*s}" fill="none"/><circle cx="${ex}" cy="${ey}" r="${0.9*s}" fill="#FFCDD2"/>`; }).join('')
+        + c(-2.5,-20,2.6,'#E53935') + c(2.5,-20,2.6,'#D32F2F') + c(0,-22,2.6,'#EF5350') + c(0,-18.5,2.2,'#C62828');
+    case 'himawari': return tr + `<rect x="${x-1*s}" y="${y-20*s}" width="${2*s}" height="${20*s}" fill="#5DAA3C"/><ellipse cx="${x-4*s}" cy="${y-9*s}" rx="${4*s}" ry="${2*s}" fill="#6BBF45"/>`
+      + Array.from({length:10},(_,k)=>{ const a = k/10*Math.PI*2; return `<ellipse cx="${x+Math.cos(a)*5.5*s}" cy="${y-21*s+Math.sin(a)*5.5*s}" rx="${3*s}" ry="${1.8*s}" transform="rotate(${a*180/Math.PI} ${x+Math.cos(a)*5.5*s} ${y-21*s+Math.sin(a)*5.5*s})" fill="#FFC928"/>`; }).join('') + c(0,-21,3.6,'#8A5A2B');
+    default: return tr + trunk(11) + c(0,-17,7,'#F7A9C8') + c(-6,-13,5,'#F48FB8') + c(6,-13,5,'#F9BBD3') + c(0,-22,4.5,'#FBC8DC') + c(-3,-17,1.4,'#fff') + c(4,-19,1.2,'#fff');
+  }
+}
+function landSVG(trees){
+  const n = trees.length;
+  const base = {day:5, week:7, month:9, year:12}[S.landPer || 'week'];
+  const N = Math.min(22, Math.max(base, Math.ceil(Math.sqrt(n)) + 2));
+  const tw = 48, th = 24, D = 22, pad = 14, W = N*tw;
+  const cx = W/2 + pad, top = pad + 26;   /* chừa chỗ cho cây ở hàng trên cùng */
+  const H = top + N*th + D + pad;
+  const P = (i, j) => [cx + (i-j)*tw/2, top + (i+j)*th/2];
+  const L = [cx - W/2, top + N*th/2], R = [cx + W/2, top + N*th/2], B = [cx, top + N*th], T = [cx, top];
+  const pts = a => a.map(p=>p.join(',')).join(' ');
+  let s = '';
+  /* Mặt bên: cỏ phía trên, đất cát bên dưới */
+  s += `<polygon points="${pts([L, B, [B[0], B[1]+D], [L[0], L[1]+D]])}" fill="#E9C98F"/>`;
+  s += `<polygon points="${pts([B, R, [R[0], R[1]+D], [B[0], B[1]+D]])}" fill="#D9B276"/>`;
+  s += `<polygon points="${pts([L, B, [B[0], B[1]+9], [L[0], L[1]+9]])}" fill="#56C445"/>`;
+  s += `<polygon points="${pts([B, R, [R[0], R[1]+9], [B[0], B[1]+9]])}" fill="#4AB43B"/>`;
+  /* Mép cỏ lượn sóng trên mặt bên */
+  const wave = (a, b, k, f) => { let d = ''; for(let q=0;q<k;q++){ const t0 = q/k, t1 = (q+1)/k; const x0 = a[0]+(b[0]-a[0])*t0, y0 = a[1]+(b[1]-a[1])*t0+9, x1 = a[0]+(b[0]-a[0])*t1, y1 = a[1]+(b[1]-a[1])*t1+9;
+    d += `<path d="M${x0},${y0} Q${(x0+x1)/2},${(y0+y1)/2+5} ${x1},${y1} Z" fill="${f}"/>`; } return d; };
+  s += wave(L, B, N*2, '#56C445') + wave(B, R, N*2, '#4AB43B');
+  /* Các ô cỏ */
+  let rnd = 7; const R01 = () => (rnd = (rnd*9301 + 49297) % 233280) / 233280;
+  const deco = [];
+  for(let i=0;i<N;i++) for(let j=0;j<N;j++){
+    const [x, y] = P(i, j), edge = i===0 || j===0 || i===N-1 || j===N-1;
+    const f = edge ? ((i+j)%2 ? '#93E57F' : '#8BE076') : ((i+j)%2 ? '#7FDB6B' : '#78D663');
+    s += `<polygon points="${x},${y} ${x+tw/2},${y+th/2} ${x},${y+th} ${x-tw/2},${y+th/2}" fill="${f}" stroke="rgba(255,255,255,.28)" stroke-width="1"/>`;
+    const r = R01();
+    if(r < .16) deco.push(`<g transform="translate(${x + (R01()-.5)*14},${y+th/2 + (R01()-.5)*6})"><circle r="2.2" fill="${R01()<.5?'#FFFFFF':'#FFE15A'}"/><circle r="0.9" fill="#F5B82E"/></g>`);
+    else if(r < .26) deco.push(`<path d="M${x-3},${y+th/2+2} l1.5,-5 M${x},${y+th/2+2} l0,-6 M${x+3},${y+th/2+2} l-1.5,-5" stroke="#4DB43C" stroke-width="1.4" stroke-linecap="round"/>`);
+  }
+  s += deco.join('');
+  /* Hoa nhỏ dọc mép cỏ */
+  for(let q=0;q<N*3;q++){ const tt = R01(), side = R01() < .5; const a = side ? L : B, b = side ? B : R;
+    const x = a[0]+(b[0]-a[0])*tt, y = a[1]+(b[1]-a[1])*tt + 4 + R01()*4; s += `<circle cx="${x}" cy="${y}" r="1.8" fill="${R01()<.6?'#FFE15A':'#FFFFFF'}"/>`; }
+  /* Cây: xếp từ giữa ô đất ra ngoài */
+  const inner = []; const m = N > 4 ? 1 : 0;
+  for(let i=m;i<N-m;i++) for(let j=m;j<N-m;j++) inner.push([i, j]);
+  const c0 = (N-1)/2;
+  inner.sort((p, q)=> (Math.hypot(p[0]-c0, p[1]-c0) - Math.hypot(q[0]-c0, q[1]-c0)) || (p[0]+p[1]) - (q[0]+q[1]));
+  const items = trees.slice(0, inner.length).map((tr, k)=>{ const [i, j] = inner[k], [x, y] = P(i, j); return {tr, x, y: y + th/2 + 3}; });
+  items.sort((a, b)=> a.y - b.y || a.x - b.x);
+  const sc = 1.3;
+  s += items.map(o=>landTree(o.tr.plant, o.x, o.y, sc, o.tr.dead)).join('');
+  return `<svg class="land-svg" viewBox="0 0 ${W + pad*2} ${H}" role="img" aria-label="${esc(t('landAria', trees.filter(x=>!x.dead).length))}">${s}</svg>`;
+}
+function landHTML(){
+  const r = landRange();
+  const trees = S.data.garden.filter(x=>x.at >= r.a.getTime() && x.at < r.b.getTime()).sort((a, b)=>a.at - b.at);
+  const alive = trees.filter(x=>!x.dead), mins = alive.reduce((a, x)=>a + (x.min || 20), 0);
+  const w0 = {day:t('landDayW'), week:t('landWeekW'), month:t('landMonthW'), year:t('landYearW')}[r.per];
+  const pw = r.per === 'day' ? (r.off ? t('landThatDay') : t('landTodayW')) : LANG === 'ja' ? (r.off ? 'その' : 'この') + w0 : 'trong ' + w0 + (r.off ? ' đó' : ' này');
+  return `<div class="land-card">
+    <div class="land-head">
+      <div class="seg land-seg" role="group" aria-label="${t('landPeriod')}">
+        ${['day','week','month','year'].map(p=>`<button data-act="land-per" data-id="${p}" aria-pressed="${r.per===p}">${t('land_'+p)}</button>`).join('')}
+      </div>
+      <div class="land-nav">
+        <button class="land-arrow" data-act="land-prev" aria-label="${t('prev')}">‹</button>
+        <span>${esc(landLabel(r))}</span>
+        <button class="land-arrow" data-act="land-next" aria-label="${t('next')}" ${r.off >= 0 ? 'disabled' : ''}>›</button>
+      </div>
+    </div>
+    <div class="land-wrap">${landSVG(trees)}</div>
+    <p class="land-count">${alive.length
+      ? `🌳 ${t('landCount', alive.length, pw)} · ${durLabel(mins)}${trees.length - alive.length ? ` · 🥀 ${trees.length - alive.length}` : ''}`
+      : t('landEmpty', pw)}</p>
+  </div>`;
+}
+
+/* ===================== Kế hoạch: lịch theo tháng và việc cần làm mỗi ngày ===================== */
+const pkey = d => d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+function planOf(){ return S.data.plan || (S.data.plan = {}); }
+/* Việc có hiệu lực theo khoảng ngày: {id, text, from:'YYYY-MM-DD', to:'YYYY-MM-DD', done} */
+function tasksOf(){
+  if(!S.data.tasks) S.data.tasks = [];
+  const old = S.data.plan;   /* chuyển dữ liệu kiểu cũ (mỗi ngày một danh sách) sang kiểu mới */
+  if(old && Object.keys(old).length){
+    Object.entries(old).forEach(([k, ts])=>ts.forEach(x=>S.data.tasks.push({...x, from:k, to:k})));
+    S.data.plan = {};
+  }
+  /* Trạng thái “xong” lưu theo từng ngày (doneDays), để việc kéo dài nhiều ngày được đánh dấu riêng từng ngày */
+  S.data.tasks.forEach(x=>{
+    if(Array.isArray(x.doneDays)) return;
+    let day = x.from;
+    if(x.from !== x.to && x.doneAt){ const k = pkey(new Date(x.doneAt)); if(k >= x.from && k <= x.to) day = k; }
+    x.doneDays = x.done ? [day] : []; delete x.done; delete x.doneAt;
+  });
+  return S.data.tasks;
+}
+/* Trả về bản sao của việc kèm trạng thái xong của đúng ngày k */
+function planTasks(k){
+  return tasksOf().filter(x=>x.from <= k && k <= x.to)
+    .sort((a, b)=>(a.from < b.from ? -1 : a.from > b.from ? 1 : (a.at||0) - (b.at||0)))
+    .map(x=>({...x, done: x.doneDays.includes(k)}));
+}
+const dmy = k => { const [y, m, d] = k.split('-'); return d + '/' + m + '/' + y; };
+const dm = k => { const [, m, d] = k.split('-'); return d + '/' + m; };
+/* Ô ngày nhập theo dạng dd/mm/yyyy, kèm nút 📅 mở lịch chọn ngày */
+function dateField(id, key){
+  return `<span class="pl-date"><input class="input" type="text" id="${id}" value="${key ? dmy(key) : ''}" placeholder="dd/mm/yyyy" inputmode="numeric" maxlength="10" autocomplete="off">
+    <button type="button" class="pl-pick" data-pick="${id}" aria-label="📅" tabindex="-1">📅</button><input type="date" class="pl-native" data-for="${id}" value="${key || ''}" tabindex="-1" aria-hidden="true"></span>`;
+}
+function readDate(id){
+  const el = document.getElementById(id); if(!el) return '';
+  const m = el.value.trim().match(/^(\d{1,2})[\/.\-](\d{1,2})[\/.\-](\d{4})$/); if(!m) return '';
+  const d = new Date(+m[3], +m[2]-1, +m[1]);
+  return d.getDate() === +m[1] && d.getMonth() === +m[2]-1 ? pkey(d) : '';
+}
+function bindDates(root){
+  root.querySelectorAll('.pl-date').forEach(w=>{
+    const txt = w.querySelector('input[type=text]'), nat = w.querySelector('.pl-native'), btn = w.querySelector('.pl-pick');
+    txt.oninput = ()=>{ let v = txt.value.replace(/[^\d]/g, '').slice(0, 8); if(v.length > 4) v = v.slice(0,2) + '/' + v.slice(2,4) + '/' + v.slice(4); else if(v.length > 2) v = v.slice(0,2) + '/' + v.slice(2); txt.value = v; txt.classList.remove('bad'); txt.dispatchEvent(new Event('datechange')); };
+    btn.onclick = ()=>{ const k = readDate(txt.id); if(k) nat.value = k; try{ nat.showPicker(); }catch(e){ nat.focus(); nat.click(); } };
+    nat.onchange = ()=>{ if(nat.value){ txt.value = dmy(nat.value); txt.classList.remove('bad'); txt.dispatchEvent(new Event('datechange')); } };
+  });
+}
+const PL_DOTS = ['#8B5CF6','#14B8A6','#3B82F6','#F97316','#84CC16','#EC4899','#0EA5E9'];
+const plDot = id => PL_DOTS[[...String(id)].reduce((a,c)=>a + c.charCodeAt(0), 0) % PL_DOTS.length];
+function plChip(x, full){
+  const multi = x.from !== x.to;
+  return `<span class="pl-chip${x.done?' done':''}${full?' full':''}${multi?' multi':''}" title="${esc(x.text)}${multi ? ' (' + dmy(x.from) + ' ~ ' + dmy(x.to) + ')' : ''}"><i style="background:${x.done ? '#16A34A' : plDot(x.id)}"></i><em>${x.done ? '✓ ' : ''}${esc(x.text)}</em>${multi && full ? `<small>${dm(x.from)}–${dm(x.to)}</small>` : ''}</span>`;
+}
+function viewPlan(){
+  const now = new Date(), today = pkey(now);
+  if(!S.planMonth){ S.planMonth = new Date(now.getFullYear(), now.getMonth(), 1).getTime(); }
+  if(!S.planDay) S.planDay = today;
+  const mode = S.planView || 'month';
+  const sel = new Date(S.planDay + 'T00:00:00');
+  const wdFull = LANG === 'ja' ? ['月曜日','火曜日','水曜日','木曜日','金曜日','土曜日','日曜日'] : ['Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7','Chủ nhật'];
+  const wd = LANG === 'ja' ? ['月','火','水','木','金','土','日'] : ['T2','T3','T4','T5','T6','T7','CN'];
+  const dayBtn = (d, extra='') => {
+    const k = pkey(d), ts = planTasks(k), dow = (d.getDay()+6)%7;
+    return {k, ts, cls:`pl-day${dow>=5?' we':''}${k===today?' today':''}${k===S.planDay?' sel':''}${extra}`};
+  };
+  let title, body;
+  if(mode === 'month'){
+    const m0 = new Date(S.planMonth), y = m0.getFullYear(), mo = m0.getMonth();
+    const first = new Date(y, mo, 1), start = new Date(first); start.setDate(1 - ((first.getDay()+6)%7));
+    const weeks = Math.ceil((((first.getDay()+6)%7) + new Date(y, mo+1, 0).getDate()) / 7);
+    title = LANG === 'ja' ? `${y}年${mo+1}月` : `Tháng ${mo+1} ${y}`;
+    let cells = '';
+    for(let i=0;i<weeks*7;i++){
+      const d = new Date(start); d.setDate(start.getDate()+i);
+      const c = dayBtn(d, d.getMonth() !== mo ? ' out' : '');
+      cells += `<button class="${c.cls}" data-act="plan-day" data-id="${c.k}" aria-label="${esc(c.k)}${c.ts.length ? ', ' + t('planCount', c.ts.filter(x=>x.done).length, c.ts.length) : ''}">
+        <span class="pl-num">${d.getDate()}</span>${c.ts.slice(0, 2).map(x=>plChip(x)).join('')}${c.ts.length > 2 ? `<span class="pl-more">+${c.ts.length-2}</span>` : ''}</button>`;
+    }
+    body = `<div class="pl-grid">${wdFull.map((w,i)=>`<span class="pl-wd${i>=5?' we':''}">${w}</span>`).join('')}${cells}</div>`;
+  } else if(mode === 'week'){
+    const start = new Date(sel); start.setDate(sel.getDate() - ((sel.getDay()+6)%7));
+    const end = new Date(start); end.setDate(start.getDate()+6);
+    title = LANG === 'ja' ? `${start.getMonth()+1}月${start.getDate()}日 – ${end.getMonth()+1}月${end.getDate()}日` : `${start.getDate()}/${start.getMonth()+1} – ${end.getDate()}/${end.getMonth()+1}/${end.getFullYear()}`;
+    let cols = '';
+    for(let i=0;i<7;i++){
+      const d = new Date(start); d.setDate(start.getDate()+i); const c = dayBtn(d);
+      cols += `<button class="${c.cls} pl-wcol" data-act="plan-day" data-id="${c.k}"><span class="pl-wh">${wd[i]}</span><span class="pl-num">${d.getDate()}</span>
+        ${c.ts.map(x=>plChip(x, true)).join('') || '<span class="pl-none">–</span>'}</button>`;
+    }
+    body = `<div class="pl-week">${cols}</div>`;
+  } else {
+    const c = dayBtn(sel);
+    title = LANG === 'ja' ? `${sel.getFullYear()}年${sel.getMonth()+1}月${sel.getDate()}日(${wd[(sel.getDay()+6)%7]})` : `${wdFull[(sel.getDay()+6)%7]}, ${sel.getDate()}/${sel.getMonth()+1}/${sel.getFullYear()}`;
+    body = `<div class="pl-dayview">${c.ts.length ? c.ts.map(x=>`<button class="pl-dayitem${x.done?' done':''}" data-act="plan-toggle" data-id="${x.id}" aria-pressed="${!!x.done}">
+        <i style="background:${x.done ? '#16A34A' : plDot(x.id)}"></i><span>${esc(x.text)}</span><b>${x.done ? '✓' : ''}</b></button>`).join('') : `<p class="pl-empty">${t('planEmpty')}</p>`}</div>`;
+  }
+  const list = planTasks(S.planDay), doneN = list.filter(x=>x.done).length;
+  const dayTitle = LANG === 'ja' ? `${sel.getMonth()+1}月${sel.getDate()}日(${wd[(sel.getDay()+6)%7]})` : `${wd[(sel.getDay()+6)%7]}, ${sel.getDate()}/${sel.getMonth()+1}/${sel.getFullYear()}`;
+  return `<div class="plan">
+    <div class="pl-cal">
+      <div class="pl-head">
+        <h2 class="pl-title">${title}</h2>
+        <div class="pl-nav">
+          <button class="land-arrow" data-act="plan-prev" aria-label="${t('prev')}">‹</button>
+          <button class="btn sm" data-act="plan-today">${t('planToday')}</button>
+          <button class="land-arrow" data-act="plan-next" aria-label="${t('next')}">›</button>
+        </div>
+        <div class="pl-seg" role="group">${['month','week','day'].map(v=>`<button data-act="plan-view" data-id="${v}" aria-pressed="${mode===v}">${t('planV_'+v)}</button>`).join('')}</div>
+      </div>
+      ${body}
+    </div>
+    <div class="pl-side">
+      <div class="pl-dtitle"><b>${dayTitle}</b>${list.length ? `<span>${t('planCount', doneN, list.length)}</span>` : ''}</div>
+      ${list.length ? `<div class="pl-bar"><i style="width:${doneN/list.length*100}%"></i></div>` : ''}
+      <form class="pl-add" id="pl-add">
+        <input class="input pl-in" id="pl-input" maxlength="200" placeholder="${esc(t('planPh'))}" autocomplete="off">
+        <div class="pl-range">
+          <label><span>${t('planFrom')}</span>${dateField('pl-from', S.planDay)}</label>
+          <span class="pl-tilde">~</span>
+          <label><span>${t('planTo')}</span>${dateField('pl-to', S.planDay)}</label>
+          <button class="btn primary" type="submit">＋ ${t('planAdd')}</button>
+        </div>
+        <div class="err" id="pl-err" role="alert"></div>
+      </form>
+      ${list.length ? `<ul class="pl-list">${list.map(x=>`<li class="pl-task${x.done?' done':''}">
+          <button class="pl-check" data-act="plan-toggle" data-id="${x.id}" aria-pressed="${!!x.done}" aria-label="${t(x.done ? 'planUndo' : 'planDone')}">${x.done ? '✓' : ''}</button>
+          ${S.planEdit === x.id
+            ? `<form class="pl-editf" id="pl-editf" data-id="${x.id}">
+                 <input class="input pl-edit" id="pl-edit" maxlength="200" value="${esc(x.text)}" aria-label="${t('planEditLbl')}">
+                 <div class="pl-range">
+                   <label><span>${t('planFrom')}</span>${dateField('pl-efrom', x.from)}</label>
+                   <span class="pl-tilde">~</span>
+                   <label><span>${t('planTo')}</span>${dateField('pl-eto', x.to)}</label>
+                   <button class="btn sm primary" type="submit">${t('planSave')}</button><button class="btn sm" type="button" data-act="plan-cancel">${t('cancel')}</button>
+                 </div></form>`
+            : `<span class="pl-tx" data-act="plan-edit" data-id="${x.id}" title="${t('planEditLbl')}"><span class="pl-text">${esc(x.text)}</span>
+                 <small class="pl-rng">📅 ${x.from === x.to ? dmy(x.from) : dmy(x.from) + ' ~ ' + dmy(x.to)}</small></span>
+               <button class="pl-ed" data-act="plan-edit" data-id="${x.id}" aria-label="${t('planEditLbl')}" title="${t('planEditLbl')}">✎</button>`}
+          ${S.planEdit === x.id ? '' : `<button class="pl-del" data-act="plan-del" data-id="${x.id}" aria-label="${t('del')}">✕</button>`}</li>`).join('')}</ul>`
+        : `<p class="pl-empty">${t('planEmpty')}</p>`}
+    </div>
+  </div>`;
+}
+function bindPlan(){
+  const fixRange = (a, b)=> a && b && a > b ? [b, a] : [a || b, b || a];
+  const ef = $('#pl-editf');
+  if(ef){
+    const ed = $('#pl-edit');
+    ef.onsubmit = e=>{
+      e.preventDefault();
+      const {x} = planTask(ef.dataset.id), v = ed.value.trim();
+      const a = readDate('pl-efrom'), b = readDate('pl-eto');
+      if(!a){ $('#pl-efrom').classList.add('bad'); $('#pl-efrom').focus(); return; }
+      if($('#pl-eto').value.trim() && !b){ $('#pl-eto').classList.add('bad'); $('#pl-eto').focus(); return; }
+      const [f, to] = fixRange(a, b);
+      if(x && v && f){ x.text = v; x.from = f; x.to = to; x.doneDays = (x.doneDays || []).filter(k=>k >= f && k <= to); saveData(); }
+      S.planEdit = null; renderContent();
+    };
+    ef.onkeydown = e=>{ if(e.key === 'Escape'){ e.preventDefault(); S.planEdit = null; renderContent(); } };
+    ed.focus(); ed.setSelectionRange(ed.value.length, ed.value.length);
+  }
+  bindDates(document);
+  const f = $('#pl-add'); if(!f) return;
+  const fromI = $('#pl-from'), toI = $('#pl-to');
+  fromI.addEventListener('datechange', ()=>{ const a = readDate('pl-from'), b = readDate('pl-to'); if(a && (!b || b < a)) toI.value = dmy(a); });
+  f.onsubmit = e=>{
+    e.preventDefault();
+    const text = $('#pl-input').value.trim(), err = $('#pl-err');
+    if(!text){ err.textContent = t('planErrText'); $('#pl-input').focus(); return; }
+    const a = readDate('pl-from'), b = readDate('pl-to');
+    if(!a){ err.textContent = t('planErrDate'); fromI.classList.add('bad'); fromI.focus(); return; }
+    if(toI.value.trim() && !b){ err.textContent = t('planErrDate'); toI.classList.add('bad'); toI.focus(); return; }
+    const [fr, to] = fixRange(a, b);
+    tasksOf().push({id:uid(), text, from:fr, to, doneDays:[], at:Date.now()});
+    saveData(); renderContent(); const ni = $('#pl-input'); ni && ni.focus();
+  };
+}
+function planTask(id){ const ts = tasksOf(); return {ts, x: ts.find(t=>t.id===id)}; }
+
 function viewGarden(){
   const running = !!S.timer;
   const alive = S.data.garden.filter(x=>!x.dead), dead = S.data.garden.filter(x=>x.dead);
@@ -2501,6 +3143,7 @@ function viewGarden(){
       <p class="howto">${t('howto')}</p>
     </div>
   </div>
+  <div class="garden-bottom"><div class="garden-left">
   <div class="stats">
     <div><b>${alive.length}</b>${t('statTrees')}</div>
     <div><b>${alive.reduce((a,x)=>a+(x.min||20),0)}</b>${t('statMin')}</div>
@@ -2508,7 +3151,8 @@ function viewGarden(){
   </div>
   ${S.data.garden.length ? `<div class="forest">${[...S.data.garden].reverse().map(tr=>{ const pl = PLANTS.find(x=>x.id===tr.plant)||PLANTS[0];
       return `<div class="tree">${plantSVG(pl.id, tr.dead?0.45:1, {dead:tr.dead})}<div class="jp">${pl.jp}</div><small>${tr.dead?t('witheredPrefix'):durLabel(tr.min||20)+' · '}${fmtDate(tr.at)}</small></div>`; }).join('')}</div>`
-    : `<div class="empty"><span class="jp" aria-hidden="true">苗</span><p>${t('emptyGarden')}</p></div>`}`;
+    : `<div class="empty"><span class="jp" aria-hidden="true">苗</span><p>${t('emptyGarden')}</p></div>`}
+  </div>${landHTML()}</div>`;
 }
 function progress(){ return S.timer ? Math.min(1,(Date.now()-S.timer.startedAt)/tdur()) : 0; }
 function setMins(m){
@@ -2574,7 +3218,7 @@ function updateTimerUI(force){
   const left = tdur() - (Date.now()-S.timer.startedAt), g = progress();
   const pl = PLANTS.find(x=>x.id===S.timer.plant);
   if(chip){ chip.classList.toggle('hidden', S.tab==='garden' && !S.query.trim()); chip.textContent = pl.jp+' '+fmt(left); }
-  document.title = fmt(left)+' · '+plantName(pl)+' – BJT Niwa';
+  document.title = fmt(left)+' · '+plantName(pl)+' – Niwa';
   const tt = $('#t-time'); if(tt) tt.textContent = fmt(left);
   dialRender(Math.max(0,left)/60000/180, false);
   const st = Math.floor(g*200);
@@ -2643,7 +3287,7 @@ function openModal(html, opts={}){
   if(opts.dismiss !== false) m.addEventListener('click', e=>{ if(e.target===m) closeModal(); });
   const f = m.querySelector('input,textarea,button'); f && f.focus();
 }
-function closeModal(){ if(S.dict){ S.dict = null; try{ speechSynthesis.cancel(); }catch(_){} } if(S.enFill){ S.enFill.ctl.abort(); S.enFill = null; } if(IMP && IMP.ctl) IMP.ctl.abort(); IMP = null; DF = null; XLS = null; S.quiz = null; if(S.game){ S.game.end = true; S.game = null; } clearInterval(gmTick); $('#modal-root').innerHTML = ''; S.study = null; }
+function closeModal(){ if(S.statsDirty){ S.statsDirty = false; setTimeout(()=>{ if(S.tab==='cards' && !S.query.trim() && !$('#modal-root').innerHTML) renderContent(); }, 0); } if(S.spk){ if(S.spk.rec){ try{ S.spk.rec.abort(); }catch(_){} } S.spk = null; } if(S.dict){ S.dict = null; try{ speechSynthesis.cancel(); }catch(_){} } if(S.enFill){ S.enFill.ctl.abort(); S.enFill = null; } if(IMP && IMP.ctl) IMP.ctl.abort(); IMP = null; DF = null; XLS = null; S.quiz = null; if(S.game){ S.game.end = true; S.game = null; } clearInterval(gmTick); $('#modal-root').innerHTML = ''; S.study = null; }
 document.addEventListener('keydown', e=>{
   if(!$('#modal-root').innerHTML) return;
   if(e.key==='Escape') closeModal();
@@ -3158,16 +3802,72 @@ function cardsSeg(){
     <button data-act="cv" data-id="cards" aria-pressed="${S.cv!=='decks'}">${t('viewAll')}</button>
     <button data-act="cv" data-id="decks" aria-pressed="${S.cv==='decks'}">${t('viewMyDecks')}</button></div>`;
 }
+/* ===================== Nhóm bộ thẻ (gộp nhiều bộ thành một nhóm) ===================== */
+function foldersOf(){ return S.data.folders || (S.data.folders = []); }
+function folderDecks(f){ const ds = decksOf(); return f.deckIds.map(id=>ds.find(d=>d.id===id)).filter(Boolean); }
+function folderCards(f){ const seen = new Set(), out = []; folderDecks(f).forEach(d=>deckCards(d).forEach(c=>{ if(!seen.has(c.id)){ seen.add(c.id); out.push(c); } })); return out; }
+function deckFolder(id){ return foldersOf().find(f=>f.deckIds.includes(id)); }
+function deckTile(d){ const n = deckCards(d).length, sc = d.last;
+  return `<button class="deck" data-act="open-mydeck" data-id="${d.id}"><b>${esc(d.name)}</b>
+    <span>${sc ? t('lastScore',sc.c,sc.n) : t('noTestYet')}</span><span class="n">${t('nCards',n)}</span></button>`; }
+function folderTile(f){ const ds = folderDecks(f), n = folderCards(f).length;
+  return `<button class="deck folder" data-act="open-folder" data-id="${f.id}"><span class="fd-ic" aria-hidden="true">📁</span><b>${esc(f.name)}</b>
+    <span>${t('folderDecks', ds.length)}</span><span class="n">${t('nCards', n)}</span></button>`; }
+function viewFolder(){
+  const f = foldersOf().find(x=>x.id===S.myFolder);
+  if(!f){ S.myFolder = null; return viewMyDecks(); }
+  const ds = folderDecks(f), cs = folderCards(f), ex = cs.some(c=>c.example);
+  return `<button class="back" data-act="close-folder">${t('backMyDecks')}</button>
+  <div class="section-head"><h2><span aria-hidden="true">📁 </span>${esc(f.name)}<span class="count">${t('folderDecks', ds.length)} · ${t('nCards', cs.length)}</span></h2>
+    <button class="btn" data-act="folder-edit" data-id="${f.id}">${t('edit')}</button>
+    <button class="btn danger" data-act="folder-del" data-id="${f.id}">${t('delFolder')}</button>
+    <button class="btn" data-act="fold-study" data-id="${f.id}" ${cs.length?'':'disabled'}>${t('study')}</button>
+    <button class="btn primary" data-act="fold-test" data-id="${f.id}" ${cs.length>=2?'':'disabled'}>${t('test')}</button>
+    <button class="btn" data-act="fold-game" data-id="${f.id}" ${cs.length>=2?'':'disabled'}>🎮 ${t('game')}</button>
+    <button class="btn" data-act="fold-dict" data-id="${f.id}" ${ex?'':'disabled'}>✍️ ${t('dict')}</button>
+    ${typeof CAN_REC !== 'undefined' && CAN_REC ? `<button class="btn" data-act="fold-spk" data-id="${f.id}" ${ex?'':'disabled'}>🎤 ${t('speak')}</button>` : ''}</div>
+  ${ds.length ? `<div class="decks">${ds.map(deckTile).join('')}</div>` : `<div class="empty"><p>${t('folderEmpty')}</p></div>`}`;
+}
+function folderForm(f){
+  const ds = decksOf();
+  if(!ds.length){ toast(t('folderNeedDecks')); return; }
+  openModal(`<form class="sheet" id="fdform" novalidate>
+    <h3>${f ? t('editFolder') : t('newFolder')}</h3>
+    <label class="field"><span>${t('folderName')}</span><input class="input" name="name" maxlength="60" value="${esc(f ? f.name : '')}" placeholder="${esc(t('folderNamePh'))}"></label>
+    <div class="field"><span>${t('folderPick')}</span>
+      <div class="df-list fd-list">${[...ds].reverse().map(d=>{ const other = deckFolder(d.id), on = f ? f.deckIds.includes(d.id) : false;
+        return `<label class="df-item"><input type="checkbox" value="${d.id}" ${on?'checked':''}>
+          <span class="tx"><b>${esc(d.name)}</b><small>${t('nCards', deckCards(d).length)}${other && (!f || other.id !== f.id) ? ' · ' + t('inFolder', esc(other.name)) : ''}</small></span></label>`; }).join('')}</div></div>
+    <div class="err" id="fderr" role="alert"></div>
+    <div class="row"><button type="button" class="btn" data-act="close-modal">${t('cancel')}</button>
+      <button type="submit" class="btn primary">${t('saveFolder')}</button></div>
+  </form>`, {dismiss:false});
+  $('#fdform').onsubmit = e=>{
+    e.preventDefault();
+    const name = e.target.elements.name.value.trim();
+    const ids = [...e.target.querySelectorAll('input[type=checkbox]:checked')].map(x=>x.value);
+    if(!name){ $('#fderr').textContent = t('errFolderName'); return; }
+    if(!ids.length){ $('#fderr').textContent = t('errFolderDecks'); return; }
+    let fx = f ? foldersOf().find(x=>x.id===f.id) : null;
+    foldersOf().forEach(x=>{ if(x !== fx) x.deckIds = x.deckIds.filter(id=>!ids.includes(id)); });   /* mỗi bộ chỉ nằm trong một nhóm */
+    if(fx) Object.assign(fx, {name, deckIds:ids});
+    else { fx = {id:uid(), name, deckIds:ids, at:Date.now()}; foldersOf().push(fx); }
+    S.cv = 'decks'; S.myDeck = null; S.myFolder = fx.id;
+    saveData(); closeModal(); renderContent(); toast(t('folderSaved'));
+  };
+  $('#fdform').elements.name.focus();
+}
+
 function viewMyDecks(){
   const ds = decksOf();
   const head = `<div class="section-head"><h2>${t('viewMyDecks')}<span class="count">${t('nDecks',ds.length)}</span></h2>
+    <button class="btn" data-act="folder-new">📁 ${t('newFolder')}</button>
     <button class="btn primary" data-act="deck-new">${t('newDeck')}</button></div>`;
   if(!ds.length) return head + `<div class="empty"><span class="jp" aria-hidden="true">束</span>
     <p>${S.data.cards.length ? t('emptyMyDecks') : t('needCardsFirst')}</p>
     ${S.data.cards.length ? `<button class="btn primary" data-act="deck-new">${t('newDeck')}</button>` : `<button class="btn primary" data-act="new">${t('addFirst')}</button>`}</div>`;
-  return head + `<div class="decks">${[...ds].reverse().map(d=>{ const n = deckCards(d).length, sc = d.last;
-    return `<button class="deck" data-act="open-mydeck" data-id="${d.id}"><b>${esc(d.name)}</b>
-      <span>${sc ? t('lastScore',sc.c,sc.n) : t('noTestYet')}</span><span class="n">${t('nCards',n)}</span></button>`; }).join('')}</div>`;
+  const fs = foldersOf(), loose = [...ds].reverse().filter(d=>!deckFolder(d.id));
+  return head + `<div class="decks">${[...fs].reverse().map(folderTile).join('')}${loose.map(deckTile).join('')}</div>`;
 }
 function viewMyDeck(){
   const d = decksOf().find(x=>x.id===S.myDeck);
@@ -3180,7 +3880,8 @@ function viewMyDeck(){
     <button class="btn" data-act="deck-study" data-id="${d.id}" ${cs.length?'':'disabled'}>${t('study')}</button>
     <button class="btn primary" data-act="deck-test" data-id="${d.id}" ${cs.length>=2?'':'disabled'}>${t('test')}</button>
     <button class="btn" data-act="deck-game" data-id="${d.id}" ${cs.length>=2?'':'disabled'}>🎮 ${t('game')}</button>
-    <button class="btn" data-act="deck-dict" data-id="${d.id}" ${cs.some(c=>c.example)?'':'disabled'}>✍️ ${t('dict')}</button></div>
+    <button class="btn" data-act="deck-dict" data-id="${d.id}" ${cs.some(c=>c.example)?'':'disabled'}>✍️ ${t('dict')}</button>${CAN_REC ? `
+    <button class="btn" data-act="deck-spk" data-id="${d.id}" ${cs.some(c=>c.example)?'':'disabled'}>🎤 ${t('speak')}</button>` : ''}</div>
   ${d.last ? `<p class="deck-score">${t('lastScore',d.last.c,d.last.n)}</p>` : ''}
   <div class="cards">${cs.map(c=>cardRow(c,{mine:true})).join('')}</div>`;
 }
@@ -3788,6 +4489,127 @@ function renderVoiceSettings(){
   const s = $('#vs-ja'); if(s) s.onchange = ()=>{ LS.set('jaVoice', s.value || null); speakText(t('voiceSampleJa'), false); };
 }
 
+/* ===================== Luyện nói: đọc câu ví dụ, nhận diện giọng nói và chấm điểm ===================== */
+const SRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+const CAN_REC = !!SRec && !window.AndroidTTS;   /* WebView Android không có nhận diện giọng nói */
+const SP_PASS = 80;
+function startSpeak(cards, titleFn, meta={}){
+  if(!CAN_REC){ toast(t('spNoSupport')); return; }
+  const pool = cards.filter(c=>splitExample(c.example).src);
+  if(!pool.length){ toast(t('dcNoEx')); return; }
+  openModal(`<i class="sd-bub b1" aria-hidden="true"></i><i class="sd-bub b2" aria-hidden="true"></i><i class="sd-bub b3" aria-hidden="true"></i>
+    <div class="sheet sd qz dc sp" id="spk"></div>`, {cls:'sd-modal'});
+  S.spk = {pool, titleFn, jp:meta.jp||'', icon:meta.icon||'cards', count:Math.min(10, pool.length)};
+  renderSpkSetup();
+}
+function spHead(countText, pct){
+  const q = S.spk;
+  return `<div class="sd-cloud">${SD_CLOUD}</div>
+    <div class="sd-head">
+      <span class="sd-ic">${SD_ICONS[q.icon] || SD_ICONS.cards}</span>
+      <div class="sd-ht"><div class="sd-title">${t('speak')} · ${esc(q.titleFn())}${q.jp && LANG!=='ja' && !String(q.titleFn()).includes(q.jp) ? `<span class="sd-jp jp"> · ${esc(q.jp)}</span>` : ''}</div>
+        <div class="sd-bar"><i style="width:${pct}%"></i></div></div>
+      <span class="sd-count">${countText}</span>
+    </div>`;
+}
+function spFoot(){ return `<div class="sd-foot"><span>${t('spTip', SP_PASS)}</span><button class="sd-btn" data-act="close-modal">${t('close')}</button></div>`; }
+function renderSpkSetup(){
+  const q = S.spk, el = $('#spk'); if(!q || !el) return;
+  const n = q.pool.length, counts = [...new Set([5,10,20,n].filter(x=>x<=n))].sort((a,b)=>a-b);
+  if(!counts.includes(q.count)) q.count = counts[counts.length-1];
+  el.innerHTML = spHead(t('sentN', n), 0) + `
+    <div class="qz-panel">
+      <i class="sd-spark s1" aria-hidden="true"></i><i class="sd-star" aria-hidden="true">✦</i>
+      <div class="dc-demo" aria-hidden="true">🗣️<i></i>🎯</div>
+      <p class="gm-how">${t('spHow')}</p>
+      <span class="sd-chip">${t('dcCount')}</span>
+      <div class="qz-chips">${counts.map(c=>`<button class="qz-chip" data-act="sp-count" data-id="${c}" aria-pressed="${q.count===c}">${t('sentN',c)}</button>`).join('')}</div>
+    </div>
+    <div class="sd-acts qz-acts"><button class="sd-btn main" data-act="sp-start">${t('spStart')} <span aria-hidden="true">›</span></button></div>` + spFoot();
+}
+function beginSpk(){
+  const q = S.spk; if(!q) return;
+  q.items = shuffle([...q.pool]).slice(0, q.count).map(c=>{ const {src, tr} = splitExample(c.example); return {c, src, tr, res:null, best:0, tries:0, awarded:false}; });
+  q.i = 0; q.earned = 0; renderSpkQ('next');
+}
+function spNorm(s, ja){ return ja ? dcTokens(toHira(s), true) : dcTokens(s, false); }
+function renderSpkQ(dir=''){
+  const q = S.spk, el = $('#spk'); if(!q || !el) return;
+  const it = q.items[q.i], n = q.items.length, ja = !isEn(it.c), r = it.res;
+  el.innerHTML = spHead(`${q.i+1} / ${n}`, (q.i + (r?1:0))/n*100) + `
+    <div class="qz-prompt dc-prompt sp-prompt${dir?' in-'+dir:''}">
+      <i class="sd-spark s1" aria-hidden="true"></i><i class="sd-star" aria-hidden="true">✦</i>
+      <span class="sd-chip">${t('spRead')}</span>
+      <div class="sp-sent ${fc(it.c)}">${r ? dcAnswerHTML(it.src, ja, r.mark) : esc(it.src)}</div>
+      ${it.tr ? `<div class="sp-tr">${esc(it.tr)}</div>` : ''}
+      <div class="dc-play">
+        <button class="dc-slow" data-act="sp-model">🔊 ${t('spModel')}</button>
+        <button class="sp-mic${q.rec ? ' rec' : ''}" id="sp-mic" data-act="sp-rec" aria-label="${t('spRecord')}">🎤</button>
+      </div>
+      <div class="sp-status" id="sp-status" aria-live="polite">${q.rec ? t('spListening') : (r ? '' : t('spPress'))}</div>
+    </div>
+    ${r ? `<div class="dc-res">
+        <p class="qz-feed ${r.pct >= SP_PASS ? 'ok' : 'bad'}" role="status">${t('spScore', r.pct)}${r.pct >= SP_PASS ? ' 🎉' : ''}${r.gain ? ` · +${r.gain} ⭐` : ''}</p>
+        <div class="dc-label">${t('spHeard')}</div><div class="sp-heard ${fc(it.c)}">“${esc(r.heard)}”</div>
+        ${it.tries > 1 ? `<div class="dc-meta">${t('spBest', it.best)}</div>` : ''}
+      </div>` : ''}
+    <div class="sd-acts qz-acts">
+      ${r ? `<button class="sd-btn soft" data-act="sp-rec">🎤 ${t('spRetry')}</button><button class="sd-btn main" data-act="sp-next">${q.i===n-1 ? t('seeResult') : t('nextQ')} <span aria-hidden="true">›</span></button>`
+          : `<button class="sd-btn" data-act="sp-next">${t('spSkip')}</button>`}
+    </div>` + spFoot();
+}
+function spSetStatus(txt){ const s = $('#sp-status'); if(s) s.textContent = txt; }
+function spRecord(){
+  const q = S.spk; if(!q || !q.items) return;
+  if(q.rec){ try{ q.rec.stop(); }catch(_){} return; }
+  try{ speechSynthesis.cancel(); }catch(_){}
+  const it = q.items[q.i], ja = !isEn(it.c), rec = new SRec();
+  rec.lang = ja ? 'ja-JP' : 'en-US'; rec.interimResults = true; rec.maxAlternatives = 3; rec.continuous = false;
+  let alts = [], err = '';
+  rec.onresult = e=>{
+    const all = Array.from(e.results);
+    spSetStatus('… ' + all.map(x=>x[0].transcript).join(' '));
+    const last = all[all.length-1];
+    if(last.isFinal){ const head = all.slice(0, -1).map(x=>x[0].transcript).join(' '); alts = Array.from(last).map(a=>(head + ' ' + a.transcript).trim()); }
+  };
+  rec.onerror = e=>{ err = e.error || 'error'; };
+  rec.onend = ()=>{
+    if(S.spk !== q) return;
+    q.rec = null; const mic = $('#sp-mic'); if(mic) mic.classList.remove('rec');
+    if(alts.length) return spScore(alts);
+    spSetStatus(err === 'not-allowed' || err === 'service-not-allowed' ? t('spNoMic') : err === 'no-speech' || !err ? t('spNoSpeech') : t('spError'));
+  };
+  try{ rec.start(); }catch(e){ spSetStatus(t('spError')); return; }
+  q.rec = rec; const mic = $('#sp-mic'); if(mic) mic.classList.add('rec'); spSetStatus(t('spListening'));
+}
+function spScore(alts){
+  const q = S.spk, it = q.items[q.i], ja = !isEn(it.c), exp = spNorm(it.src, ja);
+  let best = null;
+  alts.forEach(a=>{ const m = lcsMark(exp, spNorm(a, ja)); const pct = exp.length ? Math.round(m.ok/exp.length*100) : 0; if(!best || pct > best.pct) best = {mark:m.mark, pct, heard:a}; });
+  it.tries++; it.best = Math.max(it.best, best.pct); best.gain = 0;
+  if(best.pct >= SP_PASS && !it.awarded){ it.awarded = true; best.gain = best.pct >= 95 ? 10 : 5; S.data.pts = (S.data.pts || 0) + best.gain; q.earned += best.gain; }
+  it.res = best; markStudyDay(); saveData();
+  renderSpkQ();
+  const nx = document.querySelector('#spk [data-act="sp-next"]'); nx && nx.focus({preventScroll:true});
+}
+function spNext(){
+  const q = S.spk; if(!q) return; if(q.rec){ try{ q.rec.abort(); }catch(_){} q.rec = null; }
+  if(q.i < q.items.length-1){ q.i++; renderSpkQ('next'); return; }
+  const el = $('#spk'), vals = q.items.map(x=>x.best), avg = Math.round(vals.reduce((a,b)=>a+b,0)/vals.length), passed = vals.filter(v=>v>=SP_PASS).length;
+  const C = 2*Math.PI*52, msg = avg >= 90 ? t('resGreat') : avg >= 60 ? t('resGood') : t('resTry');
+  const weak = q.items.filter(x=>x.best < SP_PASS);
+  el.innerHTML = spHead(t('result'), 100) + `
+    <div class="qz-panel qz-res">
+      <i class="sd-spark s1" aria-hidden="true"></i><i class="sd-spark s2" aria-hidden="true"></i><i class="sd-star" aria-hidden="true">✦</i>
+      <div class="qz-ring"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" class="tr"/><circle cx="60" cy="60" r="52" class="pr" stroke-dasharray="${C*avg/100} ${C}" transform="rotate(-90 60 60)"/></svg><div><b>${avg}</b><small>%</small></div></div>
+      <p class="qz-msg">${msg}</p>
+      <div class="qz-tally"><span class="ok">✓ ${t('spPassed', passed, vals.length)}</span>${q.earned ? `<span class="ok">+${q.earned} ⭐</span>` : ''}</div>
+    </div>
+    ${weak.length ? `<p class="qz-wl">${t('dcReview')}</p><div class="qz-wrong">${weak.map(x=>`<div class="qz-witem dc-witem"><span class="m ${fc(x.c)}">${esc(x.src)}</span><small>${t('spBest', x.best)}</small></div>`).join('')}</div>` : ''}
+    <div class="sd-acts qz-acts"><button class="sd-btn main" data-act="sp-again">${t('playAgain')} <span aria-hidden="true">›</span></button></div>` + spFoot();
+}
+
+{ const enterBase = enter; enter = async function(u){ await enterBase(u); inboxAt = 0; checkInbox(); }; }
 /* ===================== Sự kiện ===================== */
 
 function confirmTap(btn, label, fn){
@@ -3835,6 +4657,20 @@ document.addEventListener('click', e=>{
     case 'en-fill': fillEnExamples(); break;
     case 'voice-settings': openVoiceSettings(); break;
     case 'voice-test': speakText(t('voiceSampleJa'), false, b); break;
+    case 'land-per': S.landPer = id; S.landOff = 0; renderContent(); break;
+    case 'land-prev': S.landOff = (S.landOff || 0) - 1; renderContent(); break;
+    case 'land-next': if((S.landOff || 0) < 0){ S.landOff++; renderContent(); } break;
+    case 'plan-day': S.planEdit = null; S.planDay = id; renderContent(); { const i = $('#pl-input'); if(i && innerWidth > 900) i.focus(); } break;
+    case 'plan-prev': case 'plan-next': { const dir = a==='plan-prev' ? -1 : 1, v = S.planView || 'month';
+      if(v === 'month'){ const d = new Date(S.planMonth); d.setMonth(d.getMonth() + dir); S.planMonth = d.getTime(); }
+      else { const d = new Date(S.planDay + 'T00:00:00'); d.setDate(d.getDate() + dir * (v === 'week' ? 7 : 1)); S.planDay = pkey(d); S.planMonth = new Date(d.getFullYear(), d.getMonth(), 1).getTime(); }
+      S.planEdit = null; renderContent(); break; }
+    case 'plan-view': S.planView = id; { const d = new Date(S.planDay + 'T00:00:00'); S.planMonth = new Date(d.getFullYear(), d.getMonth(), 1).getTime(); } renderContent(); break;
+    case 'plan-today': { const n = new Date(); S.planMonth = new Date(n.getFullYear(), n.getMonth(), 1).getTime(); S.planDay = pkey(n); renderContent(); break; }
+    case 'plan-toggle': { const {x} = planTask(id); if(x){ tasksOf(); const k = S.planDay, i = x.doneDays.indexOf(k); if(i >= 0) x.doneDays.splice(i, 1); else x.doneDays.push(k); saveData(); renderContent(); } break; }
+    case 'plan-edit': S.planEdit = id; renderContent(); break;
+    case 'plan-del': S.data.tasks = tasksOf().filter(t=>t.id!==id); saveData(); renderContent(); break;
+    case 'plan-cancel': S.planEdit = null; renderContent(); break;
     case 'xls': openXls(); break;
     case 'sel-clear': S.pickSet = new Set(); fcRender(); break;
     case 'sel-del': { const n = S.pickSet.size; if(!n) break;
@@ -3855,19 +4691,37 @@ document.addEventListener('click', e=>{
     case 'imp-rm': if(IMP){ IMP.files.splice(+id,1); renderImport('pick'); } break;
     case 'imp-again': if(IMP){ IMP.files = []; renderImport('pick'); } break;
     case 'imp-undo': if(IMP){ const ids = new Set(IMP.added); S.data.cards = S.data.cards.filter(c=>!ids.has(c.id)); saveData(); closeModal(); renderContent(); toast(t('undone')); } break;
-    case 'cv': S.cv = id; S.myDeck = null; renderContent(); break;
+    case 'cv': S.cv = id; S.myDeck = null; S.myFolder = null; renderContent(); break;
     case 'open-mydeck': S.myDeck = id; renderContent(); window.scrollTo({top:0}); break;
     case 'close-mydeck': S.myDeck = null; renderContent(); break;
+    case 'folder-new': folderForm(); break;
+    case 'folder-edit': folderForm(foldersOf().find(x=>x.id===id)); break;
+    case 'folder-del': confirmTap(b, t('confirmDelFolder'), ()=>{ S.data.folders = foldersOf().filter(x=>x.id!==id); S.myFolder = null; saveData(); renderContent(); toast(t('folderDeleted')); }); break;
+    case 'open-folder': S.myFolder = id; S.myDeck = null; renderContent(); window.scrollTo({top:0}); break;
+    case 'close-folder': S.myFolder = null; renderContent(); break;
+    case 'fold-study': case 'fold-test': case 'fold-game': case 'fold-dict': case 'fold-spk': { const f = foldersOf().find(x=>x.id===id); if(!f) break;
+      const cs = folderCards(f), tf = ()=>f.name, m = {icon:'layers'};
+      if(a==='fold-study') startStudy(cs, tf, m); else if(a==='fold-test') startQuiz(cs, tf, null, m);
+      else if(a==='fold-game') startGame(cs, tf, m); else if(a==='fold-dict') startDict(cs, tf, m); else startSpeak(cs, tf, m); break; }
     case 'deck-new': if(S.data.cards.length) deckForm(); else toast(t('needCardsFirst')); break;
     case 'deck-edit': deckForm(decksOf().find(x=>x.id===id)); break;
     case 'deck-del': confirmTap(b, t('confirmDelDeck'), ()=>{ const gone = new Set(S.data.cards.filter(c=>c.grp===id).map(c=>c.id));
-      S.data.cards = S.data.cards.filter(c=>!gone.has(c.id)); S.data.decks = decksOf().filter(x=>x.id!==id); decksOf().forEach(x=>{ x.cardIds = x.cardIds.filter(c=>!gone.has(c)); });
+      S.data.cards = S.data.cards.filter(c=>!gone.has(c.id)); S.data.decks = decksOf().filter(x=>x.id!==id); decksOf().forEach(x=>{ x.cardIds = x.cardIds.filter(c=>!gone.has(c)); }); foldersOf().forEach(f=>{ f.deckIds = f.deckIds.filter(x=>x!==id); });
       S.myDeck = null; saveData(); renderContent(); toast(t('deckDeleted')); }); break;
     case 'deck-study': { const d = decksOf().find(x=>x.id===id); if(d) startStudy(deckCards(d), ()=>d.name, {icon:'layers'}); break; }
     case 'deck-test': { const d = decksOf().find(x=>x.id===id); if(d) startQuiz(deckCards(d), ()=>d.name, (c,n)=>{ d.last = {c, n, at:Date.now()}; saveData(); renderContent(); }, {icon:'layers'}); break; }
     case 'df-all': if(DF){ dfVisible().forEach(c=>DF.sel.add(c.id)); renderDfList(); } break;
     case 'df-none': if(DF){ dfVisible().forEach(c=>DF.sel.delete(c.id)); renderDfList(); } break;
     case 'test-mine': { const l = fcList_(); startQuiz(l.length>=2 ? l : S.data.cards, ()=>t('tabCards'), null, {icon:'cards'}); break; }
+    case 'spk-mine': startSpeak(fcList_(), ()=>t('tabCards'), {icon:'cards'}); break;
+    case 'spk-deck': { const d = PRESETS.find(x=>x.id===S.deck); if(d) startSpeak(d.cards, ()=>L(d.name), {jp:d.jp, icon:d.id}); break; }
+    case 'deck-spk': { const d = decksOf().find(x=>x.id===id); if(d) startSpeak(deckCards(d), ()=>d.name, {icon:'layers'}); break; }
+    case 'sp-count': if(S.spk){ S.spk.count = +id; renderSpkSetup(); } break;
+    case 'sp-start': beginSpk(); break;
+    case 'sp-again': renderSpkSetup(); break;
+    case 'sp-rec': spRecord(); break;
+    case 'sp-model': if(S.spk && S.spk.items){ const it = S.spk.items[S.spk.i]; speakText(it.src, isEn(it.c), b); } break;
+    case 'sp-next': spNext(); break;
     case 'dict-mine': startDict(fcList_(), ()=>t('tabCards'), {icon:'cards'}); break;
     case 'dict-deck': { const d = PRESETS.find(x=>x.id===S.deck); if(d) startDict(d.cards, ()=>L(d.name), {jp:d.jp, icon:d.id}); break; }
     case 'deck-dict': { const d = decksOf().find(x=>x.id===id); if(d) startDict(deckCards(d), ()=>d.name, {icon:'layers'}); break; }
@@ -3891,7 +4745,7 @@ document.addEventListener('click', e=>{
     case 'qz-mode': if(S.quiz){ S.quiz.mode = id; renderQuizSetup(); } break;
     case 'qz-count': if(S.quiz){ S.quiz.count = +id; renderQuizSetup(); } break;
     case 'qz-start': if(S.quiz){ S.quiz.retry = false; beginQuiz(shuffle([...S.quiz.pool]).slice(0, S.quiz.count)); } break;
-    case 'qz-pick': if(S.quiz){ const Q = S.quiz.qs[S.quiz.i]; if(Q.picked===null){ Q.picked = +id; markStudyDay(); if(Q.opts[Q.picked]===Q.right) S.quiz.correct++; renderQ();
+    case 'qz-pick': if(S.quiz){ const Q = S.quiz.qs[S.quiz.i]; if(Q.picked===null){ Q.picked = +id; markStudyDay(); if(Q.opts[Q.picked]===Q.right) S.quiz.correct++; quizCredit(Q.card, Q.opts[Q.picked]===Q.right); renderQ();
       /* Đọc lại từ vựng ngay sau khi chọn đáp án */
       if(CAN_SPEAK) speakCard(Q.card, document.querySelector('#quiz .qz-speak')); } } break;
     case 'qz-speak': if(S.quiz){ const Q = S.quiz.qs[S.quiz.i]; speakCard(Q.card, b); } break;
@@ -3922,6 +4776,11 @@ document.addEventListener('click', e=>{
   Store.init();
   const sess = LS.get('session');
   if(sess === GUEST){ await enter(GUEST); return; }
+  if(sess && Cloud.on){
+    Cloud.sess = LS.get('cloud');
+    if(Cloud.sess && Cloud.sess.user === sess){ await enter(sess); return; }
+    LS.set('session', null); renderLogin(); return;
+  }
   if(sess){
     const acc = await Store.get('accounts');
     if(acc && acc.users && acc.users[sess]){ await enter(sess); return; }

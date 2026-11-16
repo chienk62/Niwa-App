@@ -11,8 +11,8 @@ android {
         applicationId = "com.bjtniwa.app"
         minSdk = 26
         targetSdk = 34
-        versionCode = 21
-        versionName = "1.20"
+        versionCode = 22
+        versionName = "2.0"
     }
 
     buildTypes {
